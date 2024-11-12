@@ -1,0 +1,52 @@
+/* connexion.css */
+
+
+body {
+  background: linear-gradient( #0077be, #00c6d7);
+  height: 2000px;
+}
+
+img {
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 750px ;
+  width:20%
+
+}
+
+h1 {
+
+  font-size: 4em;
+  text-align: center;
+  color: #ffffff;
+}
+
+p {
+  font-size: 1.8em;
+  color: #ffffff;
+  text-align: center;
+}
+
+input[type="text"], input[type="password"] {
+  width: 50%;/*largeur de la zone de texte*/
+  margin: 10px auto ;/*centrer la zone*/
+  display: block;/*positionner en étage*/
+  border-radius: 300px; /*arrondi des page*/
+  font-size: 1em;/* taille de la zone de texte*/
+
+}
+
+input[type="submit"] {
+  width: 20%;
+  padding: 10px;
+  margin: 15px auto;
+  display: block;
+  border-radius: 300px;
+  border: none;
+  background-color: #00bfff;
+  color: #ffffff;
+  font-size: 1em;
+
+}
+
