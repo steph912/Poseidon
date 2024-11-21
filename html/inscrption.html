@@ -7,14 +7,16 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <form action="/creer_compte" method="get">
-            <h1>Inscription</h1>
-            <input type="text" name="identifiant" placeholder="Veuillez saisir un identifiant">
-            <input type="text" name="mot_de_passe" placeholder="Veuillez saisir un mot de passe">
-            <input type="button" name="creer_le_compte" value="Créer le compte">
-        </form>
-        <form action="/retour" method="get">
-            <input type="button" name="retour" value="Retour">
-        </form>
+        <div class="inscription">
+            <form action="/creer_compte" method="get">
+                <h1>Inscription</h1>
+                <input type="text" name="identifiant" placeholder="Veuillez saisir un identifiant">
+                <input type="text" name="mot_de_passe" placeholder="Veuillez saisir un mot de passe">
+                <input type="submit" name="creer_le_compte" value="Créer le compte">
+            </form>
+            <form class="retour" action="/retour" method="get">
+                <input type="button" name="retour" value="Retour">
+            </form>
+        </div>
     </body>
 </html>
