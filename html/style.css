@@ -1,24 +1,52 @@
+/*----------COMMUN----------*/
 body {
     background: no-repeat url(image/fond_ciel_mer.png);
     background-size: 100vw 100vh;
+    overflow-y: hidden;
 }
 
 form{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(164, 164, 164, 0.7);
+    padding: 5% 15% 10% 15%;
+    border-radius: 30px;
+}
+
+form input[type="text"] {
+    border-radius: 5px;
+    border: none;
+    width: 15em;
+    height: 25px;
+}
+
+form input[type="submit"] {
+    font-size: large;
+    border-radius: 5px;
+    padding: 15px;
+    border: none;
 }
 
 h1 {
-    font-size: 4em;
+    
 }
 
-.connexion{
-    display: grid;
-    grid-template : 1fr 1fr / repeat(2, 1fr);
-    justify-content: center;
+h2 {
+    font-size: 3rem;
+    margin: 5px;
 }
 
 .logo{
     grid-column: span 2;
+    width: 40vw;
+}
+
+/*----------CONEXION----------*/
+.connexion{
+    height: 100vh;
+    display: grid;
+    grid-template : 1fr 2fr / repeat(2, 1fr);
+    justify-items: center;
+    align-items: flex-start;
 }
