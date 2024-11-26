@@ -57,7 +57,6 @@ h2 {
 }
 
 .logo{
-    grid-column: span 2;
     width: 40vw;
 }
 
@@ -68,6 +67,9 @@ h2 {
     grid-template : 1fr 2fr / repeat(2, 1fr);
     justify-items: center;
     align-items: flex-start;
+}
+.connexion .logo{
+    grid-column: span 2;
 }
 
 /*----------INSCRIPTION----------*/
@@ -90,4 +92,14 @@ h2 {
     padding: 2%;/* espace entre le texte et bordure*/
     border-radius: 30px;/* arrondi des bords*/
     width: 20%; /* largeur du fond gris*/
+}
+
+/*----------Accueil----------*/
+.acceuil{
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+    justify-items: center;
+}
+.acceuil .logo {
+    grid-column: span 3;
 }
