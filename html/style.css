@@ -2,7 +2,7 @@
 body {
     background: no-repeat url(image/fond_ciel_mer.png);
     background-size: 100vw 100vh;
-    overflow-y: hidden;
+    background-attachment: fixed;
 }
 
 form{
@@ -90,7 +90,4 @@ h2 {
     padding: 2%;/* espace entre le texte et bordure*/
     border-radius: 30px;/* arrondi des bords*/
     width: 20%; /* largeur du fond gris*/
-
-    
-
 }
