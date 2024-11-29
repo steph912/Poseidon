@@ -40,19 +40,22 @@ form.retour {
 }
 
 form.retour input{
-    font-size: large;
+    font-size: xx-large;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 15px;
     border: none;
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
 }
 
 h1 {
-    
+    text-align: center;
+    font-size: 10em;
+    margin: 1% 0% 1% 0%;
 }
 
 h2 {
-    font-size: 3rem;
+    text-align: center;
+    font-size: 4rem;
     margin: 5px;
 }
 
@@ -82,17 +85,26 @@ h2 {
 }
 
 /*----------A propos----------*/
-.a_propos{
+.main_apropos{
     display: flex;
-    justify-content: center;
-    text-align: center;
+    flex-direction: row;
+    height:70vh;
 }
-.a_propos1 {
+
+.section_apropos {
     background-color: rgba(164, 164, 164, 0.7);
-    padding: 2%;/* espace entre le texte et bordure*/
-    border-radius: 30px;/* arrondi des bords*/
-    width: 20%; /* largeur du fond gris*/
+    margin: 5%;
+    padding: 5%;
+    border: solid 3px black;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
 }
+
+.section_apropos p {
+    font-size: xx-large;
+}
+
 
 /*----------Accueil----------*/
 .acceuil{
