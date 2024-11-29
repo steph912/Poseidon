@@ -59,9 +59,8 @@ h2 {
     margin: 5px;
 }
 
-.logo{
-    width: 40vw;
-}
+
+
 
 /*----------CONEXION----------*/
 .connexion{
@@ -108,10 +107,20 @@ h2 {
 
 /*----------Accueil----------*/
 .acceuil{
-    display: grid;
-    grid-template: repeat(4, 1fr) / repeat(3, 1fr);
-    justify-items: center;
+    display:grid;
+    grid-template: 2fr 1fr 1fr / 1fr 1fr 1fr ; /* on crée des 3 lignes ( 1 ligne 2 fois plus grandes que les autres) et apres 3 colonnes égales*/
 }
-.acceuil .logo {
-    grid-column: span 3;
+.acceuil .logo{
+    grid-column: span 3; /*le logo s'étend sur les 3 colonnes qu'on a créer juste avant */
+    justify-self: center;
+}
+
+.acceuil_a_propos {
+    grid-area: 2 / 1 / 4 / 2;
+    align-self: center;
+}
+
+.acceuil_option {
+    grid-area: 2 / 3 / 4 / 4;
+    align-self: center;
 }

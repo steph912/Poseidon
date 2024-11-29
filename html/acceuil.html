@@ -9,15 +9,18 @@
     <body>
         <div class="acceuil">
             <img class="logo" src="image/logo.png">
+
+            <form class="acceuil_a_propos" action="a_propos.html" method="get">
+                <input type="submit" name="bouton" value="A propos" />
+            </form>
+
+            
+
             <form action="placez_vos_bateaux.html" method="get">
                 <input type="submit" name="bouton" value="Jouer contre l'ordinateur"></br>
             </form>
-        
-            <form action="a_propos.html" method="get">
-                <input type="submit" name="bouton" value="A propos" />
-            </form>
-    
-            <form action="options.html" method="get">
+
+            <form class="acceuil_option" action="options.html" method="get">
                 <input type="submit" name="bouton" value="Options"/></br>
             </form>
         
@@ -25,11 +28,14 @@
                 <input type="submit" name="bouton" value="Jouer contre un joueur " /></br>
             </form>
     
-            <form action="connexion.html" method="get">
-                <input type="submit" name="bouton" value="Se déconnecter">
-            </form>
+            
+
+            
+            
         </div>
-    
+        <form action="connexion.html" method="get">
+            <input type="submit" name="bouton" value="Se déconnecter">
+        </form>
         
 
     </body>
