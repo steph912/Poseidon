@@ -5,24 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Options</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
+
+        .options-container {
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ddd;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #bbb;
+        }
+    </style>
 </head>
 <body>
-    <h1>Options</h1>
-    <div>
-        <input type="checkbox" id="timer"> Timer
-    </div>
-    <div>
-        <input type="checkbox" id="missiles"> Missiles spéciaux
-    </div>
-    <div>
-        <select id="ai-level">
-            <option>Facile</option>
-            <option>Normal</option>
-            <option>Difficile</option>
-        </select>
-    </div>
-    <div>
-        <button>Retour</button>
+    <div class="options-container">
+        <h1>Options</h1>
+        <div class="option">
+            Timer
+            <div class="switch">
+                <input type="checkbox" id="timer">
+                <div class="slider"></div>
+            </div>
+        </div>
+        <div class="option">
+            Missiles spéciaux
+            <div class="switch">
+                <input type="checkbox" id="missiles">
+                <div class="slider"></div>
+            </div>
+        </div>
+        <div class="option">
+            Niveau de l'IA
+            <select id="ai-level">
+                <option>Facile</option>
+                <option>Normal</option>
+                <option>Difficile</option>
+            </select>
+        </div>
+        <div class="button-container">
+            <button><a href="acceuil.html"> Retour </a></button>
+        </div>
     </div>
 </body>
 </html>
