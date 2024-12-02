@@ -6,25 +6,25 @@
         <link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-        <h1>Jouer avec un autre joueur</h1>
-        <p>Veuillez saisir un code de partie </p>
-        <input type="text">
-        <form action="placez_vos_bateaux.html" method="get">
-            <input type="submit" value="Rejoindre la partie">
-        </form>
+        <div class="jouer_en_ligne">
+            <h1>Jouer avec un autre joueur</h1>
 
-        <p>Je veux créer la partie </p>
-        <input type="text">
-        <form action="attente_du_joueur.html" method="get">
-            <input type="submit" value="Créer la partie">
-        </form>
-        <p>
-        <form action="acceuil.html" method="get">
-            <input type="submit" value="retour">
-        </form>
-    </p>
+            <section>
+                <input type="text" placeholder="Veuillez saisir un code de partie">
+                <form action="placez_vos_bateaux.html" method="get">
+                    <input type="submit" value="Rejoindre la partie">
+                </form>
+            </section>
 
-
-      
+            <section>
+                <p>Je veux créer la partie </p>
+                <form action="attente_du_joueur.html" method="get">
+                    <input type="submit" value="Créer la partie">
+                </form>
+                <form class="retour" action="acceuil.html" method="get">
+                    <input type="submit" value="retour">
+                </form>
+            </section>
+        </div>
 	</body>
 </html>

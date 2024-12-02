@@ -28,6 +28,11 @@ form input[type="submit"] {
     border-radius: 5px;
     padding: 15px;
     border: none;
+    transition: 0.5s;
+    cursor: pointer;
+    
+}
+form input[type="submit"]:hover {
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
 }
 
@@ -40,11 +45,10 @@ form.retour {
 }
 
 form.retour input{
-    font-size: xx-large;
+    font-size: x-large;
     padding: 15px;
     border-radius: 15px;
     border: none;
-    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
 }
 
 h1 {
@@ -87,12 +91,12 @@ h2 {
 .main_apropos{
     display: flex;
     flex-direction: row;
-    height:70vh;
+    height: 65vh;
 }
 
 .section_apropos {
     background-color: rgba(164, 164, 164, 0.7);
-    margin: 5%;
+    margin: 2%;
     padding: 2%;
     border: solid 3px black;
     border-radius: 50px;
@@ -101,7 +105,7 @@ h2 {
 }
 
 .section_apropos p {
-    font-size: x-large;
+    font-size: large;
 }
 
 
@@ -109,18 +113,59 @@ h2 {
 .acceuil{
     display:grid;
     grid-template: 2fr 1fr 1fr / 1fr 1fr 1fr ; /* on crée des 3 lignes ( 1 ligne 2 fois plus grandes que les autres) et apres 3 colonnes égales*/
+    justify-items: center;
+    align-items: center;
 }
 .acceuil .logo{
-    grid-column: span 3; /*le logo s'étend sur les 3 colonnes qu'on a créer juste avant */
-    justify-self: center;
+    grid-column: span 3; /* le logo s'étend sur les 3 colonnes qu'on a créer juste avant */
+    width: 50%;
+    margin: 3%;
+}
+.acceuil form {
+    padding: 2% 20% 2% 20%;
+    margin: 2%;
 }
 
 .acceuil_a_propos {
     grid-area: 2 / 1 / 4 / 2;
-    align-self: center;
 }
 
 .acceuil_option {
     grid-area: 2 / 3 / 4 / 4;
-    align-self: center;
+}
+
+/*----------Jouer en ligne----------*/
+.jouer_en_ligne {
+    display: grid;
+    grid-template: 15vh 64vh / 50vw 50vw;
+}
+.jouer_en_ligne h1 {
+    font-size: 4em;
+    grid-area: 1 / 1 / 2 / 3;
+}
+.jouer_en_ligne form {
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+.jouer_en_ligne section {
+    background-color: rgba(164, 164, 164, 0.7);
+    margin: 10%;
+    padding: 2%;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.jouer_en_ligne p {
+    font-size: xx-large;
+}
+
+.jouer_en_ligne input[type="text"] {
+    width: 15em;
+    height: 2em;
+    margin: 5%;
+    border-radius: 5px;
 }
