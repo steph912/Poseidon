@@ -48,7 +48,7 @@ const trait = function (req, res, query) {
 	if (trouve === true) {
 		// SI CREATION PAS OK, ON REAFFICHE PAGE FORMULAIRE AVEC ERREUR
 
-		page = fs.readFileSync('html/inscription.html', 'utf-8');
+		page = fs.readFileSync('inscription.html', 'utf-8');
 
 		marqueurs = {};
 		marqueurs.erreur = "<strong>ERREUR</strong> : ce compte existe déjà";
@@ -58,7 +58,7 @@ const trait = function (req, res, query) {
 	} else {
 		// SI CREATION OK, ON ENVOIE PAGE DE CONFIRMATION
 
-		page = fs.readFileSync('modele_confirmation_inscription.html', 'UTF-8');
+		page = fs.readFileSync('connexion.html', 'UTF-8');
 
 		marqueurs = {};
 		marqueurs.pseudo = query.pseudo;

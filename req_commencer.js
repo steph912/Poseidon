@@ -12,7 +12,7 @@ const trait = function (req, res, query) {
 
 	// AFFICHAGE DE LA PAGE D'ACCUEIL
 
-	page = fs.readFileSync('html/connexion.html', 'utf-8');
+	page = fs.readFileSync('connexion.html', 'utf-8');
 
 	marqueurs = {};
 	marqueurs.erreur = "";

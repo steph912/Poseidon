@@ -1,6 +1,6 @@
 /*----------COMMUN----------*/
 body {
-    background: no-repeat url(image/fond_ciel_mer.png);
+    background: no-repeat url(fond_ciel_mer.png);
     background-size: 100vw 100vh;
     background-attachment: fixed;
     margin: 0;
