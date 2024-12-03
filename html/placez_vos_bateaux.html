@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placez vos Bateaux</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #ffffff;
+      margin: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .grids-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 20px repeat(10, 40px); 
+      grid-template-rows: 20px repeat(10, 40px);   
+      gap: 0;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .header {
+      background-color: transparent;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .side {
+      background-color: transparent;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cell {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0d9b5;
+      cursor: pointer;
+      
+    }
+
+    .cell::before {
+      content: "•"; 
+      font-size: 16px;
+      color: #000;
+    }
+
+    .rules {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #c0bdbd;
+  padding: 15px;
+  border-radius: 15px; 
+  max-width: 500px;
+  font-size: 16px;
+  text-align: left;
+  color: black; 
+}
+
+     button {
+    position: absolute;
+    bottom: 80px;
+    right: 80px;
+    font-size: 16px;
+    background-color: #ddd;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.bateaux {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background-color: transparent;
+  padding: 15px;
+  border-radius: 15px; 
+  max-width: 500px;
+  font-size: 16px;
+  text-align: left;
+  color: black; 
+}
+
+</style>
+</head>
+<body>
+
+    <h1>Placez vos Bateaux</h1>
+
+  <div class="grids-container">
+    <div class="player-grid">
+      <h2>Voici votre grille</h2>
+      <div class="grid-container">
+        <div class="header"></div>
+        <div class="header">A</div>
+        <div class="header">B</div>
+        <div class="header">C</div>
+        <div class="header">D</div>
+        <div class="header">E</div>
+        <div class="header">F</div>
+        <div class="header">G</div>
+        <div class="header">H</div>
+        <div class="header">I</div>
+        <div class="header">J</div>
+
+        <div class="side">1</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+        <div class="side">2</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+        <div class="side">3</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+        <div class="side">4</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+        <div class="side">5</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+        <div class="side">6</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+        <div class="side">7</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+        <div class="side">8</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+        <div class="side">9</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+        <div class="side">10</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      </div>
+    </div>
+    <div class="rules">
+        <h2>Les règles du jeu</h2><br>
+        Vous decez placer vos Bateaux<br>
+        sur la grille.<br>
+        Une fois tous les bateaux placés<br>
+        sur la grille, cliquez sur le bouton <br>
+        "j'ai terminé" ci-dessous<br>
+      </div>
+    <div class="bateaux">
+        <h3> Voici vos bateaux : </h3>
+        <img src = bateaux_2_cases-removebg-preview.png><br>
+        <img src = Bateaux_3_case-removebg-preview.png><br>
+        <img src = Bateaux_3_cases_bis-removebg-preview.png><br>
+        <img src = bateaux_4_cases-removebg-preview.png><br>
+        <img src = bateaux_5_cases-removebg-preview.png><br>
+    </div>
+
+      <div class="button">
+        <button><a href="phase_de_combat.html"> J'ai terminé </a></button>
+    </div>
+
+</body>
