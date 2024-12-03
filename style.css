@@ -16,7 +16,7 @@ form{
     border-radius: 30px;
 }
 
-form input[type="text"] {
+form input[type="text"], input[type="password"] {
     margin: 5%;
     border-radius: 5px;
     border: none;
