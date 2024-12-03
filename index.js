@@ -10,9 +10,9 @@ let port;
 // DECLARATION DES DIFFERENTS MODULES CORRESPONDANT A CHAQUE ACTION
 
 const req_commencer = require("./req_commencer.js");
-const req_afficher_formulaire_inscription = require("./req_afficher_formulaire_inscription.js");
-const req_inscrire = require("./req_inscrire.js");
-const req_identifier = require("./req_identifier.js");
+const req_creer_un_compte = require("./req_creer_un_compte.js");
+const req_inscription = require("./req_inscription.js");
+const req_connexion = require("./req_connexion.js");
 
 const req_statique = require("./req_statique.js");
 const req_erreur = require("./req_erreur.js");
@@ -38,14 +38,14 @@ const traite_requete = function (req, res) {
 			case '/req_commencer':
 				req_commencer(req, res, query);
 				break;
-			case '/req_afficher_formulaire_inscription':
-				req_afficher_formulaire_inscription(req, res, query);
+			case '/req_creer_un_compte':
+				req_creer_un_compte(req, res, query);
 				break;
-			case '/req_inscrire':
-				req_inscrire(req, res, query);
+			case '/req_inscription':
+				req_inscription(req, res, query);
 				break;
-			case '/req_identifier':
-				req_identifier(req, res, query);
+			case '/req_connexion':
+				req_connexion(req, res, query);
 				break;
 			default:
 				req_statique(req, res, query);
