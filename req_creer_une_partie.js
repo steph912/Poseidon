@@ -1,0 +1,1 @@
+// creer une partie + ensuite rediriger sur attente_du_joueur.html
