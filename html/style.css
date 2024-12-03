@@ -3,6 +3,8 @@ body {
     background: no-repeat url(image/fond_ciel_mer.png);
     background-size: 100vw 100vh;
     background-attachment: fixed;
+    margin: 0;
+    overflow-y: hidden;
 }
 
 form{
@@ -178,4 +180,27 @@ h2 {
 .classement h1 {
     font-size: 4em;
     grid-area: 1 / 1 / 2 / 3;
+}
+/*--------Gagner--------*/
+.gagner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.gagner img{
+    width: 80%;
+    padding: 0% 0% 5% 0%;
+    filter: blur(2px);
+}
+/*------Perdu------*/
+.perdu{
+    background-color: rgba(249, 2, 2, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.perdu img{
+    width: 80%;
+    padding: 0% 0% 5% 0%;
+    filter: blur(2px);
 }
