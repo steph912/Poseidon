@@ -169,3 +169,13 @@ h2 {
     margin: 5%;
     border-radius: 5px;
 }
+
+/*---------Classement----------*/
+
+.classement{
+    display: grid;
+}
+.classement h1 {
+    font-size: 4em;
+    grid-area: 1 / 1 / 2 / 3;
+}
