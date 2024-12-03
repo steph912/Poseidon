@@ -181,6 +181,7 @@ h2 {
     font-size: 4em;
     grid-area: 1 / 1 / 2 / 3;
 }
+
 /*--------Gagner--------*/
 .gagner{
     display: flex;
