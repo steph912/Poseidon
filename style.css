@@ -227,13 +227,14 @@ h2 {
 /*----------Classement---------*/
 
 table {
+    margin:auto;
     border-collapse: collapse; /* Fusionne les bordures adjacentes pour un rendu plus propre */
-    width: 100%; /* Optionnel, adapte la largeur du tableau */
+    width: 50%; /* Optionnel, adapte la largeur du tableau */
 }
  th, td {
     border: 4px solid rgb(5, 5, 5); /* Applique une bordure noire d'une épaisseur de 1px */
     padding: 8px; /* Ajoute un peu d'espace à l'intérieur des cellules */
-    text-align: left; /* Aligne le texte à gauche */
+    text-align: center; /* Aligne le texte à gauche */
     margin:55%;
  
 }
