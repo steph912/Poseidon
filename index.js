@@ -13,6 +13,7 @@ const req_commencer = require("./req_commencer.js");
 const req_creer_un_compte = require("./req_creer_un_compte.js");
 const req_inscription = require("./req_inscription.js");
 const req_connexion = require("./req_connexion.js");
+const req_acceuil = require("./req_acceuil.js");
 
 const req_statique = require("./req_statique.js");
 const req_erreur = require("./req_erreur.js");
@@ -46,6 +47,9 @@ const traite_requete = function (req, res) {
 				break;
 			case '/req_connexion':
 				req_connexion(req, res, query);
+				break;
+			case '/req_acceuil':
+				req_acceuil(req, res, query);
 				break;
 			default:
 				req_statique(req, res, query);

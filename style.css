@@ -120,7 +120,7 @@ h2 {
 /*----------Accueil----------*/
 .bienvenue{
     font-size: xx-large;
-    color:brown;
+    color:rgb(196, 85, 0);
 }
 .acceuil{
     display:grid;
