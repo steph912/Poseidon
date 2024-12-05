@@ -51,7 +51,7 @@ const trait = function (req, res, query) {
 		page = fs.readFileSync('inscription.html', 'utf-8');
        
 		marqueurs = {};
-		marqueurs.erreur = "ERREUR 404 : ce compte existe déjà";
+		marqueurs.erreur = "ERREUR, le compte suivant existe déjà : ";
 		marqueurs.pseudo = query.pseudo;
 		page = nunjucks.renderString(page, marqueurs);
 

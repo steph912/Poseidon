@@ -12,12 +12,11 @@
                 <h1>Inscription</h1>
                 <input type="text" name="pseudo" placeholder="Veuillez saisir un identifiant">
                 <input type="password" name="password" placeholder="Veuillez saisir un mot de passe">
+                <div class="erreur" >{{ erreur }}{{ pseudo }}</div>
                 <input type="submit" value="Créer le compte">
-                
-                <div class="erreur" >{{ erreur }}</div>
             </form>
             <form class="retour" action="connexion.html" method="get">
-                <input type="button" name="retour" value="Retour">
+                <input type="submit" name="retour" value="Retour">
             </form>
         </div>
     </body>
