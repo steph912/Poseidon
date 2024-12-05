@@ -17,6 +17,7 @@ const trait = function (req, res, query) {
 	marqueurs = {};
 	marqueurs.erreur = "";
 	marqueurs.pseudo = "";
+	marqueurs.erreur = "";
 	page = nunjucks.renderString(page, marqueurs);
 
 	res.writeHead(200, { 'Content-Type': 'text/html' });

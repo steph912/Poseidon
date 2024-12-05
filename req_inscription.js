@@ -49,14 +49,14 @@ const trait = function (req, res, query) {
 		// SI CREATION PAS OK, ON REAFFICHE PAGE FORMULAIRE AVEC ERREUR
 
 		page = fs.readFileSync('inscription.html', 'utf-8');
-
+       
 		marqueurs = {};
-		marqueurs.erreur = "<strong>ERREUR</strong> : ce compte existe déjà";
+		marqueurs.erreur = "ERREUR 404 : ce compte existe déjà";
 		marqueurs.pseudo = query.pseudo;
 		page = nunjucks.renderString(page, marqueurs);
 
 	} else {
-		// SI CREATION OK, ON ENVOIE PAGE DE CONFIRMATION
+		// SI CREATION OK, ON RENVOIE SUR LA PAGE DE CONNEXION
 
 		page = fs.readFileSync('connexion.html', 'UTF-8');
 

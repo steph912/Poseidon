@@ -88,6 +88,10 @@ h2 {
     justify-content: center;
     align-items: center;
 }
+.erreur{
+    color:red;
+
+}
 
 /*----------A propos----------*/
 .main_apropos{
@@ -114,9 +118,13 @@ h2 {
 
 
 /*----------Accueil----------*/
+.bienvenue{
+    font-size: xx-large;
+    color:brown;
+}
 .acceuil{
     display:grid;
-    grid-template: 2fr 1fr 1fr / 1fr 1fr 1fr ; /* on crée des 3 lignes ( 1 ligne 2 fois plus grandes que les autres) et apres 3 colonnes égales*/
+    grid-template: 2fr 1em 1fr 1fr / 1fr 1fr 1fr ; /* on crée des 4 lignes ( 1 ligne 2 fois plus grandes que les autres) et apres 3 colonnes égales*/
     justify-items: center;
     align-items: center;
 }
@@ -131,11 +139,14 @@ h2 {
 }
 
 .acceuil_a_propos {
-    grid-area: 2 / 1 / 4 / 2;
+    grid-area: 3 / 1 / 5 / 2;
 }
 
 .acceuil_option {
-    grid-area: 2 / 3 / 4 / 4;
+    grid-area: 3 / 3 / 5 / 4;
+}
+.bienvenue{
+    grid-area:  2 / 1 / 3 / 4;
 }
 
 /*----------Jouer en ligne----------*/
@@ -258,3 +269,6 @@ table {
 }
 
 
+tr{
+    background-color: white;
+}
