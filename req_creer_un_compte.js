@@ -1,5 +1,3 @@
-// Traitement de "req_afficher_formulaire_inscription"
-
 "use strict";
 
 const fs = require("fs");
@@ -10,7 +8,7 @@ const trait = function (req, res, query) {
 	let marqueurs;
 	let page;
 
-	// AFFICHAGE DE LA modele_formulaire_inscription
+	// AFFICHAGE DE LA PAGE inscription.html
 
 	page = fs.readFileSync('inscription.html', 'utf-8');
 
