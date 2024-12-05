@@ -6,16 +6,6 @@
     <title>Options</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f9f9f9;
-            margin: 0;
-        }
-
         .options-container {
             background: white;
             padding: 20px;
@@ -58,33 +48,46 @@
     </style>
 </head>
 <body>
-    <div class="options-container">
+    
+    
         <h1>Options</h1>
-        <div class="option">
-            Timer
-            <div class="switch">
-                <input type="checkbox" id="timer">
-                <div class="slider"></div>
+        
+        <form action="/req_acceuil" method="get">
+            
+            <div class="option">
+                Timer
+                <div class="switch">
+                    <input type="checkbox" id="timer" name="timer">
+                    <div class="slider"></div>
+                </div>
             </div>
-        </div>
-        <div class="option">
-            Missiles spéciaux
-            <div class="switch">
-                <input type="checkbox" id="missiles">
-                <div class="slider"></div>
+            
+        
+            <div class="option">
+                Missiles spéciaux
+                <div class="switch">
+                    <input type="checkbox" id="missiles" name="missiles">
+                    <div class="slider"></div>
+                </div>
             </div>
-        </div>
-        <div class="option">
-            Niveau de l'IA
-            <select id="ai-level">
-                <option>Facile</option>
-                <option>Normal</option>
-                <option>Difficile</option>
-            </select>
-        </div>
-        <form class="retour" action="/req_acceuil" method="get">
-            <input type="submit" value="Appliquer et revenir à l'acceuil">
+            
+            
+            <div class="option">
+                Niveau de l'IA
+                <select id="ia-level" name="ia_level">
+                    <option value="facile">Facile</option>
+                    <option value="normal">Normal</option>
+                    <option value="difficile">Difficile</option>
+                </select>
+            </div>
+    
+            
+            <div class="retour">
+                <input type="submit" value="Appliquer et revenir à l'accueil">
+            </div>
         </form>
-    </div>
+        
+    
+    
 </body>
 </html>
