@@ -116,6 +116,16 @@ h2 {
     font-size: large;
 }
 
+/*----------Options----------*/
+.option{
+    display: flex;
+    flex-direction: row;
+    font-size: x-large;
+    margin: 1%;
+}
+.form_option{
+    margin: 5em 10em 5em 10em;
+}
 
 /*----------Accueil----------*/
 .bienvenue{
