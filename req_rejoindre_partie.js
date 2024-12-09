@@ -28,7 +28,7 @@ const rejoindrePartie = function (req, res, query) {
     // ON RENVOIE UNE PAGE HTML
     if (trouve === false) {
         // SI LA PARTIE N'EXISTE PAS, ON REVIENT À LA PAGE D'ACCUEIL MEMBRE AVEC UNE ERREUR
-        page = fs.readFileSync("modele_accueil_membre.html", "utf-8");
+        page = fs.readFileSync("accueil.html", "utf-8");
 
         marqueurs = {};
         marqueurs.erreur = "ERREUR : La partie spécifiée n'existe pas.";
