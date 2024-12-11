@@ -7,14 +7,14 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <form action="req_rejouer" method="get">
-            <h1>Voulez-vous rejouer ?</h1>
-            <div class="oui">
-                <button2><a href="placez_vos_bateaux.html"> Oui </a></button2>
-            </div>
-            <div class="non">
-                <button3><a href="acceuil.html"> Non </a></button3>
-            </div>
-        </form>
+        <h1>Voulez-vous rejouer ?</h1>
+        <div class="rejouer">
+            <form action="/req_rejouer" method="get">
+                <input type="submit" name="rejouer" value="oui">
+            </form>
+            <form action="/req_rejouer" method="get">
+                <input type="submit" name="rejouer" value="non">
+            </form>
+        </div>
     </body>
 </html>

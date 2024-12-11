@@ -247,31 +247,12 @@ h2 {
 }
 
 /*----------Rejouer---------*/
-
-body {
+.rejouer{
+    height: 60vh;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    flex-direction: column;
-    text-align: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.oui, .non {
-    margin: 10px;
-    padding: 15px 30px;
-    background-color: #87CEEB; 
-    border: 2px solid #000;
-    border-radius: 50px; 
-    cursor: pointer;
-    display: inline-block;
 }
 
 
@@ -315,22 +296,6 @@ tr{
 
 /*----------phase de combat---------*/
 
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #ffffff;
-    margin: 20px;
-  }
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  h2 {
-    font-size: 20px;
-    margin: 10px 0;
-  }
 
   .grids-container {
     display: flex;
@@ -409,24 +374,6 @@ color: black;
   }
 
 /*----------phase de placement---------*/
-
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #ffffff;
-      margin: 20px;
-    }
-
-    h1 {
-      font-size: 24px;
-      position: absolute;
-      top : 20px;
-    }
-
-    h2 {
-      font-size: 20px;
-      margin: 10px 0;
-    }
 
     .player-grid2 {
         display: flex;
