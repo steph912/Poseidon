@@ -14,6 +14,10 @@ form{
     background-color: rgba(164, 164, 164, 0.7);
     padding: 5% 10% 5% 10%;
     border-radius: 30px;
+    transition: 1s;
+}
+form:hover{
+    background-color: rgba(175, 175, 175, 0.6);
 }
 
 form input[type="text"], input[type="password"] {
@@ -65,7 +69,10 @@ h2 {
     margin: 5px;
 }
 
-
+.erreur{
+    color:red;
+    font-size: x-large;
+}
 
 
 /*----------CONEXION----------*/
@@ -87,10 +94,6 @@ h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.erreur{
-    color:red;
-    font-size: x-large;
 }
 
 /*----------A propos----------*/
