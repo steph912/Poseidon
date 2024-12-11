@@ -13,6 +13,10 @@ const req_commencer = require("./req_commencer.js");
 const req_creer_un_compte = require("./req_creer_un_compte.js");
 const req_inscription = require("./req_inscription.js");
 const req_connexion = require("./req_connexion.js");
+const req_jouer_contre_ordinateur = require("./req_jouer_contre_ordinateur.js");
+const req_options = require("./req_options.js");
+const req_jouer_en_ligne = require("./req_jouer_en_ligne.js");
+const req_a_propos = require("./req_a_propos.js");
 const req_acceuil = require("./req_acceuil.js");
 
 const req_statique = require("./req_statique.js");
@@ -47,6 +51,18 @@ const traite_requete = function (req, res) {
 				break;
 			case '/req_connexion':
 				req_connexion(req, res, query);
+				break;
+			case '/req_jouer_contre_ordinateur':
+				req_jouer_contre_ordinateur(req, res, query);
+				break;
+			case '/req_options':
+				req_options(req, res, query);
+				break;
+			case '/req_jouer_en_ligne':
+				req_jouer_en_ligne(req, res, query);
+				break;
+			case '/req_a_propos':
+				req_a_propos(req, res, query);
 				break;
 			case '/req_acceuil':
 				req_acceuil(req, res, query);

@@ -35,7 +35,7 @@ const trait = function (req, res, query) {
 	// ON RENVOIT UNE PAGE HTML 
 
 	if (trouve === false) {
-		// SI IDENTIFICATION INCORRECTE, ON REAFFICHE PAGE ACCUEIL AVEC ERREUR
+		// SI IDENTIFICATION INCORRECTE, ON REAFFICHE PAGE de connexion AVEC ERREUR
 
 		page = fs.readFileSync('connexion.html', 'utf-8');
 
@@ -51,6 +51,7 @@ const trait = function (req, res, query) {
 
 		marqueurs = {};
 		marqueurs.pseudo = query.pseudo;
+		marqueurs.password = query.password;
 		marqueurs.erreur = "";
 		page = nunjucks.renderString(page, marqueurs);
 	}

@@ -11,19 +11,28 @@
             
             <img class="logo" src="logo.png">
 
-            <form class="acceuil_a_propos" action="a_propos.html" method="get">
+            <form class="acceuil_a_propos" action="/req_a_propos" method="get">
+                <input type="hidden" name="pseudo" value="{{ pseudo }}">
+                <input type="hidden" name="password" value="{{ password }}">
                 <input type="submit" value="A propos" />
             </form>
 
-            <form action="placez_vos_bateaux.html" method="get">
+            
+            <form action="/req_jouer_contre_ordinateur" method="get">
+                <input type="hidden" name="pseudo" value="{{ pseudo }}">
+                <input type="hidden" name="password" value="{{ password }}">
                 <input type="submit" name="mode" value="Jouer contre l'ordinateur">
             </form>
 
-            <form class="acceuil_option" action="options.html" method="get">
+            <form class="acceuil_option" action="/req_options" method="get">
+                <input type="hidden" name="pseudo" value="{{ pseudo }}">
+                <input type="hidden" name="password" value="{{ password }}">
                 <input type="submit" value="Options"/>
             </form>
         
-            <form action="jouer_contre_un_joueur.html" method="get">
+            <form action="/req_jouer_en_ligne" method="get">
+                <input type="hidden" name="pseudo" value="{{ pseudo }}">
+                <input type="hidden" name="password" value="{{ password }}">
                 <input type="submit" value="Jouer contre un joueur"/>
             </form>
 
@@ -31,7 +40,7 @@
             <div class="erreur">{{ erreur }}</div>
         </div>
 
-        <form class="retour" action="connexion.html" method="get">
+        <form class="retour" action="/req_commencer" method="get">
             <input type="submit" value="Se déconnecter">
         </form>
         

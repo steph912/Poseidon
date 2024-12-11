@@ -8,9 +8,9 @@ const trait = function (req, res, query) {
 	let marqueurs;
 	let page;
 
-	// AFFICHAGE DE LA PAGE acceuil.html
+	// AFFICHAGE DE LA PAGE a_propos.html
 
-	page = fs.readFileSync('acceuil.html', 'utf-8');
+	page = fs.readFileSync('a_propos.html', 'utf-8');
 
 	marqueurs = {};
 	marqueurs.pseudo = query.pseudo;
