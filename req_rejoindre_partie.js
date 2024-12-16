@@ -31,7 +31,7 @@ const rejoindrePartie = function (req, res, query) {
         page = fs.readFileSync("./html/accueil.html", "utf-8");
 
         marqueurs = {};
-        marqueurs.erreur = "ERREUR : La partie spécifiée n'existe pas.";
+        marqueurs.erreur = "ERREUR : le code est introuvable.";
         marqueurs.codeAleatoire = query.codeAleatoire || ""; // Affiche le nom demandé s'il existe dans la requête
         page = nunjucks.renderString(page, marqueurs);
     } else {

@@ -1,5 +1,4 @@
-// Traitement de "req_creer_une_partie"
-
+// creer une partie + ensuite rediriger sur attente_du_joueur.html
 "use strict";
 
 const fs = require("fs");
@@ -9,81 +8,55 @@ const trait = function (req, res, query) {
 
 	let marqueurs;
 	let page;
-	let nouvellePartie;
 	let contenu_fichier;
-	let listeParties;
-	let i;
+	let listeMembres;
 	let trouve;
-	let motsDePasse = [];
+	
+	//GENERE UN NOMBRE DE 000 000 A 999 999 
+	function codeAleatoire() {
+		const caracteres = "0123456789";
+		const tailleCode = 6;
+		let code = "";
+	
+		for (let i = 0; i < tailleCode; i++) {
+			const indexAleatoire = Math.floor(Math.random() * caracteres.length);
+			code += caracteres[indexAleatoire];
+		}
+	
+		return code;
+	}
+	
+	console.log("Votre code généré est : " + codeAleatoire());
 
-    let motDePasse = Math.floor(Math.random() * 900000); 
-    motsDePasse.push(motDePasse); 
-
-
-
-
-	// ON LIT LES CODE EXISTANTS
+	// ON LIT LES PARTIES EXISTANTS
 
 	contenu_fichier = fs.readFileSync("parties.json", 'utf-8');
-	listeParties = JSON.parse(contenu_fichier);
-
-	// ON VERIFIE QUE LE CODE N'EXISTE PAS DEJA
-
-	trouve = false;
-	i = 0;
-	while (i < listeParties.length && trouve === false) {
-		if (listeParties[i].code === motDePasse) {
-			trouve = true;
-		}
-		i++;
-	}
-
-	// SI PAS TROUVE, ON AJOUTE LE NOUVEAU CODE DANS LA LISTE DES CODES
-
- if(trouve === false) {
-		nouvellePartie = {};
-		nouvellePartie.code = motDePasse;
-	
-		listeParties[listeParties.length] = nouvellePartie;
-
-
-
-		
-		contenu_fichier = JSON.stringify(listeParties);
-		fs.writeFileSync("parties.json", contenu_fichier, 'utf-8');
-		
-	}
-
-	// ON RENVOIT UNE PAGE HTML 
+	listeMembres = JSON.parse(contenu_fichier);
 
 	if (trouve === true) {
-		// SI CREATION PAS OK, ON REAFFICHE PAGE FORMULAIRE AVEC ERREUR
+    // SI CREATION PAS OK, ON REAFFICHE PAGE FORMULAIRE AVEC ERREUR
 
 		page = fs.readFileSync('./html/jouer_contre_un_joueur.html', 'utf-8');
        
 		marqueurs = {};
-		marqueurs.erreur = "ERREUR, le code suivant existe déjà : ";
-		marqueurs.code = motDePasse;
+		marqueurs.erreur = "ERREUR, la partie existe deja : ";
+		marqueurs.pseudo = query.pseudo;
 		page = nunjucks.renderString(page, marqueurs);
 
 	} else {
 	// SI CREATION OK, ON RENVOIE SUR LA PAGE ATTENTE DU JOUEUR 
 		page = fs.readFileSync('./html/attente_du_joueur.html', 'UTF-8');
-		// SI CREATION OK, ON RENVOIE SUR LA PAGE DE CONNEXION
-
-		
 
 		marqueurs = {};
-		marqueurs.code = motDePasse;
-		
+		marqueurs.pseudo = query.pseudo;
+		marqueurs.codeAleatoire = query.codeAleatoire;
 		page = nunjucks.renderString(page, marqueurs);
 	}
 	
-
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 	res.write(page);
 	res.end();
-
-}
+};
 
 module.exports = trait;
+
