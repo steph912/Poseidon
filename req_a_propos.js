@@ -10,7 +10,7 @@ const trait = function (req, res, query) {
 
 	// AFFICHAGE DE LA PAGE a_propos.html
 
-	page = fs.readFileSync('a_propos.html', 'utf-8');
+	page = fs.readFileSync('./html/a_propos.html', 'utf-8');
 
 	marqueurs = {};
 	marqueurs.pseudo = query.pseudo;

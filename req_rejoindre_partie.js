@@ -19,7 +19,7 @@ const rejoindrePartie = function (req, res, query) {
     // ON VERIFIE SI LE NOM DE LA PARTIE EXISTE
     trouve = false;
     for (let i = 0; i < listeParties.length; i++) {
-        if (listeParties[i].name === query.nomPartie) {
+        if (listeParties[i].name === query.codeAleatoire) {
             trouve = true;
             break;
         }
@@ -28,18 +28,18 @@ const rejoindrePartie = function (req, res, query) {
     // ON RENVOIE UNE PAGE HTML
     if (trouve === false) {
         // SI LA PARTIE N'EXISTE PAS, ON REVIENT À LA PAGE D'ACCUEIL MEMBRE AVEC UNE ERREUR
-        page = fs.readFileSync("accueil.html", "utf-8");
+        page = fs.readFileSync("./html/accueil.html", "utf-8");
 
         marqueurs = {};
         marqueurs.erreur = "ERREUR : La partie spécifiée n'existe pas.";
-        marqueurs.nomPartie = query.nomPartie || ""; // Affiche le nom demandé s'il existe dans la requête
+        marqueurs.codeAleatoire = query.codeAleatoire || ""; // Affiche le nom demandé s'il existe dans la requête
         page = nunjucks.renderString(page, marqueurs);
     } else {
         // SI LA PARTIE EXISTE, ON ENVOIE LA PAGE POUR JOUER
-        page = fs.readFileSync("placez_vos_bateaux.html", "utf-8");
+        page = fs.readFileSync("./html/placez_vos_bateaux.html", "utf-8");
 
         marqueurs = {};
-        marqueurs.nomPartie = query.nomPartie;
+        marqueurs.codeAleatoire = query.codeAleatoire;
         page = nunjucks.renderString(page, marqueurs);
     }
 

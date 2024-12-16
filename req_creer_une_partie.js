@@ -35,17 +35,17 @@ const trait = function (req, res, query) {
 	trouve = false;
 	i = 0;
 	while (i < listeParties.length && trouve === false) {
-		if (listeParties[i].pseudo === query.pseudo) {
+		if (listeParties[i].code === query.code) {
 			trouve = true;
 		}
 		i++;
 	}
 
-	// SI PAS TROUVE, ON AJOUTE LE NOUVEAU COMPTE DANS LA LISTE DES COMPTES
+	// SI PAS TROUVE, ON AJOUTE LE NOUVEAU CODE DANS LA LISTE DES CODES
 
  if(trouve === false) {
 		nouvellePartie = {};
-		nouvellePartie.pseudo = query.pseudo;
+		nouvellePartie.code = query.code;
 	
 		listeParties[listeParties.length] = nouvellePartie;
 		
@@ -59,20 +59,22 @@ const trait = function (req, res, query) {
 	if (trouve === true) {
 		// SI CREATION PAS OK, ON REAFFICHE PAGE FORMULAIRE AVEC ERREUR
 
-		page = fs.readFileSync('jouer_contre_un_joueur.html', 'utf-8');
+		page = fs.readFileSync('./html/jouer_contre_un_joueur.html', 'utf-8');
        
 		marqueurs = {};
 		marqueurs.erreur = "ERREUR, le code suivant existe déjà : ";
-		marqueurs.pseudo = query.pseudo;
+		marqueurs.code = query.code;
 		page = nunjucks.renderString(page, marqueurs);
 
 	} else {
+	// SI CREATION OK, ON RENVOIE SUR LA PAGE ATTENTE DU JOUEUR 
+		page = fs.readFileSync('./html/attente_du_joueur.html', 'UTF-8');
 		// SI CREATION OK, ON RENVOIE SUR LA PAGE DE CONNEXION
 
-		page = fs.readFileSync('attente_du_joueur.html', 'UTF-8');
+		
 
 		marqueurs = {};
-		marqueurs.pseudo = query.pseudo;
+		marqueurs.code = query.code;
 		
 		page = nunjucks.renderString(page, marqueurs);
 	}

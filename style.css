@@ -1,6 +1,6 @@
 /*----------COMMUN----------*/
 body {
-    background: no-repeat url(fond_ciel_mer.png);
+    background: no-repeat url(./img/fond_ciel_mer.png);
     background-size: 100vw 100vh;
     background-attachment: fixed;
     margin: 0;
@@ -12,12 +12,8 @@ form{
     flex-direction: column;
     align-items: center;
     background-color: rgba(164, 164, 164, 0.7);
-    padding: 5% 10% 5% 10%;
+    padding: 20% 25% 20% 25%;
     border-radius: 30px;
-    transition: 1s;
-}
-form:hover{
-    background-color: rgba(175, 175, 175, 0.6);
 }
 
 form input[type="text"], input[type="password"] {
@@ -69,22 +65,23 @@ h2 {
     margin: 5px;
 }
 
-.erreur{
-    color:red;
-    font-size: x-large;
-}
+
 
 
 /*----------CONEXION----------*/
 .connexion{
     height: 100vh;
     display: grid;
-    grid-template : 1fr 2fr / repeat(2, 1fr);
+    grid-template : 1fr 2fr  / repeat(2, 1fr);
     justify-items: center;
     align-items: flex-start;
 }
+.connexion form{
+    margin: 10%;
+    padding: 10%;
+}
 .connexion .logo{
-    grid-column: span 2;
+    grid-area: 1 / 1 / 2 / 3;
 }
 
 /*----------INSCRIPTION----------*/
@@ -94,6 +91,10 @@ h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.erreur{
+    color:red;
+    font-size: x-large;
 }
 
 /*----------A propos----------*/
@@ -128,6 +129,7 @@ h2 {
 }
 .form_option{
     margin: 5em 10em 5em 10em;
+    padding: 2em;
 }
 
 /*----------Accueil----------*/
@@ -250,12 +252,15 @@ h2 {
 }
 
 /*----------Rejouer---------*/
-.rejouer{
-    height: 60vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+
+.oui, .non {
+    margin: 10px;
+    padding: 15px 30px;
+    background-color: #87CEEB; 
+    border: 2px solid #000;
+    border-radius: 50px; 
+    cursor: pointer;
+    display: inline-block;
 }
 
 
@@ -274,7 +279,7 @@ table {
  
 }
 .taille_classement{
-    font-size: xx-large;
+    font-size: xxx-large;
     margin: 2%;
     text-align: center;
 
@@ -297,40 +302,39 @@ tr{
     background-color: white;
 }
 
-/*----------Grilles----------*/
+/*----------phase de combat---------*/
 
-
-.container-grids {
+  .grids-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-}
+    gap: 300px; 
+  }
 
-.grid-container {
+  .grid-container {
     display: grid;
     grid-template-columns: 20px repeat(10, 40px); 
     grid-template-rows: 20px repeat(10, 40px);   
     gap: 0;
     margin: 0 auto;
-}
+  }
 
-.header {
+  .header {
     background-color: transparent;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
 
-.side {
+  .side {
     background-color: transparent;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
 
-.cell {
+  .cell {
     width: 40px;
     height: 40px;
     border: 1px solid #000;
@@ -339,88 +343,141 @@ tr{
     align-items: center;
     background-color: #f0d9b5;
     cursor: pointer;
+    
+  }
 
+  .cell:hover {/*mets du flou quand on passe notre souris sur une case*/ 
+    box-shadow: 0px 0px 1px 
 }
 
-.cell::before {
+  .cell::before {
     content: "•"; 
     font-size: 16px;
     color: #000;
+  }
+
+  .rules {
+position: absolute;
+bottom: 20px;
+left: 20px;
+background-color: #c0bdbd;
+padding: 15px;
+border-radius: 15px; 
+max-width: 500px;
+font-size: 16px;
+text-align: left;
+color: black; 
 }
 
-/*----------phase de combat---------*/
-
-.combat{
-    display: grid;
-    grid-template: 15vh 70vh 15vh / 50% 50%;
-    justify-items: center;
-}
-
-.combat h1 {
-    grid-area: 1 / 1 / 2 / 3;
-    font-size: 4rem;
-}
-.combat h2 {
-    font-size: 2rem;
-}
-
-.rules {
-    background-color: #c0bdbd;
-    padding: 2%;
-    margin: 2% 20% 2% 5%;
-    border-radius: 15px;
-    color: black; 
-}
-
-.missiles_container {
+  .cubes-container {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
+    bottom: 10px;
+    right: 10px;
     display: flex;
-}
+    gap: 0px; 
+  }
 
-.missile_cell {
-    width: 6rem;
-    height: 6rem;
-    border: 2px solid black;
-    background-color: #33333340;
-    border-radius: 5px;
-    margin: 0 2px 0 2px;
-}
+  .cube {
+    width: 140px;
+    height: 140px;
+    background-color: #ffffff; 
+    border: 1px solid #333;
+  }
 
 /*----------phase de placement---------*/
 
-.placement{
-    display: grid;
-    grid-template: 15vh 1fr / 1fr 1fr 1fr;
+    .player-grid2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 60%; 
+        margin-left : 300px; 
+    }
+
+    .grids-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 20px repeat(10, 40px); 
+      grid-template-rows: 20px repeat(10, 40px);   
+      gap: 0;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .header {
+      background-color: transparent;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .side {
+      background-color: transparent;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cell {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0d9b5;
+      cursor: pointer; 
+    }
+
+    .cell :b
+
+    .cell::before {
+      content: "•"; 
+      font-size: 16px;
+      color: #000;
+    }
+
+    .rules2 {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #c0bdbd;
+  padding: 15px;
+  border-radius: 15px; 
+  max-width: 500px;
+  font-size: 16px;
+  text-align: left;
+  color: black; 
 }
 
-.placement h1 {
-    grid-area: 1 / 1 / 2 / 4;
-    font-size: 3em;
-}
-
-.placement h2{
-    font-size: 2em;
-}
-
-.rules2 {
-    background-color: #c0bdbd;
-    margin: 20%;
-    padding: 5%;
-    border-radius: 15px; 
-    max-width: 500px;
+     button {
+    position: absolute;
+    bottom: 80px;
+    right: 80px;
     font-size: 16px;
-    text-align: left;
-    color: black; 
+    background-color: #ddd;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 16px;
+    cursor: pointer;
 }
 
 .bateaux {
-    background-color: transparent;
-    padding: 15px;
-    border-radius: 15px; 
-    max-width: 500px;
-    font-size: 16px;
-    text-align: left;
-    color: black; 
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background-color: transparent;
+  padding: 15px;
+  border-radius: 15px; 
+  max-width: 500px;
+  font-size: 16px;
+  text-align: left;
+  color: black; 
 }
