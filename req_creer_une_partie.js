@@ -19,9 +19,6 @@ const trait = function (req, res, query) {
     let motDePasse = Math.floor(Math.random() * 900000); 
     motsDePasse.push(motDePasse); 
 
-	contenu_fichier = JSON.stringify(motsDePasse);
-	fs.writeFileSync("parties.json", contenu_fichier, 'utf-8');
-
 
 
 
@@ -35,7 +32,7 @@ const trait = function (req, res, query) {
 	trouve = false;
 	i = 0;
 	while (i < listeParties.length && trouve === false) {
-		if (listeParties[i].code === query.code) {
+		if (listeParties[i].code === motDePasse) {
 			trouve = true;
 		}
 		i++;
@@ -45,9 +42,12 @@ const trait = function (req, res, query) {
 
  if(trouve === false) {
 		nouvellePartie = {};
-		nouvellePartie.code = query.code;
+		nouvellePartie.code = motDePasse;
 	
 		listeParties[listeParties.length] = nouvellePartie;
+
+
+
 		
 		contenu_fichier = JSON.stringify(listeParties);
 		fs.writeFileSync("parties.json", contenu_fichier, 'utf-8');
@@ -63,7 +63,7 @@ const trait = function (req, res, query) {
        
 		marqueurs = {};
 		marqueurs.erreur = "ERREUR, le code suivant existe déjà : ";
-		marqueurs.code = query.code;
+		marqueurs.code = motDePasse;
 		page = nunjucks.renderString(page, marqueurs);
 
 	} else {
@@ -74,7 +74,7 @@ const trait = function (req, res, query) {
 		
 
 		marqueurs = {};
-		marqueurs.code = query.code;
+		marqueurs.code = motDePasse;
 		
 		page = nunjucks.renderString(page, marqueurs);
 	}
