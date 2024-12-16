@@ -1,6 +1,6 @@
 /*----------COMMUN----------*/
 body {
-    background: no-repeat url(fond_ciel_mer.png);
+    background: no-repeat url(./img/fond_ciel_mer.png);
     background-size: 100vw 100vh;
     background-attachment: fixed;
     margin: 0;
@@ -72,12 +72,16 @@ h2 {
 .connexion{
     height: 100vh;
     display: grid;
-    grid-template : 1fr 2fr / repeat(2, 1fr);
+    grid-template : 1fr 2fr  / repeat(2, 1fr);
     justify-items: center;
     align-items: flex-start;
 }
+.connexion form{
+    margin: 10%;
+    padding: 10%;
+}
 .connexion .logo{
-    grid-column: span 2;
+    grid-area: 1 / 1 / 2 / 3;
 }
 
 /*----------INSCRIPTION----------*/
@@ -125,6 +129,7 @@ h2 {
 }
 .form_option{
     margin: 5em 10em 5em 10em;
+    padding: 2em;
 }
 
 /*----------Accueil----------*/
