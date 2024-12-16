@@ -10,7 +10,7 @@ const trait = function (req, res, query) {
 
 	// AFFICHAGE DE LA PAGE inscription.html
 
-	page = fs.readFileSync('inscription.html', 'utf-8');
+	page = fs.readFileSync('./html/inscription.html', 'utf-8');
 
 	marqueurs = {};
 	marqueurs.erreur = "";

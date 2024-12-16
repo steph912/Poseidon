@@ -1,6 +1,6 @@
 /*----------COMMUN----------*/
 body {
-    background: no-repeat url(fond_ciel_mer.png);
+    background: no-repeat url(./img/fond_ciel_mer.png);
     background-size: 100vw 100vh;
     background-attachment: fixed;
     margin: 0;
@@ -72,12 +72,16 @@ h2 {
 .connexion{
     height: 100vh;
     display: grid;
-    grid-template : 1fr 2fr / repeat(2, 1fr);
+    grid-template : 1fr 2fr  / repeat(2, 1fr);
     justify-items: center;
     align-items: flex-start;
 }
+.connexion form{
+    margin: 10%;
+    padding: 10%;
+}
 .connexion .logo{
-    grid-column: span 2;
+    grid-area: 1 / 1 / 2 / 3;
 }
 
 /*----------INSCRIPTION----------*/
@@ -125,6 +129,7 @@ h2 {
 }
 .form_option{
     margin: 5em 10em 5em 10em;
+    padding: 2em;
 }
 
 /*----------Accueil----------*/
@@ -248,22 +253,6 @@ h2 {
 
 /*----------Rejouer---------*/
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    flex-direction: column;
-    text-align: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .oui, .non {
     margin: 10px;
     padding: 15px 30px;
@@ -314,23 +303,6 @@ tr{
 }
 
 /*----------phase de combat---------*/
-
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #ffffff;
-    margin: 20px;
-  }
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  h2 {
-    font-size: 20px;
-    margin: 10px 0;
-  }
 
   .grids-container {
     display: flex;
@@ -413,24 +385,6 @@ color: black;
   }
 
 /*----------phase de placement---------*/
-
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #ffffff;
-      margin: 20px;
-    }
-
-    h1 {
-      font-size: 24px;
-      position: absolute;
-      top : 20px;
-    }
-
-    h2 {
-      font-size: 20px;
-      margin: 10px 0;
-    }
 
     .player-grid2 {
         display: flex;

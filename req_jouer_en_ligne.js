@@ -10,7 +10,7 @@ const trait = function (req, res, query) {
 
 	// AFFICHAGE DE LA PAGE jouer_contre_un_joueur.html
 
-	page = fs.readFileSync('jouer_contre_un_joueur.html', 'utf-8');
+	page = fs.readFileSync('./html/jouer_contre_un_joueur.html', 'utf-8');
 
 	marqueurs = {};
 	marqueurs.pseudo = query.pseudo;

@@ -30,13 +30,13 @@ const trait = function (req, res, query) {
 
 	// ON LIT LES PARTIES EXISTANTS
 
-	contenu_fichier = fs.readFileSync("partie.json", 'utf-8');
+	contenu_fichier = fs.readFileSync("parties.json", 'utf-8');
 	listeMembres = JSON.parse(contenu_fichier);
 
 	if (trouve === true) {
     // SI CREATION PAS OK, ON REAFFICHE PAGE FORMULAIRE AVEC ERREUR
 
-		page = fs.readFileSync('jouer_contre_un_joueur.html', 'utf-8');
+		page = fs.readFileSync('./html/jouer_contre_un_joueur.html', 'utf-8');
        
 		marqueurs = {};
 		marqueurs.erreur = "ERREUR, la partie existe deja : ";
@@ -45,7 +45,7 @@ const trait = function (req, res, query) {
 
 	} else {
 	// SI CREATION OK, ON RENVOIE SUR LA PAGE ATTENTE DU JOUEUR 
-		page = fs.readFileSync('attente_du_joueur.html', 'UTF-8');
+		page = fs.readFileSync('./html/attente_du_joueur.html', 'UTF-8');
 
 		marqueurs = {};
 		marqueurs.pseudo = query.pseudo;
