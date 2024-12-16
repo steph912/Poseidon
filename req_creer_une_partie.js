@@ -49,7 +49,7 @@ const trait = function (req, res, query) {
 
 		marqueurs = {};
 		marqueurs.pseudo = query.pseudo;
-		marqueurs.password = query.password;
+		marqueurs.codeAleatoire = query.codeAleatoire;
 		page = nunjucks.renderString(page, marqueurs);
 	}
 	
