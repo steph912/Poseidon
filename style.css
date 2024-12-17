@@ -304,37 +304,37 @@ tr{
 
 /*----------phase de combat---------*/
 
-  .grids-container {
+.grids-container {
     display: flex;
     justify-content: center;
     gap: 300px; 
-  }
+}
 
-  .grid-container {
+.grid-container {
     display: grid;
     grid-template-columns: 20px repeat(10, 40px); 
     grid-template-rows: 20px repeat(10, 40px);   
     gap: 0;
     margin: 0 auto;
-  }
+}
 
-  .header {
+.header {
     background-color: transparent;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .side {
+.side {
     background-color: transparent;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .cell {
+.cell {
     width: 40px;
     height: 40px;
     border: 1px solid #000;
@@ -343,46 +343,46 @@ tr{
     align-items: center;
     background-color: #f0d9b5;
     cursor: pointer;
-    
-  }
 
-  .cell:hover {/*mets du flou quand on passe notre souris sur une case*/ 
+}
+
+.cell:hover {/*mets du flou quand on passe notre souris sur une case*/ 
     box-shadow: 0px 0px 1px 
 }
 
-  .cell::before {
+.cell::before {
     content: "•"; 
     font-size: 16px;
     color: #000;
-  }
-
-  .rules {
-position: absolute;
-bottom: 20px;
-left: 20px;
-background-color: #c0bdbd;
-padding: 15px;
-border-radius: 15px; 
-max-width: 500px;
-font-size: 16px;
-text-align: left;
-color: black; 
 }
 
-  .cubes-container {
+.rules {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: #c0bdbd;
+    padding: 15px;
+    border-radius: 15px; 
+    max-width: 500px;
+    font-size: 16px;
+    text-align: left;
+    color: black; 
+}
+
+.cubes-container {
     position: absolute;
     bottom: 10px;
     right: 10px;
     display: flex;
     gap: 0px; 
-  }
+}
 
-  .cube {
+.cube {
     width: 140px;
     height: 140px;
     background-color: #ffffff; 
     border: 1px solid #333;
-  }
+}
 
 /*----------phase de placement---------*/
 
@@ -397,78 +397,76 @@ color: black;
     font-size: x-large;
 }
 
-    .player-grid2 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 60%; 
-        margin-left : 300px; 
-    }
-
-    .grids-container {
-      display: flex;
-      justify-content: center;
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: 20px repeat(10, 40px); 
-      grid-template-rows: 20px repeat(10, 40px);   
-      gap: 0;
-      margin: 0 auto;
-      justify-content: center;
-    }
-
-    .header {
-      background-color: transparent;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .side {
-      background-color: transparent;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .cell {
-      width: 40px;
-      height: 40px;
-      border: 1px solid #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #f0d9b5;
-      cursor: pointer; 
-    }
-
-    .cell :b
-
-    .cell::before {
-      content: "•"; 
-      font-size: 16px;
-      color: #000;
-    }
-
-    .rules2 {
-  position: absolute;
-  top: 10em;
-  right: 2em;
-  background-color: #c0bdbd;
-  padding: 15px;
-  border-radius: 15px; 
-  max-width: 25vw;
-  font-size: 16px;
-  text-align: left;
-  color: black; 
+.player-grid2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60%; 
+    margin-left : 300px; 
 }
 
-     button {
+.grids-container {
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 20px repeat(10, 40px); 
+    grid-template-rows: 20px repeat(10, 40px);   
+    gap: 0;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.header {
+    background-color: transparent;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side {
+    background-color: transparent;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0d9b5;
+    cursor: pointer; 
+}
+
+.cell::before {
+    content: "•"; 
+    font-size: 16px;
+    color: #000;
+}
+
+.rules2 {
+    position: absolute;
+    top: 10em;
+    right: 2em;
+    background-color: #c0bdbd;
+    padding: 15px;
+    border-radius: 15px; 
+    max-width: 25vw;
+    font-size: 16px;
+    text-align: left;
+    color: black; 
+}
+
+button {
     position: absolute;
     bottom: 80px;
     right: 80px;
@@ -481,18 +479,18 @@ color: black;
 }
 
 .bateaux {
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  background-color: transparent;
-  padding: 15px;
-  border-radius: 15px; 
-  max-width: 500px;
-  font-size: 16px;
-  text-align: left;
-  color: black;
-  display: flex;
-  flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    background-color: transparent;
+    padding: 15px;
+    border-radius: 15px; 
+    max-width: 500px;
+    font-size: 16px;
+    text-align: left;
+    color: black;
+    display: flex;
+    flex-direction: column;
 }
 .bateaux img {
     height: 40px;
