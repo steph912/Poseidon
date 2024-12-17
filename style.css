@@ -6,7 +6,6 @@ body {
     margin: 0;
     overflow-y: hidden;
 }
-
 form{
     display: flex;
     flex-direction: column;
@@ -15,7 +14,6 @@ form{
     padding: 20% 25% 20% 25%;
     border-radius: 30px;
 }
-
 form input[type="text"], input[type="password"] {
     margin: 5%;
     border-radius: 5px;
@@ -23,7 +21,6 @@ form input[type="text"], input[type="password"] {
     width: 15em;
     height: 25px;
 }
-
 form input[type="submit"] {
     margin: 5%;
     font-size: large;
@@ -37,7 +34,6 @@ form input[type="submit"] {
 form input[type="submit"]:hover {
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
 }
-
 form.retour {
     padding: 0;
     position: absolute;
@@ -45,20 +41,17 @@ form.retour {
     right: 7vw;
     background: none;
 }
-
 form.retour input{
     font-size: x-large;
     padding: 15px;
     border-radius: 15px;
     border: none;
 }
-
 h1 {
     text-align: center;
     font-size: 7em;
     margin: 1% 0% 1% 0%;
 }
-
 h2 {
     text-align: center;
     font-size: 4rem;
@@ -104,7 +97,6 @@ h2 {
     height: 65vh;
     
 }
-
 .section_apropos {
     background-color: rgba(164, 164, 164, 0.7);
     margin: 2%;
@@ -115,7 +107,6 @@ h2 {
     flex-direction: column;
   
 }
-
 .section_apropos p {
     font-size: large;
 }
@@ -152,11 +143,9 @@ h2 {
     padding: 2% 20% 2% 20%;
     margin: 2%;
 }
-
 .acceuil_a_propos {
     grid-area: 3 / 1 / 5 / 2;
 }
-
 .acceuil_option {
     grid-area: 3 / 3 / 5 / 4;
 }
@@ -188,11 +177,9 @@ h2 {
     justify-content: center;
     align-items: center;
 }
-
 .jouer_en_ligne p {
     font-size: xx-large;
 }
-
 .jouer_en_ligne input[type="text"] {
     width: 15em;
     height: 2em;
@@ -208,6 +195,39 @@ h2 {
 .classement h1 {
     font-size: 4em;
     grid-area: 1 / 1 / 2 / 3;
+}
+table {
+    margin:auto;
+    border-collapse: collapse; /* Fusionne les bordures adjacentes pour un rendu plus propre */
+    width: 50%; /* Optionnel, adapte la largeur du tableau */
+}
+ th, td {
+    border: 4px solid rgb(5, 5, 5); /* Applique une bordure noire d'une épaisseur de 1px */
+    padding: 8px; /* Ajoute un peu d'espace à l'intérieur des cellules */
+    text-align: center; /* Aligne le texte à gauche */
+    margin:55%;
+ 
+}
+.taille_classement{
+    font-size: xxx-large;
+    margin: 2%;
+    text-align: center;
+
+}
+.mini_titre{
+    background-color: rgb(119, 201, 201);
+}
+.premier{
+    background-color: rgb(216, 216, 88);
+}
+.deuxieme{
+    background-color: gray;
+}
+.troisieme{
+    background-color: red;
+}
+tr{
+    background-color: white;
 }
 
 /*--------Gagner--------*/
@@ -252,7 +272,6 @@ h2 {
 }
 
 /*----------Rejouer---------*/
-
 .oui, .non {
     margin: 10px;
     padding: 15px 30px;
@@ -263,53 +282,12 @@ h2 {
     display: inline-block;
 }
 
-
-/*----------Classement---------*/
-
-table {
-    margin:auto;
-    border-collapse: collapse; /* Fusionne les bordures adjacentes pour un rendu plus propre */
-    width: 50%; /* Optionnel, adapte la largeur du tableau */
-}
- th, td {
-    border: 4px solid rgb(5, 5, 5); /* Applique une bordure noire d'une épaisseur de 1px */
-    padding: 8px; /* Ajoute un peu d'espace à l'intérieur des cellules */
-    text-align: center; /* Aligne le texte à gauche */
-    margin:55%;
- 
-}
-.taille_classement{
-    font-size: xxx-large;
-    margin: 2%;
-    text-align: center;
-
-}
-.mini_titre{
-    background-color: rgb(119, 201, 201);
-}
-.premier{
-    background-color: rgb(216, 216, 88);
-}
-.deuxieme{
-    background-color: gray;
-}
-.troisieme{
-    background-color: red;
-}
-
-
-tr{
-    background-color: white;
-}
-
 /*----------phase de combat---------*/
-
 .grids-container {
     display: flex;
     justify-content: center;
     gap: 300px; 
 }
-
 .grid-container {
     display: grid;
     grid-template-columns: 20px repeat(10, 40px); 
@@ -317,7 +295,6 @@ tr{
     gap: 0;
     margin: 0 auto;
 }
-
 .header {
     background-color: transparent;
     font-weight: bold;
@@ -325,7 +302,6 @@ tr{
     justify-content: center;
     align-items: center;
 }
-
 .side {
     background-color: transparent;
     font-weight: bold;
@@ -333,7 +309,6 @@ tr{
     justify-content: center;
     align-items: center;
 }
-
 .cell {
     width: 40px;
     height: 40px;
@@ -345,17 +320,14 @@ tr{
     cursor: pointer;
 
 }
-
 .cell:hover {/*mets du flou quand on passe notre souris sur une case*/ 
     box-shadow: 0px 0px 1px 
 }
-
 .cell::before {
     content: "•"; 
     font-size: 16px;
     color: #000;
 }
-
 .rules {
     position: absolute;
     bottom: 20px;
@@ -368,7 +340,6 @@ tr{
     text-align: left;
     color: black; 
 }
-
 .cubes-container {
     position: absolute;
     bottom: 10px;
@@ -376,7 +347,6 @@ tr{
     display: flex;
     gap: 0px; 
 }
-
 .cube {
     width: 140px;
     height: 140px;
@@ -385,7 +355,6 @@ tr{
 }
 
 /*----------phase de placement---------*/
-
 .placement{
     display: flex;
     flex-direction: column;
@@ -396,7 +365,6 @@ tr{
 .placement h2{
     font-size: x-large;
 }
-
 .player-grid2 {
     display: flex;
     flex-direction: column;
@@ -405,12 +373,10 @@ tr{
     height: 60%; 
     margin-left : 300px; 
 }
-
 .grids-container {
     display: flex;
     justify-content: center;
 }
-
 .grid-container {
     display: grid;
     grid-template-columns: 20px repeat(10, 40px); 
@@ -419,7 +385,6 @@ tr{
     margin: 0 auto;
     justify-content: center;
 }
-
 .header {
     background-color: transparent;
     font-weight: bold;
@@ -427,7 +392,6 @@ tr{
     justify-content: center;
     align-items: center;
 }
-
 .side {
     background-color: transparent;
     font-weight: bold;
@@ -435,7 +399,6 @@ tr{
     justify-content: center;
     align-items: center;
 }
-
 .cell {
     width: 40px;
     height: 40px;
@@ -446,13 +409,11 @@ tr{
     background-color: #f0d9b5;
     cursor: pointer; 
 }
-
 .cell::before {
     content: "•"; 
     font-size: 16px;
     color: #000;
 }
-
 .rules2 {
     position: absolute;
     top: 10em;
@@ -465,19 +426,6 @@ tr{
     text-align: left;
     color: black; 
 }
-
-button {
-    position: absolute;
-    bottom: 80px;
-    right: 80px;
-    font-size: 16px;
-    background-color: #ddd;
-    padding: 10px 20px;
-    border: 1px solid #000;
-    border-radius: 16px;
-    cursor: pointer;
-}
-
 .bateaux {
     position: absolute;
     top: 60px;
