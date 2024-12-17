@@ -317,7 +317,7 @@ tr{
     align-items: center;
     background-color: #f0d9b5;
     cursor: pointer;
-
+    transition: 0.1s;
 }
 .cell:hover {
     box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.5);
@@ -397,7 +397,6 @@ tr{
     border-radius: 15px; 
     max-width: 500px;
     font-size: 16px;
-    text-align: left;
     color: black;
     display: flex;
     flex-direction: column;
@@ -406,7 +405,7 @@ tr{
     height: 40px;
 }
 .container{
-
+    
 }
 .draggable{
     cursor: move;

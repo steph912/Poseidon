@@ -1,3 +1,3 @@
 # Modèle PI
 
-![Schéma de navigation](./schema_de_navigation.png)
+![Schéma de navigation](.img//schema_de_navigation.png)
