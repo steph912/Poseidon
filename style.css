@@ -319,14 +319,16 @@ tr{
     cursor: pointer;
 
 }
-.cell:hover {/*mets du flou quand on passe notre souris sur une case*/ 
-    box-shadow: 0px 0px 1px 
+.cell:hover {
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
+/*  J'enleve les points dans les cell parce que ça fait un bug avec le drag & drop
 .cell::before {
     content: "•"; 
     font-size: 16px;
     color: #000;
 }
+*/
 
 /*----------phase de combat---------*/
 .rules {
@@ -402,4 +404,13 @@ tr{
 }
 .bateaux img {
     height: 40px;
+}
+.container{
+
+}
+.draggable{
+    cursor: move;
+}
+.draggable.dragging{
+    opacity: 0.5;
 }
