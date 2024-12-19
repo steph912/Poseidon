@@ -322,7 +322,7 @@ tr{
     width: 40px;
     height: 40px;
     border: 1px solid #000;
-    background-color: #f0d9b5;
+   /* background-color: #f0d9b5;*/
     cursor: pointer;
     transition: 0.1s;
 }
@@ -426,3 +426,16 @@ tr{
     border-radius: 5px;
     width: 40px;
 }
+
+/* Style pour la cellule avec l'état "eau" */
+.cell.container[data-etat="eau"] {
+    background-color: blue;
+    color: white; /* Texte en blanc pour contraste */
+}
+
+/* Style pour la cellule avec l'état "bateau" */
+.cell.container[data-etat="bateau"] {
+    background-color: white;
+    color: black;
+}
+
