@@ -13,6 +13,7 @@ const trait = function (req, res, query) {
 	let contenu_fichier;
 	let listeParties;
 	let i;
+	let listeMembres;
 	let trouve;
 	let motsDePasse = [];
 
@@ -35,7 +36,7 @@ const trait = function (req, res, query) {
 	trouve = false;
 	i = 0;
 	while (i < listeParties.length && trouve === false) {
-		if (listeParties[i].pseudo === query.pseudo) {
+		if (listeParties[i].code === motsDePasse) {
 			trouve = true;
 		}
 		i++;
@@ -45,7 +46,7 @@ const trait = function (req, res, query) {
 
  if(trouve === false) {
 		nouvellePartie = {};
-		nouvellePartie.pseudo = query.pseudo;
+		nouvellePartie.code = motsDePasse;
 	
 		listeParties[listeParties.length] = nouvellePartie;
 		
@@ -66,7 +67,7 @@ const trait = function (req, res, query) {
        
 		marqueurs = {};
 		marqueurs.erreur = "ERREUR, le code suivant existe déjà : ";
-		marqueurs.pseudo = query.pseudo;
+		marqueurs.code = motsDePasse;
 		page = nunjucks.renderString(page, marqueurs);
 
 	} else {
@@ -74,7 +75,7 @@ const trait = function (req, res, query) {
 		page = fs.readFileSync('./html/attente_du_joueur.html', 'UTF-8');
 
 		marqueurs = {};
-		marqueurs.pseudo = query.pseudo;
+		marqueurs.code = motsDePasse;
 		
 		page = nunjucks.renderString(page, marqueurs);
 	}
