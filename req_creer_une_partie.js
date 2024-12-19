@@ -20,8 +20,7 @@ const trait = function (req, res, query) {
     let motDePasse = Math.floor(Math.random() * 900000); 
     motsDePasse.push(motDePasse); 
 
-	contenu_fichier = JSON.stringify(motsDePasse);
-	fs.writeFileSync("parties.json", contenu_fichier, 'utf-8');
+	
 
 
 
