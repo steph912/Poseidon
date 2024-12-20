@@ -57,18 +57,13 @@ h2 {
     font-size: 3em;
     margin: 5px;
 }
-.container{
 
-}
 .draggable{
     cursor: move;
 }
 .draggable.dragging{
     opacity: 0.5;
 }
-
-
-
 
 /*----------CONEXION----------*/
 .connexion{
@@ -292,17 +287,45 @@ tr{
     display: inline-block;
 }
 /*----------Grilles (placez les bateaux et phase de combat)----------*/
-.grids-container {
-    display: flex;
-    justify-content: center;
-    gap: 300px; 
+h1 {
+font-size: 50px;
 }
-.grid-container {
+
+h2 {
+    font-size: 30px;
+    display:block;
+    text-align: center;
+    width: 100%;
+}
+
+.subtitle {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.box1{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.box2{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.cell_container {
     display: grid;
     grid-template-columns: 20px repeat(10, 40px); 
     grid-template-rows: 20px repeat(10, 40px);   
     gap: 0;
-    margin: 0 auto;
+    margin: 0px auto;
+    
 }
 .header {
     background-color: transparent;
@@ -314,7 +337,7 @@ tr{
 .side {
     background-color: transparent;
     font-weight: bold;
-    display: flex;
+    border : 5px black;
     justify-content: center;
     align-items: center;
 }
@@ -329,6 +352,7 @@ tr{
 .cell:hover {
     box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
+
 /*  J'enleve les points dans les cell parce que ça fait un bug avec le drag & drop
 .cell::before {
     content: "•"; 
@@ -338,6 +362,7 @@ tr{
 */
 
 /*----------phase de combat---------*/
+
 .rules {
     position: absolute;
     bottom: 20px;
@@ -350,39 +375,25 @@ tr{
     text-align: left;
     color: black; 
 }
-.cubes-container {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+.missiles_container{
+    
+    position:absolute;
     display: flex;
-    gap: 0px; 
+    flex-direction: row;
+    bottom : 15px;
+    right : 15px
+    
 }
-.cube {
-    width: 140px;
-    height: 140px;
+
+.cellm{
+    width: 100px;
+    height: 100px;
     background-color: #ffffff; 
     border: 1px solid #333;
 }
 
 /*----------phase de placement---------*/
-.placement{
-    display: flex;
-    flex-direction: column;
-}
-.placement h1{
-    font-size: xx-large;
-}
-.placement h2{
-    font-size: x-large;
-}
-.player-grid2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 60%; 
-    margin-left : 300px; 
-}
+
 .rules2 {
     position: absolute;
     top: 10em;
@@ -391,7 +402,7 @@ tr{
     padding: 15px;
     border-radius: 15px; 
     max-width: 25vw;
-    font-size: 16px;
+    font-size: 20px;
     text-align: left;
     color: black; 
 }
@@ -428,13 +439,13 @@ tr{
 }
 
 /* Style pour la cellule avec l'état "eau" */
-.cell.container[data-etat="eau"] {
+.cell[data-etat="eau"] {
     background-color: blue;
     color: white; /* Texte en blanc pour contraste */
 }
 
 /* Style pour la cellule avec l'état "bateau" */
-.cell.container[data-etat="bateau"] {
+.cell[data-etat="bateau"] {
     background-color: white;
     color: black;
 }
