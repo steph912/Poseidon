@@ -160,6 +160,7 @@
 	</div>
 
 	<form class="retour" action="/req_phase_de_combat" method="get"> <!--Le bouton "J'ai terminé" est en dehors de la div placement car sa position est "absolute" -->
+		<input type="hidden" name="code_partie" value="{{ code_partie }}">
 		<input type="submit" value="J'ai terminé">
 	</form>
 

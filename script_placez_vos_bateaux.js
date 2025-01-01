@@ -1,3 +1,6 @@
+const fs = require('fs');
+
+// ------------------- DRAG & DROP -------------------
 const draggables = document.querySelectorAll('.draggable');
 const containers = document.querySelectorAll('.container');
 
@@ -57,3 +60,25 @@ function getDragAfterElement(container, y) {
     }
   }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
+
+// ----------------- LIRE & SAUVEGARDER LE PLACEMENT DES BATEAUX DANS LA GRILLE JSON -----------------
+function saveGrid(code_partie) {
+  // On récupère les cellules de la grille
+  const cells = document.querySelectorAll('.cell');
+
+  // On récupère l'état de chaque cellules
+  const état = [];
+
+  // On parcourt chaque cellule
+  cells.forEach(cell => {
+    // On récupère l'état de la cellule en vérifiant si la div contient un draggable
+    const cellState = cell.querySelector('.draggable') ? 'bateaux' : 'eau';
+
+    // On stocke l'état de la cellule
+    état.push(cellState);
+  });
+
+  // Sauvegarde la grille dans un fichier JSON
+  fs.writeFileSync(`./grilles/${code_partie}.json`, JSON.stringify(état), 'utf-8');
+}
+module.exports = saveGrid;

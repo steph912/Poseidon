@@ -1,9 +1,25 @@
+/* Requete phase de combat (quand on clique sur “j’ai terminé”) :Mathis 
+
+    -Lire le placement des bateaux dans le html avec le js front (document. Read..)  
+
+    -sauvegarder le placement des bateaux dans la grille json 
+
+    -rediriger vers la page phase de combat avec une query complete
+*/
 "use strict";
 
 const fs = require("fs");
-const nunjucks = require("nunjucks");;
+const nunjucks = require("nunjucks");
+const saveGrid = require("./script_placez_vos_bateaux.js");
 
 const trait = function (req, res, query) {
+
+    // déclencher l'évenement de javascript front pour sauvegarder le placement des bateaux dans la grille json
+
+    saveGrid(query.code_partie);
+
+
+    // ----------------- REDIRIGER VERS LA PAGE PHASE DE COMBAT -----------------
 
     let marqueurs;
     let page;

@@ -34,7 +34,7 @@ const trait = function (req, res, query) {
 	page = fs.readFileSync('./html/placez_vos_bateaux.html', 'utf-8');
 
 	marqueurs = {};
-	marqueurs.état = résultat ;// il yaura soit eau soit touché aux états 
+	marqueurs.code_partie = Math.floor(Math.random() * 100000);
 	page = nunjucks.renderString(page, marqueurs);
 
 	res.writeHead(200, { 'Content-Type': 'text/html' });
