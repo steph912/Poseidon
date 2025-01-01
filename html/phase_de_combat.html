@@ -7,14 +7,15 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<h1> Phase de Combat</h1>
-	<div class="subtitle">
-	<h2>Grille Joueur</h2>
-	<h2>Grille Adverse</h2>
-</div>
-	<div class="box2">
+	<div class="combat"> <!-- Cette div est une div de placement pour placer les éléments de la page --> 
+		<h1> Phase de Combat</h1>
+		<div class="subtitle">
+			<h2>Grille Joueur</h2>
+			<h2>Grille Adverse</h2>
+		</div>
+		<div class="container_2_grilles"> <!-- Cette div permet de gerer un ensemble de 2 grilles --> 
 
-		<div class="cell_container">
+			<div class="grille"> <!-- Cette div est une grille individuelle, c'est à dire le conteneur des cellules + le contaeneur des side et des header --> 
 				<div class="header"></div>
 				<div class="header">A</div>
 				<div class="header">B</div>
@@ -28,127 +29,127 @@
 				<div class="header">J</div>
 
 				<div class="side">1</div>
-				<div class="cell  {{ J0 }}"></div>
-				<div class="cell  {{ J1 }}"></div>
-				<div class="cell  {{ J2 }}"></div>
-				<div class="cell  {{ J3 }}"></div>
-				<div class="cell  {{ J4 }}"></div>
-				<div class="cell  {{ J5 }}"></div>
-				<div class="cell  {{ J6 }}"></div>
-				<div class="cell  {{ J7 }}"></div>
-				<div class="cell  {{ J8 }}"></div>
-				<div class="cell  {{ J9 }}"></div>
+				<div class="cell {{ J0 }}"></div> <!-- explication du nunjucks : J=joueur, A=Adversaire, et le numéro représente la case exacte --> 
+				<div class="cell {{ J1 }}"></div> <!-- Nunjucks va remplacer le marqueur avec une classe css qui représente l'etat de la case --> 
+				<div class="cell {{ J2 }}"></div>
+				<div class="cell {{ J3 }}"></div>
+				<div class="cell {{ J4 }}"></div>
+				<div class="cell {{ J5 }}"></div>
+				<div class="cell {{ J6 }}"></div>
+				<div class="cell {{ J7 }}"></div>
+				<div class="cell {{ J8 }}"></div>
+				<div class="cell {{ J9 }}"></div>
 
 				<div class="side">2</div>
-				<div class="cell  {{ J10 }}"></div>
-				<div class="cell  {{ J11 }}"></div>
-				<div class="cell  {{ J12 }}"></div>
-				<div class="cell  {{ J13 }}"></div>
-				<div class="cell  {{ J14 }}"></div>
-				<div class="cell  {{ J15 }}"></div>
-				<div class="cell  {{ J16 }}"></div>
-				<div class="cell  {{ J17 }}"></div>
-				<div class="cell  {{ J18 }}"></div>
-				<div class="cell  {{ J19 }}"></div>
+				<div class="cell {{ J10 }}"></div>
+				<div class="cell {{ J11 }}"></div>
+				<div class="cell {{ J12 }}"></div>
+				<div class="cell {{ J13 }}"></div>
+				<div class="cell {{ J14 }}"></div>
+				<div class="cell {{ J15 }}"></div>
+				<div class="cell {{ J16 }}"></div>
+				<div class="cell {{ J17 }}"></div>
+				<div class="cell {{ J18 }}"></div>
+				<div class="cell {{ J19 }}"></div>
 
 				<div class="side">3</div>
-				<div class="cell  {{ J20 }}"></div>
-				<div class="cell  {{ J21 }}"></div>
-				<div class="cell  {{ J22 }}"></div>
-				<div class="cell  {{ J23 }}"></div>
-				<div class="cell  {{ J24 }}"></div>
-				<div class="cell  {{ J25 }}"></div>
-				<div class="cell  {{ J26 }}"></div>
-				<div class="cell  {{ J27 }}"></div>
-				<div class="cell  {{ J28 }}"></div>
-				<div class="cell  {{ J29 }}"></div>
+				<div class="cell {{ J20 }}"></div>
+				<div class="cell {{ J21 }}"></div>
+				<div class="cell {{ J22 }}"></div>
+				<div class="cell {{ J23 }}"></div>
+				<div class="cell {{ J24 }}"></div>
+				<div class="cell {{ J25 }}"></div>
+				<div class="cell {{ J26 }}"></div>
+				<div class="cell {{ J27 }}"></div>
+				<div class="cell {{ J28 }}"></div>
+				<div class="cell {{ J29 }}"></div>
 
 				<div class="side">4</div>
-				<div class="cell  {{ J30 }}"></div>
-				<div class="cell  {{ J31 }}"></div>
-				<div class="cell  {{ J32 }}"></div>
-				<div class="cell  {{ J33 }}"></div>
-				<div class="cell  {{ J34 }}"></div>
-				<div class="cell  {{ J35 }}"></div>
-				<div class="cell  {{ J36 }}"></div>
-				<div class="cell  {{ J37 }}"></div>
-				<div class="cell  {{ J38 }}"></div>
-				<div class="cell  {{ J39 }}"></div>
+				<div class="cell {{ J30 }}"></div>
+				<div class="cell {{ J31 }}"></div>
+				<div class="cell {{ J32 }}"></div>
+				<div class="cell {{ J33 }}"></div>
+				<div class="cell {{ J34 }}"></div>
+				<div class="cell {{ J35 }}"></div>
+				<div class="cell {{ J36 }}"></div>
+				<div class="cell {{ J37 }}"></div>
+				<div class="cell {{ J38 }}"></div>
+				<div class="cell {{ J39 }}"></div>
 
 				<div class="side">5</div>
-				<div class="cell  {{ J40 }}"></div>
-				<div class="cell  {{ J41 }}"></div>
-				<div class="cell  {{ J42 }}"></div>
-				<div class="cell  {{ J43 }}"></div>
-				<div class="cell  {{ J44 }}"></div>
-				<div class="cell  {{ J45 }}"></div>
-				<div class="cell  {{ J46 }}"></div>
-				<div class="cell  {{ J47 }}"></div>
-				<div class="cell  {{ J48 }}"></div>
-				<div class="cell  {{ J49 }}"></div>
+				<div class="cell {{ J40 }}"></div>
+				<div class="cell {{ J41 }}"></div>
+				<div class="cell {{ J42 }}"></div>
+				<div class="cell {{ J43 }}"></div>
+				<div class="cell {{ J44 }}"></div>
+				<div class="cell {{ J45 }}"></div>
+				<div class="cell {{ J46 }}"></div>
+				<div class="cell {{ J47 }}"></div>
+				<div class="cell {{ J48 }}"></div>
+				<div class="cell {{ J49 }}"></div>
 
 				<div class="side">6</div>
-				<div class="cell  {{ J50 }}"></div>
-				<div class="cell  {{ J51 }}"></div>
-				<div class="cell  {{ J52 }}"></div>
-				<div class="cell  {{ J53 }}"></div>
-				<div class="cell  {{ J54 }}"></div>
-				<div class="cell  {{ J55 }}"></div>
-				<div class="cell  {{ J56 }}"></div>
-				<div class="cell  {{ J57 }}"></div>
-				<div class="cell  {{ J58 }}"></div>
-				<div class="cell  {{ J59 }}"></div>
+				<div class="cell {{ J50 }}"></div>
+				<div class="cell {{ J51 }}"></div>
+				<div class="cell {{ J52 }}"></div>
+				<div class="cell {{ J53 }}"></div>
+				<div class="cell {{ J54 }}"></div>
+				<div class="cell {{ J55 }}"></div>
+				<div class="cell {{ J56 }}"></div>
+				<div class="cell {{ J57 }}"></div>
+				<div class="cell {{ J58 }}"></div>
+				<div class="cell {{ J59 }}"></div>
 
 				<div class="side">7</div>
-				<div class="cell  {{ J60 }}"></div>
-				<div class="cell  {{ J61 }}"></div>
-				<div class="cell  {{ J62 }}"></div>
-				<div class="cell  {{ J63 }}"></div>
-				<div class="cell  {{ J64 }}"></div>
-				<div class="cell  {{ J65 }}"></div>
-				<div class="cell  {{ J66 }}"></div>
-				<div class="cell  {{ J67 }}"></div>
-				<div class="cell  {{ J68 }}"></div>
-				<div class="cell  {{ J69 }}"></div>
+				<div class="cell {{ J60 }}"></div>
+				<div class="cell {{ J61 }}"></div>
+				<div class="cell {{ J62 }}"></div>
+				<div class="cell {{ J63 }}"></div>
+				<div class="cell {{ J64 }}"></div>
+				<div class="cell {{ J65 }}"></div>
+				<div class="cell {{ J66 }}"></div>
+				<div class="cell {{ J67 }}"></div>
+				<div class="cell {{ J68 }}"></div>
+				<div class="cell {{ J69 }}"></div>
 
 				<div class="side">8</div>
-				<div class="cell  {{ J70 }}"></div>
-				<div class="cell  {{ J71 }}"></div>
-				<div class="cell  {{ J72 }}"></div>
-				<div class="cell  {{ J73 }}"></div>
-				<div class="cell  {{ J74 }}"></div>
-				<div class="cell  {{ J75 }}"></div>
-				<div class="cell  {{ J76 }}"></div>
-				<div class="cell  {{ J77 }}"></div>
-				<div class="cell  {{ J78 }}"></div>
-				<div class="cell  {{ J79 }}"></div>
+				<div class="cell {{ J70 }}"></div>
+				<div class="cell {{ J71 }}"></div>
+				<div class="cell {{ J72 }}"></div>
+				<div class="cell {{ J73 }}"></div>
+				<div class="cell {{ J74 }}"></div>
+				<div class="cell {{ J75 }}"></div>
+				<div class="cell {{ J76 }}"></div>
+				<div class="cell {{ J77 }}"></div>
+				<div class="cell {{ J78 }}"></div>
+				<div class="cell {{ J79 }}"></div>
 
 				<div class="side">9</div>
-				<div class="cell  {{ J80 }}"></div>
-				<div class="cell  {{ J81 }}"></div>
-				<div class="cell  {{ J82 }}"></div>
-				<div class="cell  {{ J83 }}"></div>
-				<div class="cell  {{ J84 }}"></div>
-				<div class="cell  {{ J85 }}"></div>
-				<div class="cell  {{ J86 }}"></div>
-				<div class="cell  {{ J87 }}"></div>
-				<div class="cell  {{ J88 }}"></div>
-				<div class="cell  {{ J89 }}"></div>
+				<div class="cell {{ J80 }}"></div>
+				<div class="cell {{ J81 }}"></div>
+				<div class="cell {{ J82 }}"></div>
+				<div class="cell {{ J83 }}"></div>
+				<div class="cell {{ J84 }}"></div>
+				<div class="cell {{ J85 }}"></div>
+				<div class="cell {{ J86 }}"></div>
+				<div class="cell {{ J87 }}"></div>
+				<div class="cell {{ J88 }}"></div>
+				<div class="cell {{ J89 }}"></div>
 
 				<div class="side">10</div>
-				<div class="cell  {{ J90 }}"></div>
-				<div class="cell  {{ J91 }}"></div>
-				<div class="cell  {{ J92 }}"></div>
-				<div class="cell  {{ J93 }}"></div>
-				<div class="cell  {{ J94 }}"></div>
-				<div class="cell  {{ J95 }}"></div>
-				<div class="cell  {{ J96 }}"></div>
-				<div class="cell  {{ J97 }}"></div>
-				<div class="cell  {{ J98 }}"></div>
-				<div class="cell  {{ J99 }}"></div>
-		</div>
+				<div class="cell {{ J90 }}"></div>
+				<div class="cell {{ J91 }}"></div>
+				<div class="cell {{ J92 }}"></div>
+				<div class="cell {{ J93 }}"></div>
+				<div class="cell {{ J94 }}"></div>
+				<div class="cell {{ J95 }}"></div>
+				<div class="cell {{ J96 }}"></div>
+				<div class="cell {{ J97 }}"></div>
+				<div class="cell {{ J98 }}"></div>
+				<div class="cell {{ J99 }}"></div>
+			</div>
 
-		<div class="cell_container">
+			<div class="grille">
 				<div class="header"></div>
 				<div class="header">A</div>
 				<div class="header">B</div>
@@ -162,137 +163,136 @@
 				<div class="header">J</div>
 
 				<div class="side">1</div>
-				<div class="cell  {{ A0 }}"></div>
-				<div class="cell  {{ A1 }}"></div>
-				<div class="cell  {{ A2 }}"></div>
-				<div class="cell  {{ A3 }}"></div>
-				<div class="cell  {{ A4 }}"></div>
-				<div class="cell  {{ A5 }}"></div>
-				<div class="cell  {{ A6 }}"></div>
-				<div class="cell  {{ A7 }}"></div>
-				<div class="cell  {{ A8 }}"></div>
-				<div class="cell  {{ A9 }}"></div>
+				<div class="cell {{ A0 }}"></div>
+				<div class="cell {{ A1 }}"></div>
+				<div class="cell {{ A2 }}"></div>
+				<div class="cell {{ A3 }}"></div>
+				<div class="cell {{ A4 }}"></div>
+				<div class="cell {{ A5 }}"></div>
+				<div class="cell {{ A6 }}"></div>
+				<div class="cell {{ A7 }}"></div>
+				<div class="cell {{ A8 }}"></div>
+				<div class="cell {{ A9 }}"></div>
 
 				<div class="side">2</div>
-				<div class="cell  {{ A10 }}"></div>
-				<div class="cell  {{ A11 }}"></div>
-				<div class="cell  {{ A12 }}"></div>
-				<div class="cell  {{ A13 }}"></div>
-				<div class="cell  {{ A14 }}"></div>
-				<div class="cell  {{ A15 }}"></div>
-				<div class="cell  {{ A16 }}"></div>
-				<div class="cell  {{ A17 }}"></div>
-				<div class="cell  {{ A18 }}"></div>
-				<div class="cell  {{ A19 }}"></div>
+				<div class="cell {{ A10 }}"></div>
+				<div class="cell {{ A11 }}"></div>
+				<div class="cell {{ A12 }}"></div>
+				<div class="cell {{ A13 }}"></div>
+				<div class="cell {{ A14 }}"></div>
+				<div class="cell {{ A15 }}"></div>
+				<div class="cell {{ A16 }}"></div>
+				<div class="cell {{ A17 }}"></div>
+				<div class="cell {{ A18 }}"></div>
+				<div class="cell {{ A19 }}"></div>
 
 				<div class="side">3</div>
-				<div class="cell  {{ A20 }}"></div>
-				<div class="cell  {{ A21 }}"></div>
-				<div class="cell  {{ A22 }}"></div>
-				<div class="cell  {{ A23 }}"></div>
-				<div class="cell  {{ A24 }}"></div>
-				<div class="cell  {{ A25 }}"></div>
-				<div class="cell  {{ A26 }}"></div>
-				<div class="cell  {{ A27 }}"></div>
-				<div class="cell  {{ A28 }}"></div>
-				<div class="cell  {{ A29 }}"></div>
+				<div class="cell {{ A20 }}"></div>
+				<div class="cell {{ A21 }}"></div>
+				<div class="cell {{ A22 }}"></div>
+				<div class="cell {{ A23 }}"></div>
+				<div class="cell {{ A24 }}"></div>
+				<div class="cell {{ A25 }}"></div>
+				<div class="cell {{ A26 }}"></div>
+				<div class="cell {{ A27 }}"></div>
+				<div class="cell {{ A28 }}"></div>
+				<div class="cell {{ A29 }}"></div>
 
 				<div class="side">4</div>
-				<div class="cell  {{ A30 }}"></div>
-				<div class="cell  {{ A31 }}"></div>
-				<div class="cell  {{ A32 }}"></div>
-				<div class="cell  {{ A33 }}"></div>
-				<div class="cell  {{ A34 }}"></div>
-				<div class="cell  {{ A35 }}"></div>
-				<div class="cell  {{ A36 }}"></div>
-				<div class="cell  {{ A37 }}"></div>
-				<div class="cell  {{ A38 }}"></div>
-				<div class="cell  {{ A39 }}"></div>
+				<div class="cell {{ A30 }}"></div>
+				<div class="cell {{ A31 }}"></div>
+				<div class="cell {{ A32 }}"></div>
+				<div class="cell {{ A33 }}"></div>
+				<div class="cell {{ A34 }}"></div>
+				<div class="cell {{ A35 }}"></div>
+				<div class="cell {{ A36 }}"></div>
+				<div class="cell {{ A37 }}"></div>
+				<div class="cell {{ A38 }}"></div>
+				<div class="cell {{ A39 }}"></div>
 
 				<div class="side">5</div>
-				<div class="cell  {{ A40 }}"></div>
-				<div class="cell  {{ A41 }}"></div>
-				<div class="cell  {{ A42 }}"></div>
-				<div class="cell  {{ A43 }}"></div>
-				<div class="cell  {{ A44 }}"></div>
-				<div class="cell  {{ A45 }}"></div>
-				<div class="cell  {{ A46 }}"></div>
-				<div class="cell  {{ A47 }}"></div>
-				<div class="cell  {{ A48 }}"></div>
-				<div class="cell  {{ A49 }}"></div>
+				<div class="cell {{ A40 }}"></div>
+				<div class="cell {{ A41 }}"></div>
+				<div class="cell {{ A42 }}"></div>
+				<div class="cell {{ A43 }}"></div>
+				<div class="cell {{ A44 }}"></div>
+				<div class="cell {{ A45 }}"></div>
+				<div class="cell {{ A46 }}"></div>
+				<div class="cell {{ A47 }}"></div>
+				<div class="cell {{ A48 }}"></div>
+				<div class="cell {{ A49 }}"></div>
 
 				<div class="side">6</div>
-				<div class="cell  {{ A50 }}"></div>
-				<div class="cell  {{ A51 }}"></div>
-				<div class="cell  {{ A52 }}"></div>
-				<div class="cell  {{ A53 }}"></div>
-				<div class="cell  {{ A54 }}"></div>
-				<div class="cell  {{ A55 }}"></div>
-				<div class="cell  {{ A56 }}"></div>
-				<div class="cell  {{ A57 }}"></div>
-				<div class="cell  {{ A58 }}"></div>
-				<div class="cell  {{ A59 }}"></div>
+				<div class="cell {{ A50 }}"></div>
+				<div class="cell {{ A51 }}"></div>
+				<div class="cell {{ A52 }}"></div>
+				<div class="cell {{ A53 }}"></div>
+				<div class="cell {{ A54 }}"></div>
+				<div class="cell {{ A55 }}"></div>
+				<div class="cell {{ A56 }}"></div>
+				<div class="cell {{ A57 }}"></div>
+				<div class="cell {{ A58 }}"></div>
+				<div class="cell {{ A59 }}"></div>
 
 				<div class="side">7</div>
-				<div class="cell  {{ A60 }}"></div>
-				<div class="cell  {{ A61 }}"></div>
-				<div class="cell  {{ A62 }}"></div>
-				<div class="cell  {{ A63 }}"></div>
-				<div class="cell  {{ A64 }}"></div>
-				<div class="cell  {{ A65 }}"></div>
-				<div class="cell  {{ A66 }}"></div>
-				<div class="cell  {{ A67 }}"></div>
-				<div class="cell  {{ A68 }}"></div>
-				<div class="cell  {{ A69 }}"></div>
+				<div class="cell {{ A60 }}"></div>
+				<div class="cell {{ A61 }}"></div>
+				<div class="cell {{ A62 }}"></div>
+				<div class="cell {{ A63 }}"></div>
+				<div class="cell {{ A64 }}"></div>
+				<div class="cell {{ A65 }}"></div>
+				<div class="cell {{ A66 }}"></div>
+				<div class="cell {{ A67 }}"></div>
+				<div class="cell {{ A68 }}"></div>
+				<div class="cell {{ A69 }}"></div>
 
 				<div class="side">8</div>
-				<div class="cell  {{ A70 }}"></div>
-				<div class="cell  {{ A71 }}"></div>
-				<div class="cell  {{ A72 }}"></div>
-				<div class="cell  {{ A73 }}"></div>
-				<div class="cell  {{ A74 }}"></div>
-				<div class="cell  {{ A75 }}"></div>
-				<div class="cell  {{ A76 }}"></div>
-				<div class="cell  {{ A77 }}"></div>
-				<div class="cell  {{ A78 }}"></div>
-				<div class="cell  {{ A79 }}"></div>
+				<div class="cell {{ A70 }}"></div>
+				<div class="cell {{ A71 }}"></div>
+				<div class="cell {{ A72 }}"></div>
+				<div class="cell {{ A73 }}"></div>
+				<div class="cell {{ A74 }}"></div>
+				<div class="cell {{ A75 }}"></div>
+				<div class="cell {{ A76 }}"></div>
+				<div class="cell {{ A77 }}"></div>
+				<div class="cell {{ A78 }}"></div>
+				<div class="cell {{ A79 }}"></div>
 
 				<div class="side">9</div>
-				<div class="cell  {{ A80 }}"></div>
-				<div class="cell  {{ A81 }}"></div>
-				<div class="cell  {{ A82 }}"></div>
-				<div class="cell  {{ A83 }}"></div>
-				<div class="cell  {{ A84 }}"></div>
-				<div class="cell  {{ A85 }}"></div>
-				<div class="cell  {{ A86 }}"></div>
-				<div class="cell  {{ A87 }}"></div>
-				<div class="cell  {{ A88 }}"></div>
-				<div class="cell  {{ A89 }}"></div>
+				<div class="cell {{ A80 }}"></div>
+				<div class="cell {{ A81 }}"></div>
+				<div class="cell {{ A82 }}"></div>
+				<div class="cell {{ A83 }}"></div>
+				<div class="cell {{ A84 }}"></div>
+				<div class="cell {{ A85 }}"></div>
+				<div class="cell {{ A86 }}"></div>
+				<div class="cell {{ A87 }}"></div>
+				<div class="cell {{ A88 }}"></div>
+				<div class="cell {{ A89 }}"></div>
 
 				<div class="side">10</div>
-				<div class="cell  {{ A90 }}"></div>
-				<div class="cell  {{ A91 }}"></div>
-				<div class="cell  {{ A92 }}"></div>
-				<div class="cell  {{ A93 }}"></div>
-				<div class="cell  {{ A94 }}"></div>
-				<div class="cell  {{ A95 }}"></div>
-				<div class="cell  {{ A96 }}"></div>
-				<div class="cell  {{ A97 }}"></div>
-				<div class="cell  {{ A98 }}"></div>
-				<div class="cell  {{ A99 }}"></div>
+				<div class="cell {{ A90 }}"></div>
+				<div class="cell {{ A91 }}"></div>
+				<div class="cell {{ A92 }}"></div>
+				<div class="cell {{ A93 }}"></div>
+				<div class="cell {{ A94 }}"></div>
+				<div class="cell {{ A95 }}"></div>
+				<div class="cell {{ A96 }}"></div>
+				<div class="cell {{ A97 }}"></div>
+				<div class="cell {{ A98 }}"></div>
+				<div class="cell {{ A99 }}"></div>
+			</div>
 		</div>
-		<div class="rules">
+		<div class="rules_phase_de_combat">
 			<strong>Les règles du jeu</strong><br>
 			Maintenant, le jeu commence. Vous devez tirer sur des cases de la grille adverse pour tenter de toucher des bateaux ennemis.
 		</div>
 		<div class="missiles_container ">
-			<div class="missiles cellm"></div>
-			<div class="missiles cellm"></div>
-			<div class="missiles cellm"></div>
-			<div class="missiles cellm"></div>
+			<div class="missile"></div>
+			<div class="missiles"></div>
+			<div class="missile"></div>
+			<div class="missile"></div>
 		</div>
-		
 	</div>
-
 </body>
 </html>

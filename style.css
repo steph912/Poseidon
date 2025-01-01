@@ -57,7 +57,6 @@ h2 {
     font-size: 3em;
     margin: 5px;
 }
-
 .draggable{
     cursor: move;
 }
@@ -193,7 +192,6 @@ h2 {
 }
 
 /*---------Classement----------*/
-
 .classement{
     display: grid;
 }
@@ -246,6 +244,7 @@ tr{
     padding: 0% 0% 5% 0%;
     filter: blur(2px);
 }
+
 /*------Perdu------*/
 .perdu{
     background-color: rgba(249, 2, 2, 0.25);
@@ -258,6 +257,7 @@ tr{
     padding: 0% 0% 5% 0%;
     filter: blur(2px);
 }
+
 /*----------Attente du joueur---------*/
 .attente_du_joueur{
     background: rgba(164, 164, 164, 0.7);
@@ -286,115 +286,60 @@ tr{
     cursor: pointer;
     display: inline-block;
 }
-/*----------Grilles (placez les bateaux et phase de combat)----------*/
-h1 {
-font-size: 50px;
-}
 
-h2 {
-    font-size: 30px;
-    display:block;
-    text-align: center;
-    width: 100%;
-}
-
-.subtitle {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.box1{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.box2{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.cell_container {
+/*----------Grilles (CSS commun pour placez les bateaux et phase de combat)----------*/
+.grille {
     display: grid;
     grid-template-columns: 20px repeat(10, 40px); 
-    grid-template-rows: 20px repeat(10, 40px);   
+    grid-template-rows: 20px repeat(10, 40px);
     gap: 0;
-    margin: 0px auto;
-    
+    margin: 0 auto;
 }
-.header {
+.header { /* Lettres de la grille */
     background-color: transparent;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.side {
+.side { /* Chiffres de la grille */
     background-color: transparent;
     font-weight: bold;
     border : 5px black;
     justify-content: center;
     align-items: center;
 }
-.cell {
+.cell { /* cellules de la grille */
     width: 40px;
     height: 40px;
     border: 1px solid #000;
-   /* background-color: #f0d9b5;*/
     cursor: pointer;
     transition: 0.1s;
 }
-.cell:hover {
+.cell:hover { /* Effet de survol des cellules */
     box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
-
-/*  J'enleve les points dans les cell parce que ça fait un bug avec le drag & drop
-.cell::before {
-    content: "•"; 
-    font-size: 16px;
-    color: #000;
+.eau { /* Style pour la cellule avec l'état "eau" */
+    background-color: blue;
+    color: white; /* Texte en blanc pour contraste */
 }
-*/
-
-/*----------phase de combat---------*/
-
-.rules {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background-color: #c0bdbd;
-    padding: 15px;
-    border-radius: 15px; 
-    max-width: 500px;
-    font-size: 16px;
-    text-align: left;
-    color: black; 
-}
-.missiles_container{
-    
-    position:absolute;
-    display: flex;
-    flex-direction: row;
-    bottom : 15px;
-    right : 15px
-    
-}
-
-.cellm{
-    width: 100px;
-    height: 100px;
-    background-color: #ffffff; 
-    border: 1px solid #333;
+.bateau { /* Style pour la cellule avec l'état "bateau" */
+    background-color: white;
+    color: black;
 }
 
 /*----------phase de placement---------*/
-
-.rules2 {
+.placement{ /* placement des élement sur la page placez_vos_bateaux.html */
+    display: flex;
+    flex-direction: column;
+}
+.placement h1{
+    font-size: xx-large;
+}
+.placement h2{
+    font-size: x-large;
+}
+.rules_placez_vos_bateaux { /* Style pour les règles de la phase de placement */
     position: absolute;
     top: 10em;
     right: 2em;
@@ -422,6 +367,7 @@ h2 {
     display: flex;
     justify-content: space-between;
 }
+/* Style pour les différents bateaux (variation de couleur et de taille) */
 #bateau_2_cases{width: 80px;}
 #bateau_3_cases{width: 120px;}
 #bateau_3_cases_bis{width: 120px;}
@@ -432,21 +378,47 @@ h2 {
 #bateau_3_cases_bis .case{background-color: aquamarine;}
 #bateau_4_cases .case{background-color: green;}
 #bateau_5_cases .case{background-color: red;}
-.case{
+.case{ /* Style pour les cases des bateaux */
     border: solid 1px black;
     border-radius: 5px;
     width: 40px;
 }
 
-/* Style pour la cellule avec l'état "eau" */
-.cell[data-etat="eau"] {
-    background-color: blue;
-    color: white; /* Texte en blanc pour contraste */
+/*----------phase de combat---------*/
+.combat{ /* placement des élement sur la page phase_de_combat.html */
+    display: flex;
+    flex-direction: column;
 }
-
-/* Style pour la cellule avec l'état "bateau" */
-.cell[data-etat="bateau"] {
-    background-color: white;
-    color: black;
+.container_2_grilles { /* permet de gerer un ensemble de 2 grilles */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
+.subtitle {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.rules_phase_de_combat { /* Style pour les règles de la phase de combat */
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: #c0bdbd;
+    padding: 15px;
+    border-radius: 15px; 
+    max-width: 500px;
+    font-size: 16px;
+    text-align: left;
+    color: black; 
+}
+.missiles_container{ /* container des missiles */
+    position:absolute;
+    display: flex;
+    flex-direction: row;
+    bottom : 15px;
+    right : 15px;
+}
+.missile{
 
+}
