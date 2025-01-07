@@ -10,13 +10,13 @@
 
 const fs = require("fs");
 const nunjucks = require("nunjucks");
-const saveGrid = require("./script_placez_vos_bateaux.js");
+
 
 const trait = function (req, res, query) {
 
     // déclencher l'évenement de javascript front pour sauvegarder le placement des bateaux dans la grille json
 
-    saveGrid(query.code_partie);
+   
 
 
     // ----------------- REDIRIGER VERS LA PAGE PHASE DE COMBAT -----------------
