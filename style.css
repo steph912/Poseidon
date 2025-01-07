@@ -57,7 +57,7 @@ form.retour input {
 
 h1 {
     text-align: center;
-    font-size: 7em;
+    font-size: 5em;
     margin: 1% 0% 1% 0%;
 }
 
@@ -516,7 +516,15 @@ tr {
     color: black;
 }
 
-.missiles_container {
+.missile{
+    width: 100px;
+    height: 100px;
+    background-color: #ffffff; 
+    border: 1px solid #333;
+}
+
+
+.cubes_container {
     /* container des missiles */
     position: absolute;
     display: flex;
