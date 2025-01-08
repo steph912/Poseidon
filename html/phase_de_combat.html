@@ -287,11 +287,27 @@
 			<strong>Les règles du jeu</strong><br>
 			Maintenant, le jeu commence. Vous devez tirer sur des cases de la grille adverse pour tenter de toucher des bateaux ennemis.
 		</div>
-		<div class="missiles_container ">
-			<div class="missile"></div>
-			<div class="missiles"></div>
-			<div class="missile"></div>
-			<div class="missile"></div>
+		<div class="missiles_container">
+			<form action="colorier" method="GET">
+				<label>
+					<input type="checkbox" name="missile" value="missile_a_fragmentation">
+					<img src="/img/missile_a_fragmentation.png" alt="Missile à fragmentation" class="missile">
+				</label>
+				<label>
+					<input type="checkbox" name="missile" value="missile_balistique_m1">
+					<img src="/img/missile_balistique_m1.png" alt="Missile balistique M1" class="missile">
+				</label>
+				<label>
+					<input type="checkbox" name="missile" value="missile_balistique_m5">
+					<img src="/img/missile_balistique_m5.png" alt="Missile balistique M5" class="missile">
+				</label>
+				<label>
+					<input type="checkbox" name="missile" value="trident">
+					<img src="/img/trident.png" alt="Trident" class="missile">
+				</label>
+				
+			</form>
+			
 		</div>
 	</div>
 </body>
