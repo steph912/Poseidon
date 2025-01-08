@@ -20,8 +20,9 @@ const req_a_propos = require("./req_a_propos.js");
 const req_acceuil = require("./req_acceuil.js");
 const req_creer_une_partie = require("./req_creer_une_partie.js");
 const req_statique = require("./req_statique.js");
-const req_phase_de_combat = require("./req_phase_de_combat.js")
+const req_phase_de_combat = require("./req_phase_de_combat.js");
 const req_erreur = require("./req_erreur.js");
+const req_tirer = require("./req_tirer.js");
 
 // FONCTION DE CALLBACK APPELLEE POUR CHAQUE REQUETE
 
@@ -73,6 +74,9 @@ const traite_requete = function (req, res) {
 				break;
 			case '/req_phase_de_combat':
 				req_phase_de_combat(req, res, query);
+				break;
+			case '/tirer':
+				req_tirer(req, res, query);
 				break;
 			default:
 				req_statique(req, res, query);
