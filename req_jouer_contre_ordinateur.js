@@ -11,7 +11,7 @@ const trait = function (req, res, query) {
 	let i = 0;
 	let résultat;
 	grille.length = 99;
-	let état = ["eau", "bateaux"]
+	let état = ["eau-inconnu", "bateaux-inconnu"];
 
 
 	//ON LIT LES FICHIERS EXISTANTS
@@ -21,7 +21,7 @@ const trait = function (req, res, query) {
 	//ON INITIALISE LE TABLEAU EN NE METTANT QUE DU BLEU
 
 		while (i < grille.length) {
-			résultat = état[0]; // Sélectionne un état aléatoire ("eau" ou "touché")
+			résultat = état[0]; // Sélectionne un état aléatoire ("eau-inconnu" ou "bateaux-inconnu")
 			grille[i] = résultat; // Stocke le résultat dans la grilleS		
 			i++
 		}

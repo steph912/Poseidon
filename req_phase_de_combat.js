@@ -6,7 +6,21 @@
 
     -génerer aléatoirement des emplacement de bateaux pour l'IA
 
-    -rediriger vers la page phase de combat avec une query complete (pseudo, password, code_partie, grille)
+    -rediriger vers la page phase de combat avec une query complete  et les marqueurs nunjucks (pseudo, password, code_partie, grille)
+
+ Différents états des cases de la grille : 
+   - “eau_inconnu” : case eau que le joueur n’a pas découvert 
+   - “eau_connu” : case eau que le joueur a découvert en tirant 
+   - “bateau_inconnu” case bateau que le joueur n’a pas découvert 
+   - “bateau_touché” case bateau que le joueur a découvert en tirant dessus 
+   - “bateau_coulé” case bateau découverte, touché et coulé car toutes les cases du bateau ont été touchées (OPTIONEL MAIS PRESENT DANS LE JEU DE BASE) 
+
+ Différents classes css pour les cases de la grille :
+   - ".inconnu" : case que le joueur n’a pas découvert
+   - “.eau” : case eau que le joueur connait
+   - “.bateau” : case bateau que le joueur connait
+   - “.bateau_touche” : case bateau que le joueur a découvert en tirant dessus
+   - “.bateau_coule” : case bateau découverte, touché et coulé car toutes les cases du bateau ont été touchées (OPTIONEL MAIS PRESENT DANS LE JEU DE BASE)
 */
 "use strict";
 
@@ -30,7 +44,7 @@ const placer_bateau = function (taille, grille) {
                 }
                 if (bateau_place) { // si le bateau peut être placé
                     for (let i = 0; i < taille; i++) {
-                        grille[position + i] = "bateau";
+                        grille[position + i] = "bateau_inconnu";
                     }
                 }
             }
@@ -48,7 +62,7 @@ const placer_bateau = function (taille, grille) {
                 }
                 if (bateau_place) { // si le bateau peut être placé
                     for (let i = 0; i < taille; i++) {
-                        grille[position + 10 * i] = "bateau";
+                        grille[position + 10 * i] = "bateau_inconnu";
                     }
                 }
             }
@@ -60,7 +74,7 @@ const placer_bateau = function (taille, grille) {
 	return grille;
 }
 
-const trait = function (req, res, query) {
+const trait = function (req, res, query) { // fonction principale du module
 
     // ----------------- GÉNÉRER LE PLACEMENT DES BATEAUX DE L'ORDINATEUR -----------------
     
@@ -68,7 +82,6 @@ const trait = function (req, res, query) {
 
     let grille = []; // tableau contenant les cases de la grille
     grille.length = 99; // tableau de 100 cases
-    let contenu_fichier;
     
 	grille = placer_bateau(2, grille); // place un bateau de taille 2
 	grille = placer_bateau(3, grille); // place un bateau de taille 3
@@ -78,8 +91,7 @@ const trait = function (req, res, query) {
 
     // Sauvegarder le tableau dans le fichier json
 
-    contenu_fichier = JSON.stringify(grille); // transforme le tableau en texte
-    fs.writeFileSync(`./grilles/ordinateur.json`, contenu_fichier, 'utf-8'); // écrit le texte dans le fichier json
+    fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
 
     // ----------------- REDIRIGER VERS LA PAGE PHASE DE COMBAT -----------------
 
@@ -87,21 +99,25 @@ const trait = function (req, res, query) {
     let page;
 
     //ON LIT LES FICHIERS EXISTANTS
-    contenu_fichier = fs.readFileSync(`${query.code_partie}.json`, "utf-8") //on lit le fichier json qui sera une chaine de caractère
-    grille = JSON.parse(contenu_fichier); // on convertit la chaine de caractère en objet java script (tableau quon appelle grille)
+    grille = JSON.parse(fs.readFileSync(`${query.code_partie}.json`, "utf-8")); // on lit le fichier json
 
-    // Affecter le placement des bateaux du joueur dans les marqueurs nunjucks
-
+    // On affecte le placement des bateaux du joueur dans les marqueurs nunjucks
     for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-        if (grille[i] === "bateau") { // si la case contient un bateau
-            marqueurs[`J${i}`] = ".bateau"; // on affecte la classe .bateaux au marqueur nunjucks J0, J1, J2, etc
+        if (grille[i] === "bateau_connu" || grille[i] === "bateau_inconnu") { // si la case est un bateau
+            marqueurs[`A${i}`] = ".bateau"; // on affecte la classe .bateau au marqueur nunjucks OX
         }
-        else {
-            marqueurs[`J${i}`] = ".eau"; // on affecte la classe .eau au marqueur nunjucks J0, J1, J2, etc
+        else if (grille[i] === "eau_connu" || grille[i] === "eau_inconnu") { // si la case est de l'eau
+            marqueurs[`A${i}`] = ".eau"; // on affecte la classe .eau au marqueur nunjucks OX
         }
+        // pas besoin de mettre l'état touché ou coulé puisque normalement il n'y a pas eu de tir à ce stade
+    }
+
+    // On initialise les marqueurs nunjucks a la classe css inconnu pour les cases de la grille de l'ordinateur
+    for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
+        marqueurs[`A${i}`] = ".inconnu"; // on affecte la classe .inconnu au marqueur nunjucks OX
     }
     
-    // AFFICHAGE DE LA PAGE placez_vos_bateaux.html
+    // AFFICHAGE DE LA PAGE phase_de_combat.html
     page = fs.readFileSync("./html/phase_de_combat.html", 'utf-8');
 
     marqueurs.pseudo = query.pseudo;
