@@ -380,17 +380,33 @@ tr {
     box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
+/*Etats possible des cases*/
+.inconnu{
+    /* Style pour la cellule avec l'état "inconnu" */
+    background-color: white;
+    color: black;
+}
 .eau {
     /* Style pour la cellule avec l'état "eau" */
     background-color: blue;
     color: white;
     /* Texte en blanc pour contraste */
 }
-
 .bateau {
     /* Style pour la cellule avec l'état "bateau" */
     background-color: white;
     color: black;
+}
+.bateau_touche {
+    /* Style pour la cellule avec l'état "bateau_touche" */
+    background-color: orange;
+    color: black;
+}
+.bateau_coule {
+    /* Style pour la cellule avec l'état "bateau_coule" */
+    background-color: red;
+    color: white;
+    /* Texte en blanc pour contraste */
 }
 
 /*----------phase de placement---------*/
