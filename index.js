@@ -76,10 +76,10 @@ const traite_requete = function (req, res) {
 			case '/req_phase_de_combat':
 				req_phase_de_combat(req, res, query);
 				break;
-			case '/tirer':
+			case '/req_tirer':
 				req_tirer(req, res, query);
 				break;
-			case '/tirer_ordinateur':
+			case '/req_tirer_ordinateur':
 				req_tirer_ordinateur(req, res, query);
 				break;
 			default:

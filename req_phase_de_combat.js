@@ -31,21 +31,26 @@ const nunjucks = require("nunjucks");
 const placer_bateau = function (taille, grille) {
     let direction = Math.floor(Math.random() * 2); // 0 pour horizontal, 1 pour vertical
 	let position = Math.floor(Math.random() * grille.length); // position aléatoire de départ du bateau
-	let bateau_place = false; // true si le bateau peut être placé, false sinon
+	let peut_placer = false; // true si le bateau peut être placé, false sinon
+    let bateau_placer = false; // définis si le bateau est placé ou non
+    let maxAttempts = 100; // Limite de tentatives pour éviter les boucles infinies
+    let attempts = 0; // nombre de tentatives
 
-	while (bateau_place === false) { // tant que le bateau n'est pas placé
+	while (bateau_placer === false && attempts < maxAttempts) { // tant que le bateau n'est pas placé
+        attempts++;
         if (direction === 0) { // si le bateau est horizontal
             if (position % 10 + taille <= 10) { // si le bateau ne dépasse pas de la grille
-                bateau_place = true;
+                peut_placer = true;
                 for (let i = 0; i < taille; i++) {
                     if (grille[position + i] !== undefined) { // si la case est déjà occupée
-                        bateau_place = false;
+                        peut_placer = false; // le bateau ne peut pas être placé
                     }
                 }
-                if (bateau_place) { // si le bateau peut être placé
+                if (peut_placer) { // si le bateau peut être placé
                     for (let i = 0; i < taille; i++) {
-                        grille[position + i] = "bateau_inconnu";
+                        grille[position + i] = "bateau_inconnu"; // on place le bateau
                     }
+                    bateau_placer = true; // le bateau est placé on sort de la boucle
                 }
             }
             else {
@@ -54,16 +59,17 @@ const placer_bateau = function (taille, grille) {
         }
         if (direction === 1) { // si le bateau est vertical
             if (Math.floor(position / 10) + taille <= 10) { // si le bateau ne dépasse pas de la grille
-                bateau_place = true; // true si le bateau peut être placé, false sinon
+                peut_placer = true; // true si le bateau peut être placé, false sinon
                 for (let i = 0; i < taille; i++) {
                     if (grille[position + 10 * i] !== undefined) { // si la case est déjà occupée
-                        bateau_place = false;
+                        peut_placer = false; // le bateau ne peut pas être placé
                     }
                 }
-                if (bateau_place) { // si le bateau peut être placé
+                if (peut_placer) { // si le bateau peut être placé
                     for (let i = 0; i < taille; i++) {
-                        grille[position + 10 * i] = "bateau_inconnu";
+                        grille[position + 10 * i] = "bateau_inconnu"; // on place le bateau
                     }
+                    bateau_placer = true; // le bateau est placé on sort de la boucle
                 }
             }
             else {
@@ -76,13 +82,28 @@ const placer_bateau = function (taille, grille) {
 
 const trait = function (req, res, query) { // fonction principale du module
 
+    let grille = []; // tableau contenant les cases de la grille
+    grille.length = 100; // tableau de 100 cases
+
+    // ----------------- SAUVEGARDER LE PLACEMENT DES BATEAUX DU JOUEUR -----------------
+
+    for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
+        grille[i] = "eau_inconnu"; // on initialise la case à eau_inconnu
+    }
+
+    fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
+
+    grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, 'utf-8')); // on lit le fichier json
+
     // ----------------- GÉNÉRER LE PLACEMENT DES BATEAUX DE L'ORDINATEUR -----------------
     
     // Génerer le placement des bateaux aléatoirement dans un tableau une dimension
 
-    let grille = []; // tableau contenant les cases de la grille
-    grille.length = 99; // tableau de 100 cases
-    
+    // on réinitialise le tableau grille
+    for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
+        grille[i] = undefined; // on initialise la case à undefined
+    }
+
 	grille = placer_bateau(2, grille); // place un bateau de taille 2
 	grille = placer_bateau(3, grille); // place un bateau de taille 3
 	grille = placer_bateau(3, grille); // place un bateau de taille 3
@@ -99,22 +120,21 @@ const trait = function (req, res, query) { // fonction principale du module
     let page;
 
     //ON LIT LES FICHIERS EXISTANTS
-    grille = JSON.parse(fs.readFileSync(`${query.code_partie}.json`, "utf-8")); // on lit le fichier json
+    grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "utf-8")); // on lit le fichier json
 
     // On affecte le placement des bateaux du joueur dans les marqueurs nunjucks
     for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
         if (grille[i] === "bateau_connu" || grille[i] === "bateau_inconnu") { // si la case est un bateau
-            marqueurs[`A${i}`] = ".bateau"; // on affecte la classe .bateau au marqueur nunjucks OX
+            marqueurs[`J${i}`] = "bateau"; // on affecte la classe .bateau au marqueur nunjucks OX
         }
         else if (grille[i] === "eau_connu" || grille[i] === "eau_inconnu") { // si la case est de l'eau
-            marqueurs[`A${i}`] = ".eau"; // on affecte la classe .eau au marqueur nunjucks OX
+            marqueurs[`J${i}`] = "eau"; // on affecte la classe .eau au marqueur nunjucks OX
         }
-        // pas besoin de mettre l'état touché ou coulé puisque normalement il n'y a pas eu de tir à ce stade
     }
 
     // On initialise les marqueurs nunjucks a la classe css inconnu pour les cases de la grille de l'ordinateur
     for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-        marqueurs[`A${i}`] = ".inconnu"; // on affecte la classe .inconnu au marqueur nunjucks OX
+        marqueurs[`A${i}`] = "inconnu"; // on affecte la classe .inconnu au marqueur nunjucks OX
     }
     
     // AFFICHAGE DE LA PAGE phase_de_combat.html

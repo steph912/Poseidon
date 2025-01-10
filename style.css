@@ -503,21 +503,18 @@ tr {
     display: flex;
     flex-direction: column;
 }
-
 .container_2_grilles {
     /* permet de gerer un ensemble de 2 grilles */
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-
 .subtitle {
     display: flex;
     align-items: flex-start;
     flex-direction: row;
     justify-content: space-around;
 }
-
 .rules_phase_de_combat {
     /* Style pour les règles de la phase de combat */
     position: absolute;
@@ -531,15 +528,12 @@ tr {
     text-align: left;
     color: black;
 }
-
 .missile{
     width: 100px;
     height: 100px;
     background-color: #ffffff; 
     border: 1px solid #333;
 }
-
-
 .cubes_container {
     /* container des missiles */
     position: absolute;
@@ -547,4 +541,7 @@ tr {
     flex-direction: row;
     bottom: 15px;
     right: 15px;
+}
+.combat form{
+    background-color: transparent; /* on enleve le fond */
 }
