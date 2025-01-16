@@ -1,7 +1,7 @@
 "use strict";
 
 const fs = require("fs");
-const nunjucks = require("nunjucks");;
+const nunjucks = require("nunjucks");
 
 const trait = function (req, res, query) {
 
