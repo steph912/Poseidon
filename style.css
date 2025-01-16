@@ -545,3 +545,10 @@ tr {
 .combat form{
     background-color: transparent; /* on enleve le fond */
 }
+.bouton_abondonner{
+    padding: 0;
+    position: absolute;
+    bottom: 7vh;
+    left: 7vw;
+    background: none;
+}
