@@ -503,6 +503,11 @@ tr {
     display: flex;
     flex-direction: column;
 }
+.combat form{
+    flex-direction: row;
+    padding: 0;
+    padding: 5% 0 0 50%;
+}
 .container_2_grilles {
     /* permet de gerer un ensemble de 2 grilles */
     display: flex;
