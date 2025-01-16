@@ -7,13 +7,13 @@ const nunjucks = require("nunjucks");
 
 app.use(express.json());
 
-// Traite la réponse du joueur 
+// Traite la réponse du joueur ²
 app.post("/rejouer", (req, res) => {
   const reponse = req.body.reponse; 
   fs.readFile("membres.json", 'utf-8', (err, contenu_fichier) => {
     if (err) {
       console.error("Erreur de lecture du fichier:", err);
-      return res.status(500).send("Erreur serveur");
+      return res.status(5000).send("Erreur serveur");
     }
 
     const listeMembres = JSON.parse(contenu_fichier);
