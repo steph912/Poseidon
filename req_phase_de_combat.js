@@ -42,7 +42,7 @@ const placer_bateau = function (taille, grille) {
             if (position % 10 + taille <= 10) { // si le bateau ne dépasse pas de la grille
                 peut_placer = true;
                 for (let i = 0; i < taille; i++) {
-                    if (grille[position + i] !== undefined) { // si la case est déjà occupée
+                    if (grille[position + i] !== "eau_inconnu") { // si la case est déjà occupée
                         peut_placer = false; // le bateau ne peut pas être placé
                     }
                 }
@@ -61,7 +61,7 @@ const placer_bateau = function (taille, grille) {
             if (Math.floor(position / 10) + taille <= 10) { // si le bateau ne dépasse pas de la grille
                 peut_placer = true; // true si le bateau peut être placé, false sinon
                 for (let i = 0; i < taille; i++) {
-                    if (grille[position + 10 * i] !== undefined) { // si la case est déjà occupée
+                    if (grille[position + 10 * i] !== "eau_inconnu") { // si la case est déjà occupée
                         peut_placer = false; // le bateau ne peut pas être placé
                     }
                 }
@@ -87,21 +87,17 @@ const trait = function (req, res, query) { // fonction principale du module
 
     // ----------------- SAUVEGARDER LE PLACEMENT DES BATEAUX DU JOUEUR -----------------
 
-    for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-        grille[i] = "eau_inconnu"; // on initialise la case à eau_inconnu
-    }
+    
 
-    fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
+    // fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
 
-    grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, 'utf-8')); // on lit le fichier json
+    
 
     // ----------------- GÉNÉRER LE PLACEMENT DES BATEAUX DE L'ORDINATEUR -----------------
-    
-    // Génerer le placement des bateaux aléatoirement dans un tableau une dimension
 
     // on réinitialise le tableau grille
     for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-        grille[i] = undefined; // on initialise la case à undefined
+        grille[i] = "eau_inconnu"; // on initialise la case à eau inconnue
     }
 
 	grille = placer_bateau(2, grille); // place un bateau de taille 2
@@ -111,7 +107,6 @@ const trait = function (req, res, query) { // fonction principale du module
 	grille = placer_bateau(5, grille); // place un bateau de taille 5
 
     // Sauvegarder le tableau dans le fichier json
-
     fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
 
     // ----------------- REDIRIGER VERS LA PAGE PHASE DE COMBAT -----------------

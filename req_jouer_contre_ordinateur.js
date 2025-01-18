@@ -7,21 +7,17 @@ const trait = function (req, res, query) {
 
 	let marqueurs = {};
 	let page;
+
 	let grille = [];
-	let i = 0;
-	let résultat;
 	grille.length = 100;
-	let état = ["eau-inconnu", "bateaux-inconnu"];
 
 	marqueurs.code_partie = Math.floor(Math.random() * 100000); // Génère un code de partie aléatoi
 
 	//ON INITIALISE LE TABLEAU EN NE METTANT QUE DU BLEU
 
-		while (i < grille.length) {
-			résultat = état[0]; // Sélectionne un état aléatoire ("eau-inconnu" ou "bateaux-inconnu")
-			grille[i] = résultat; // Stocke le résultat dans la grilleS		
-			i++
-		}
+	for (let i = 0; i < grille.length; i++) {
+		grille[i] = "eau_inconnu"; // on initialise la grille avec des cases d'eau inconnue
+	}
 	//SI LE BATEAU PRENDS LES EMPLACEMENT DE LA GRILLE ON LEUR DONNE L'ETAT OCCUPE 
 	
 	// ON SAUVEGARDE LES FICHIERS EXISTANTS POUR PEUT ETRE LES UTILISER APRES 
@@ -33,6 +29,7 @@ const trait = function (req, res, query) {
 	marqueurs.pseudo = query.pseudo;
 	marqueurs.password = query.password;
 	marqueurs.erreur = "";
+	
 	page = nunjucks.renderString(page, marqueurs);
 
 	res.writeHead(200, { 'Content-Type': 'text/html' });
