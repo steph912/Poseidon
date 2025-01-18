@@ -35,8 +35,6 @@ const trait = function (req, res, query) {
 
 	let cible = query.cible; // Coordonnée de la case du tir
 
-	console.log("---------" + grille[cible]);
-
 	if (grille[cible] === "eau_inconnu") { // Si la case est de l'eau inconnue
 		grille[cible] = "eau_connu"; // La case devient de l'eau connue car le joueur a tiré dessus
 	}

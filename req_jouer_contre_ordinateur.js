@@ -11,7 +11,7 @@ const trait = function (req, res, query) {
 	let grille = [];
 	grille.length = 100;
 
-	marqueurs.code_partie = Math.floor(Math.random() * 100000); // Génère un code de partie aléatoi
+	marqueurs.code_partie = Math.floor(Math.random() * 100000000); // Génère un code de partie aléatoire à 8 chiffres donc 8 zeros
 
 	//ON INITIALISE LE TABLEAU EN NE METTANT QUE DU BLEU
 
