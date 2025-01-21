@@ -40,8 +40,6 @@
                 <div class="navire"></div>
             </div>
         </div>
-        
-        
 
 		<h2>Voici votre grille</h2>
 		<div class="grille">
@@ -178,8 +176,8 @@
 			<div class="cell container"></div>
 		</div>
 		<div class="rules_placez_vos_bateaux">
-			<h4>Les règles du jeu</h4>
-			Vous decez placer vos Bateaux sur la grille. Une fois tous les bateaux placés sur la grille, cliquez sur le bouton "j'ai terminé" ci-dessous
+			<strong>Les règles du jeu</strong></br>
+			Vous devez placer vos Bateaux sur la grille. Une fois tous les bateaux placés sur la grille, cliquez sur le bouton "j'ai terminé" ci-dessous
 		</div>
 	</div>
 
@@ -189,6 +187,9 @@
 		<input type="hidden" name="code_partie" value="{{ code_partie }}">
 		<input type="submit" value="J'ai terminé">
 	</form>
+
+	<button class="reset_button">Réinitialiser</button>
+	<button class="rotate_button">Rotation</button>
 
 </body>
 <script src="script_placez_vos_bateaux.js" defer></script>
