@@ -109,6 +109,19 @@ const trait = function (req, res, query) { // fonction principale du module
     // Sauvegarder le tableau dans le fichier json
     fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
 
+    // Temporel----------------------
+    // on réinitialise le tableau grille
+    for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
+        grille[i] = "eau_inconnu"; // on initialise la case à eau inconnue
+    }
+	grille = placer_bateau(2, grille); // place un bateau de taille 2
+	grille = placer_bateau(3, grille); // place un bateau de taille 3
+	grille = placer_bateau(3, grille); // place un bateau de taille 3
+	grille = placer_bateau(4, grille); // place un bateau de taille 4
+	grille = placer_bateau(5, grille); // place un bateau de taille 5
+    fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
+    // Temporel----------------------
+
     // ----------------- REDIRIGER VERS LA PAGE PHASE DE COMBAT -----------------
 
     let marqueurs = {};
@@ -117,17 +130,23 @@ const trait = function (req, res, query) { // fonction principale du module
     //ON LIT LES FICHIERS EXISTANTS
     grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "utf-8")); // on lit le fichier json
 
-    // On affecte le placement des bateaux du joueur dans les marqueurs nunjucks
+    // Pour la grille du joueur
     for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-        if (grille[i] === "bateau_connu" || grille[i] === "bateau_inconnu") { // si la case est un bateau
-            marqueurs[`J${i}`] = "bateau"; // on affecte la classe .bateau au marqueur nunjucks OX
+        if (grille[i] === "bateau_inconnu") { // si la case est un bateau inconnu
+            marqueurs[`J${i}`] = "bateau_inconnu"; // on affecte la classe .bateau_inconnu au marqueur nunjucks OX
         }
-        else if (grille[i] === "eau_connu" || grille[i] === "eau_inconnu") { // si la case est de l'eau
-            marqueurs[`J${i}`] = "eau"; // on affecte la classe .eau au marqueur nunjucks OX
+        else if (grille[i] === "eau_inconnu") { // si la case est de l'eau connue
+            marqueurs[`J${i}`] = "eau_inconnu"; // on affecte la classe .eau_connu au marqueur nunjucks OX
+        }
+        else if (grille[i] === "bateau_touche") { // si la case est un bateau touche
+            marqueurs[`J${i}`] = "bateau_touche"; // on affecte la classe .bateau_touche au marqueur nunjucks OX
+        }
+        else if (grille[i] === "eau_connu") { // si la case est de l'eau connue
+            marqueurs[`J${i}`] = "eau_connu"; // on affecte la classe .eau au marqueur nunjucks OX
         }
     }
 
-    // On initialise les marqueurs nunjucks a la classe css inconnu pour les cases de la grille de l'ordinateur
+    // Pour la grille de l'ordinateur : on initialise les marqueurs nunjucks a la classe css inconnu pour les cases de la grille de l'ordinateur
     for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
         marqueurs[`A${i}`] = "inconnu"; // on affecte la classe .inconnu au marqueur nunjucks OX
     }

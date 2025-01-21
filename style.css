@@ -382,31 +382,22 @@ tr {
 
 /*Etats possible des cases*/
 .inconnu{
-    /* Style pour la cellule avec l'état "inconnu" */
     background-color: rgb(174, 174, 174);
-    color: black;
 }
-.eau {
-    /* Style pour la cellule avec l'état "eau" */
+.eau_inconnu {
     background-color: rgb(0, 119, 255);
-    color: white;
-    /* Texte en blanc pour contraste */
 }
-.bateau {
-    /* Style pour la cellule avec l'état "bateau" */
+.eau_connu {
+    background-color: rgb(0, 191, 255);
+}
+.bateau_inconnu {
     background-color: rgb(255, 238, 0);
-    color: black;
 }
 .bateau_touche {
-    /* Style pour la cellule avec l'état "bateau_touche" */
     background-color: rgb(255, 106, 0);
-    color: black;
 }
 .bateau_coule {
-    /* Style pour la cellule avec l'état "bateau_coule" */
     background-color: red;
-    color: white;
-    /* Texte en blanc pour contraste */
 }
 
 /*----------phase de placement---------*/
