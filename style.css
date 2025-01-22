@@ -607,10 +607,10 @@ tr {
 .combat form{
     background-color: transparent; /* on enleve le fond */
 }
-.bouton_abondonner{
+.bouton_abandonner{
     position:absolute;
-    bottom: 20px;
     left: 50%;
+    bottom: 50px;
     transform: translateX(-50%);
     font-family: Arial, sans-serif;
     font-size: 18px;
@@ -637,4 +637,17 @@ tr {
     position: absolute;
     bottom: 20px; 
     right: 20px; 
+}
+
+.score {
+    position :absolute;
+    top : 50px;
+    left : 50px;
+    font-size: 2em;
+    color: #FFD700; 
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7); 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }

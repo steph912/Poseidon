@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<div id="score" class ="score">Score : 1000</div>
 	<form class="form_combat" action="/req_tirer" method="GET">
 		<input type="hidden" name="pseudo" value="{{ pseudo }}">
 		<input type="hidden" name="password" value="{{ password }}">
@@ -180,7 +181,7 @@
 
 					<div class="side">2</div>
 					<div class="cell {{ A10 }}"><button type="submit" name="cible" value="10"></button></div>
-					<div class="cell {{ A11 }}"><button type="submit" name="cible" value="11"></button></div>
+				<div class="cell {{ A11 }}"><button type="submit" name="cible" value="11"></button></div>
 					<div class="cell {{ A12 }}"><button type="submit" name="cible" value="12"></button></div>
 					<div class="cell {{ A13 }}"><button type="submit" name="cible" value="13"></button></div>
 					<div class="cell {{ A14 }}"><button type="submit" name="cible" value="14"></button></div>
@@ -312,7 +313,10 @@
 		</div>
 	</form>
 	<form class="form_combat" action="/req_accueil" method="get">
-		<button type="submit"class="bouton_abandonner">Abandonner</button>
+		<input type="hidden" name="pseudo" value="{{ pseudo }}">
+		<input type="hidden" name="password" value="{{ password }}">
+		<input type="hidden" name="code_partie" value="{{ code_partie }}">
+		<button type="submit" class="bouton_abandonner">Abandonner</button>
 	</form>
 
 </body>
