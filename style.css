@@ -150,7 +150,7 @@ h2 {
     color: rgb(196, 85, 0);
 }
 
-.acceuil {
+.accueil {
     display: grid;
     grid-template: 2fr 1em 1fr 1fr / 1fr 1fr 1fr;
     /* on crée des 4 lignes ( 1 ligne 2 fois plus grandes que les autres) et apres 3 colonnes égales*/
@@ -158,23 +158,23 @@ h2 {
     align-items: center;
 }
 
-.acceuil .logo {
+.accueil .logo {
     grid-column: span 3;
     /* le logo s'étend sur les 3 colonnes qu'on a créer juste avant */
     width: 50%;
     margin: 3%;
 }
 
-.acceuil form {
+.accueil form {
     padding: 2% 20% 2% 20%;
     margin: 2%;
 }
 
-.acceuil_a_propos {
+.accueil_a_propos {
     grid-area: 3 / 1 / 5 / 2;
 }
 
-.acceuil_option {
+.accueil_option {
     grid-area: 3 / 3 / 5 / 4;
 }
 
@@ -344,26 +344,26 @@ tr {
     grid-template-rows: 20px repeat(10, 40px);
     gap: 0;
     margin: 0 auto;
-    
 }
 
 .header {
     /* Lettres de la grille */
-    background-color: transparent;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
 }
 
 .side {
     /* Chiffres de la grille */
-    background-color: transparent;
     font-weight: bold;
-    border: 5px black;
+    display: flex; /* Ajouté pour aligner le contenu correctement */
     justify-content: center;
     align-items: center;
+    background-color: transparent;
 }
+
 
 .cell {
     /* cellules de la grille */
@@ -372,7 +372,7 @@ tr {
     border: 1px solid #000;
     cursor: pointer;
     transition: 0.1s;
-    
+    background-color: rgb(0, 119, 255);
 }
 
 .cell:hover {
@@ -382,7 +382,7 @@ tr {
 
 /*Etats possible des cases*/
 .inconnu{
-    background-color: rgb(174, 174, 174);
+    background-color: rgb(0, 119, 255);
 }
 .eau_inconnu {
     background-color: rgb(0, 119, 255);
@@ -447,9 +447,7 @@ tr {
 .bateau {
     
     display: flex;
-    background-color: transparent;
-
-    
+    background-color: transparent; 
 }
 
 /* Style pour les cases des bateaux */
@@ -458,10 +456,11 @@ tr {
     width: 40px;
     height: 40px;
     border: 1px solid black;
+    
 }
 
 /* Couleurs pour chaque type de bateau */
-.bateau_2_cases .navire {
+.bateau_2_cases .navire{
     background-color: yellow;
 }
 
@@ -483,10 +482,76 @@ tr {
 
 /*DRAG AND DROP*/
 .container.occupied {
-    background-color: rgba(0, 128, 128, 0.5); /* Couleur semi-transparente pour indiquer l'occupation */
-    border: 2px dashed #000; /* Optionnel : ajoute un effet visuel au bord */
+    background-color: rgba(127, 52, 159, 0.773); /* Couleur semi-transparente pour indiquer l'occupation */
 }
 
+
+.container.bateau_2_cases {
+    background-color: yellow;
+}
+
+.container.bateau_3_cases {
+    background-color: blue;
+}
+
+.container.bateau_3_cases_bis {
+    background-color: aquamarine;
+}
+
+.container.bateau_4_cases{
+    background-color: green;
+}
+
+.container.bateau_5_cases{
+    background-color: red;
+}
+
+
+
+.reset_button {
+    position:absolute;
+    bottom: 50px;
+    left: 50px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: black;
+    background-color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.reset_button:hover {
+    background-color: #f0f0f0; 
+}
+
+.rotate_button {
+    position:absolute;
+    bottom: 100px;
+    left: 50px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: black;
+    background-color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.rotate_button:hover {
+    background-color: #f0f0f0; 
+}
+
+.rotated {
+    transform: rotate(90deg);
+    transform-origin: top center;
+}
 
 /*----------phase de combat---------*/
 .combat {
@@ -535,18 +600,28 @@ tr {
     position: absolute;
     display: flex;
     flex-direction: row;
-    bottom: 15px;
-    right: 15px;
-}
+    bottom: 20px; /* Ajusté à 20px de la bordure inférieure */
+    right: 20px; /* Ajusté à 20px de la bordure droite */
+    gap: 1px; /* Ajouté pour une bordure d'1px entre chaque cube */
+}   
 .combat form{
     background-color: transparent; /* on enleve le fond */
 }
 .bouton_abondonner{
-    padding: 0;
-    position: absolute;
-    bottom: 7vh;
-    right: 7vw;
-    background: none;
+    position:absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: black;
+    background-color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 .cell button{
     width: 40px;
@@ -555,9 +630,11 @@ tr {
     border: none;
 }
 .missiles_container{
-    margin: 3em 10em 0 0;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    position: absolute;
+    bottom: 20px; 
+    right: 20px; 
 }

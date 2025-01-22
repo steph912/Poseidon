@@ -3,15 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Acceuil</title>
+        <title>Accueil</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="acceuil">
+        <div class="accueil">
             
             <img class="logo" src="./img/logo.png">
 
-            <form class="acceuil_a_propos" action="/req_a_propos" method="get">
+            <form class="accueil_a_propos" action="/req_a_propos" method="get">
                 <input type="hidden" name="pseudo" value="{{ pseudo }}">
                 <input type="hidden" name="password" value="{{ password }}">
                 <input type="submit" value="A propos" />
@@ -24,7 +24,7 @@
                 <input type="submit" name="mode" value="Jouer contre l'ordinateur">
             </form>
 
-            <form class="acceuil_option" action="/req_options" method="get">
+            <form class="accueil_option" action="/req_options" method="get">
                 <input type="hidden" name="pseudo" value="{{ pseudo }}">
                 <input type="hidden" name="password" value="{{ password }}">
                 <input type="submit" value="Options"/>
