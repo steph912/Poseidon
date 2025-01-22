@@ -456,10 +456,11 @@ tr {
     width: 40px;
     height: 40px;
     border: 1px solid black;
+    
 }
 
 /* Couleurs pour chaque type de bateau */
-.bateau_2_cases .navire {
+.bateau_2_cases .navire{
     background-color: yellow;
 }
 
@@ -481,8 +482,31 @@ tr {
 
 /*DRAG AND DROP*/
 .container.occupied {
-    background-color: rgba(128, 0, 81, 0.526); /* Couleur semi-transparente pour indiquer l'occupation */
+    background-color: rgba(127, 52, 159, 0.773); /* Couleur semi-transparente pour indiquer l'occupation */
 }
+
+
+.container.bateau_2_cases {
+    background-color: yellow;
+}
+
+.container.bateau_3_cases {
+    background-color: blue;
+}
+
+.container.bateau_3_cases_bis {
+    background-color: aquamarine;
+}
+
+.container.bateau_4_cases{
+    background-color: green;
+}
+
+.container.bateau_5_cases{
+    background-color: red;
+}
+
+
 
 .reset_button {
     position:absolute;
