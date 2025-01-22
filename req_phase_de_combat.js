@@ -109,7 +109,7 @@ const trait = function (req, res, query) { // fonction principale du module
     // Sauvegarder le tableau dans le fichier json
     fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
 
-    // Temporel----------------------
+    // Temporaire----------------------
     // on réinitialise le tableau grille
     for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
         grille[i] = "eau_inconnu"; // on initialise la case à eau inconnue
@@ -120,7 +120,7 @@ const trait = function (req, res, query) { // fonction principale du module
 	grille = placer_bateau(4, grille); // place un bateau de taille 4
 	grille = placer_bateau(5, grille); // place un bateau de taille 5
     fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
-    // Temporel----------------------
+    // Temporaire----------------------
 
     // ----------------- REDIRIGER VERS LA PAGE PHASE DE COMBAT -----------------
 

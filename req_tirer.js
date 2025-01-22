@@ -23,18 +23,7 @@ Différents classes css pour les cases de la grille :
 const fs = require("fs");
 const nunjucks = require("nunjucks");
 
-const trait = function (req, res, query) {
-	let marqueurs = {};
-	let page;
-
-	marqueurs.erreur = ""; // Aucune erreur pour le moment
-    
-    // ---------- Tir Joueur ----------
-
-	let grille = JSON.parse(fs.readFileSync(`./grilles/ordinateur.json`, "UTF-8")); // Récupération de la grille
-
-	let cible = query.cible; // Coordonnée de la case du tir
-	
+const tir = function (cible, grille) {
 	if (grille[cible] === "eau_inconnu") { // Si la case est de l'eau inconnue
 		grille[cible] = "eau_connu"; // La case devient de l'eau connue car le joueur a tiré dessus
 	}
@@ -42,14 +31,56 @@ const trait = function (req, res, query) {
 		grille[cible] = "bateau_touche"; // La case devient un bateau touché car le joueur a tiré dessus
 	}
 	else if (grille[cible] === "eau_connu" || grille[cible] === "bateau_touche" || grille[cible] === "bateau_coule") { // Si la case est de l'eau connue ou un bateau touché ou bateau coulé
-		marqueurs.erreur = "Vous avez déjà tiré sur cette case !"; // Affiche un message d'erreur
+		//marqueurs.erreur = "Vous avez déjà tiré sur cette case !"; // Affiche un message d'erreur
+		console.log("erreur");
+	}
+};
+
+const trait = function (req, res, query) {
+	let marqueurs = {};
+	let page;
+
+	marqueurs.erreur = ""; // Aucune erreur pour le moment
+
+    // ---------- Tir Joueur ----------
+
+	let grille = JSON.parse(fs.readFileSync(`./grilles/ordinateur.json`, "UTF-8")); // Récupération de la grille
+
+	let cible = Number(query.cible); // Coordonnée de la case du tir
+	let missile = query.missile; // Type de missile
+	
+	if (missile === "m1") {
+		tir(cible, grille);
+	}
+	else if (missile === "m5") {
+		tir(cible - 1, grille); // On tire sur la case à gauche
+		tir(cible + 1, grille); // On tire sur la case à droite
+		tir(cible - 10, grille); // On tire sur la case en haut
+		tir(cible + 10, grille); // On tire sur la case en bas
+		tir(cible, grille); // On tire sur la case cible
+	}
+	else if (missile === "mf") {
+		tir(cible + Math.floor(Math.random() * 5), grille);
+		tir(cible - Math.floor(Math.random() * 5), grille);
+		tir(cible + Math.floor(Math.random() * 10), grille);
+		tir(cible - Math.floor(Math.random() * 10), grille);
+		tir(cible + Math.floor(Math.random() * 20), grille);
+		tir(cible - Math.floor(Math.random() * 20), grille);
+	}
+	else if (missile === "trident") {
+		for (let i = cible - 20; i < cible + 20; i+= 10) {
+			tir(cible + i, grille); // On tire sur la case cible
+			tir(cible + i - 1, grille); // On tire sur la case à gauche
+			tir(cible + i + 1, grille); // On tire sur la case à droite
+			tir(cible + i + 2, grille);	// On tire sur la 2eme case à droite
+		}
 	}
 
 	fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grille), "UTF-8"); // Enregistrement de la grille modifiée
 	
 	// ---------- Tir de l'ordinateur ----------
 
-	if (grille[cible] === "eau_connu" || grille[cible] === "bateau_touche") { // Si le joueur a touché une case
+	if (true) { // Si le joueur a tiré alors l'ordinateur tire
 		grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "UTF-8")); // Récupération de la grille du joueur
 		
 		cible = Math.floor(Math.random() * grille.length); // Coordonnée de la case du tir de l'ordinateur
