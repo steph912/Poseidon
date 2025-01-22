@@ -47,7 +47,7 @@ const trait = function (req, res, query) {
 	} else {
 		// SI IDENTIFICATION OK, ON ENVOIE PAGE ACCUEIL MEMBRE
 
-		page = fs.readFileSync('./html/acceuil.html', 'UTF-8');
+		page = fs.readFileSync('./html/accueil.html', 'UTF-8');
 
 		marqueurs = {};
 		marqueurs.pseudo = query.pseudo;

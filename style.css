@@ -150,7 +150,7 @@ h2 {
     color: rgb(196, 85, 0);
 }
 
-.acceuil {
+.accueil {
     display: grid;
     grid-template: 2fr 1em 1fr 1fr / 1fr 1fr 1fr;
     /* on crée des 4 lignes ( 1 ligne 2 fois plus grandes que les autres) et apres 3 colonnes égales*/
@@ -158,23 +158,23 @@ h2 {
     align-items: center;
 }
 
-.acceuil .logo {
+.accueil .logo {
     grid-column: span 3;
     /* le logo s'étend sur les 3 colonnes qu'on a créer juste avant */
     width: 50%;
     margin: 3%;
 }
 
-.acceuil form {
+.accueil form {
     padding: 2% 20% 2% 20%;
     margin: 2%;
 }
 
-.acceuil_a_propos {
+.accueil_a_propos {
     grid-area: 3 / 1 / 5 / 2;
 }
 
-.acceuil_option {
+.accueil_option {
     grid-area: 3 / 3 / 5 / 4;
 }
 
