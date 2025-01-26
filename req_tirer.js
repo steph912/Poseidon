@@ -91,7 +91,7 @@ const trait = function (req, res, query) {
 	}
 	else {
 		tir(cible, grille, tir_joueur);
-		// tir_joueur = false;
+		tir_joueur = true;
 	}
 
 	fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grille), "UTF-8"); // Enregistrement de la grille modifiée
