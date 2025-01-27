@@ -11,8 +11,9 @@
         <img src="./img/logo.png"class="logo">
         <form action="/req_connexion" method="get">
             <h2>Connexion </h2>
-            <p>Identifiant : <input type="text" name="pseudo" placeholder="Veuillez saisir votre identifiant"><br> </p>
+            <p>Identifiant : <input type="text" name="pseudo" placeholder="Veuillez saisir votre identifiant" value="{{ pseudo }}"><br> </p>
             <p>Mot de passe : <input type="password" name="password" placeholder="Veuillez saisir votre mot de passe"><br> </p>
+            <p class="erreur">{{ erreur }}</p>
             <input type="submit" value="Se connecter">
         </form>
         <form action="/req_creer_un_compte" method="get">

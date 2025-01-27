@@ -25,8 +25,13 @@ const trait = function (req, res, query) {
 	i = 0;
 	while (i < listeMembres.length && trouve === false) {
 		if (listeMembres[i].pseudo === query.pseudo) {
+			if (listeMembres[i].pseudo === "") {
+				trouve = false;
+				break;
+			}
 			if (listeMembres[i].password === query.password) {
 				trouve = true;
+				break;
 			}
 		}
 		i++;

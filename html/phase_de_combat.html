@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id="score" class ="score">Score : 1000</div>
 	<form class="form_combat" action="/req_tirer" method="GET">
+		<div class="score">Score : {{ score }}</div>
 		<input type="hidden" name="pseudo" value="{{ pseudo }}">
 		<input type="hidden" name="password" value="{{ password }}">
 		<input type="hidden" name="code_partie" value="{{ code_partie }}">
