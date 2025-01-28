@@ -7,15 +7,29 @@ const trait = function (req, res, query) {
 
 	let marqueurs = {};
 	let page;
+	
+	let code_partie = Math.floor(Math.random() * 100000000); // Génère un code de partie aléatoire à 8 chiffres donc 8 zeros
+	marqueurs.code_partie = code_partie;
+
+	let score = 1000; // On initialise le score à 1000
+	marqueurs.score = score;
+
+	let parties = JSON.parse(fs.readFileSync("./parties.json", "UTF-8")); // On récupère le tableau parties du fichier json
+
+	parties.push(
+		{
+			code:code_partie,
+			joueur:query.pseudo,
+			score:score
+		}
+	);
+
+	fs.writeFileSync("./parties.json", JSON.stringify(parties), "UTF-8"); // On écrit le tableau parties dans le fichier json
 
 	let grille = [];
 	grille.length = 100;
 
-	marqueurs.code_partie = Math.floor(Math.random() * 100000000); // Génère un code de partie aléatoire à 8 chiffres donc 8 zeros
-	
-
 	//ON INITIALISE LE TABLEAU EN NE METTANT QUE DU BLEU
-
 	for (let i = 0; i < grille.length; i++) {
 		grille[i] = "eau_inconnu"; // on initialise la grille avec des cases d'eau inconnue
 	}

@@ -150,6 +150,15 @@ const trait = function (req, res, query) { // fonction principale du module
     for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
         marqueurs[`A${i}`] = "inconnu"; // on affecte la classe .inconnu au marqueur nunjucks OX
     }
+
+    let parties = JSON.parse(fs.readFileSync("parties.json", 'utf-8'));
+    /* soit on vérifie chaque partie pour trouver le score
+    for (let i = 0; i < parties.length; i++) {
+        if (parties[i].code == query.code_partie) {
+            marqueurs.score = parties[i].score;
+        }
+    }*/
+    marqueurs.score = parties[parties.length - 1].score; // soit on prend la dernière partie pour récuperer le score
     
     // AFFICHAGE DE LA PAGE phase_de_combat.html
     page = fs.readFileSync("./html/phase_de_combat.html", 'utf-8');

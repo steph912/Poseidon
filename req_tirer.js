@@ -158,6 +158,15 @@ const trait = function (req, res, query) {
 			}
 		}
 
+		let parties = JSON.parse(fs.readFileSync("parties.json", 'utf-8'));
+		/* soit on vérifie chaque partie pour trouver le score
+		for (let i = 0; i < parties.length; i++) {
+			if (parties[i].code == query.code_partie) {
+				marqueurs.score = parties[i].score;
+			}
+		}*/
+		marqueurs.score = parties[parties.length - 1].score; // soit on prend la dernière partie pour récuperer le score
+
 		page = fs.readFileSync('./html/phase_de_combat.html', 'utf-8');
 	}
 	else if (verif_joueur) {
