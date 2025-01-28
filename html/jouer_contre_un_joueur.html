@@ -22,7 +22,9 @@
                     <input type="submit" value="Créer la partie">
                 </form>
                 <form class="retour" action="/req_accueil" method="get">
-                    <input type="submit" value="retour">
+                    <input type="hidden" name="pseudo" value="{{ pseudo }}">
+                    <input type="password" name="password" value="{{ password }}">
+                    <input type="submit" value="Retour">
                 </form>
             </section>
 
