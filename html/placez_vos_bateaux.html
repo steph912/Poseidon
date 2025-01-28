@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+	
+
 	<div class="placement"> <!-- Cette div est une div de placement pour placer les éléments de la page --> 
 		<h1>Placez vos Bateaux</h1>
         
@@ -180,12 +182,12 @@
 			Vous devez placer vos Bateaux sur la grille. Une fois tous les bateaux placés sur la grille, cliquez sur le bouton "j'ai terminé" ci-dessous
 		</div>
 	</div>
-
 	<form class="retour" action="/req_phase_de_combat" method="get"> <!--Le bouton "J'ai terminé" est en dehors de la div placement car sa position est "absolute" -->
 		<input type="hidden" name="pseudo" value="{{ pseudo }}">
 		<input type="hidden" name="password" value="{{ password }}">
 		<input type="hidden" name="code_partie" value="{{ code_partie }}">
 		<input type="submit" value="J'ai terminé">
+		
 	</form>
 
 	<button class="reset_button">Réinitialiser</button>

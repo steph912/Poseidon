@@ -53,6 +53,7 @@ form.retour input {
     padding: 15px;
     border-radius: 15px;
     border: none;
+    
 }
 
 h1 {
@@ -432,7 +433,7 @@ tr {
 .bateaux {
     position: absolute;
     top: 60px;
-    left: 20px;
+    left: 0px;
     margin: 15px;
     height: 50vh;
     width: 25vw;
@@ -469,7 +470,7 @@ tr {
 }
 
 .bateau_3_cases_bis .navire {
-    background-color: aquamarine;
+    background-color: blue;
 }
 
 .bateau_4_cases .navire {
@@ -495,7 +496,7 @@ tr {
 }
 
 .container.bateau_3_cases_bis {
-    background-color: aquamarine;
+    background-color: blue;
 }
 
 .container.bateau_4_cases{

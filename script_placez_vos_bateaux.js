@@ -125,6 +125,8 @@ document.querySelector('.rotate_button').addEventListener('click', () => {
                     const cell = containers[startIndex + i * 10];
                     cell.classList.add('occupied');
                     cell.classList.add('bateau_' + size + '_cases');
+                    
+                   
                 }
                 // Met à jour l'orientation
                 lastPlacedBateau.orientation = 'vertical';
@@ -141,6 +143,7 @@ document.querySelector('.rotate_button').addEventListener('click', () => {
                     cell.classList.remove('occupied');
                     cell.classList.remove('bateau_' + size + '_cases');
                     cell.style.backgroundColor = '';
+                    
                 }
                 // Applique les nouveaux styles en mode horizontal
                 for (let i = 0; i < size; i++) {
