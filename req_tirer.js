@@ -34,9 +34,10 @@ const tir = function (cible, grille, tir_joueur) {
 	}
 	else if (grille[cible] === "eau_connu" || grille[cible] === "bateau_touche" || grille[cible] === "bateau_coule") { // Si la case est de l'eau connue ou un bateau touché ou bateau coulé
 		//marqueurs.erreur = "Vous avez déjà tiré sur cette case !"; // Affiche un message d'erreur
-		console.log("erreur");
+		console.log("Vous avez déjà tiré sur cette case !");
 		tir_joueur = false;
 	}
+	return tir_joueur;
 };
 
 const verif_gagne = function (grille) {
@@ -63,15 +64,16 @@ const trait = function (req, res, query) {
 	let missile = query.missile; // Type de missile
 	let tir_joueur = false;
 	
+	
 	if (missile === "m1") {
-		tir(cible, grille, tir_joueur);
+		tir_joueur = tir(cible, grille, tir_joueur);
 	}
 	else if (missile === "m5") {
 		tir(cible - 1, grille, tir_joueur); // On tire sur la case à gauche
 		tir(cible + 1, grille, tir_joueur); // On tire sur la case à droite
 		tir(cible - 10, grille, tir_joueur); // On tire sur la case en haut
 		tir(cible + 10, grille, tir_joueur); // On tire sur la case en bas
-		tir(cible, grille, tir_joueur); // On tire sur la case cible
+		tir_joueur = tir(cible, grille, tir_joueur); // On tire sur la case cible
 	}
 	else if (missile === "mf") {
 		tir(cible + Math.floor(Math.random() * 5), grille, tir_joueur);
@@ -80,6 +82,7 @@ const trait = function (req, res, query) {
 		tir(cible - Math.floor(Math.random() * 10), grille, tir_joueur);
 		tir(cible + Math.floor(Math.random() * 20), grille, tir_joueur);
 		tir(cible - Math.floor(Math.random() * 20), grille, tir_joueur);
+		tir_joueur = tir(cible, grille, tir_joueur); // On tire sur la case cible
 	}
 	else if (missile === "trident") {
 		for (let i = cible - 20; i < cible + 20; i+= 10) {
@@ -90,8 +93,7 @@ const trait = function (req, res, query) {
 		}
 	}
 	else {
-		tir(cible, grille, tir_joueur);
-		tir_joueur = true;
+		tir_joueur = tir(cible, grille, tir_joueur);
 	}
 
 	fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grille), "UTF-8"); // Enregistrement de la grille modifiée
