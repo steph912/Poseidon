@@ -85,12 +85,15 @@ const trait = function (req, res, query) {
 		tir_joueur = tir(cible, grille, tir_joueur); // On tire sur la case cible
 	}
 	else if (missile === "trident") {
-		for (let i = cible - 20; i < cible + 20; i+= 10) {
-			tir(cible + i, grille, tir_joueur); // On tire sur la case cible
-			tir(cible + i - 1, grille, tir_joueur); // On tire sur la case à gauche
-			tir(cible + i + 1, grille, tir_joueur); // On tire sur la case à droite
-			tir(cible + i + 2, grille, tir_joueur);	// On tire sur la 2eme case à droite
-		}
+		tir(cible - 1, grille, tir_joueur); // On tire sur la case à gauche
+		tir(cible + 1, grille, tir_joueur); // On tire sur la case à droite
+		tir(cible - 9, grille, tir_joueur); // On tire sur la case en haut à droite
+		tir(cible - 10, grille, tir_joueur); // On tire sur la case en haut
+		tir(cible - 11, grille, tir_joueur); // On tire sur la case en haut à gauche
+		tir(cible + 9, grille, tir_joueur); // On tire sur la case en bas à gauche
+		tir(cible + 10, grille, tir_joueur); // On tire sur la case en bas
+		tir(cible + 11, grille, tir_joueur); // On tire sur la case en bas à droite
+		tir(cible, grille, tir_joueur); // On tire sur la case cible
 	}
 	else {
 		tir_joueur = tir(cible, grille, tir_joueur);
