@@ -11,7 +11,9 @@
             <p>Timer: 00:00</p>
             <p>Score: 1000</p>
             <img src="./img/fond_grille.png">
-            <form class="retour" action="rejouer.html" method="get">
+            <form class="retour" action="/req_accueil" method="get">
+                <input type="hidden" name="pseudo" value="{{ pseudo }}">
+                <input type="hidden" name="password" value="{{ password }}">
                 <input type="submit" name="bouton" value="Suivant">
             </form>
         </div>

@@ -1,15 +1,15 @@
 /*
 Requête Tirer :
    -SYSTÈME DE SÉLECTION DU MISSILE AVEC UN INPUT TYPE CHECKBOX DANS UN FORM ANDREI PRINCE
-   -CHANGER L’ÉTAT DE LA CASE CLIQUÉ DANS LE JSON MATHIS 
-   -ACTUALISER LA PAGE AVEC LE NOUVEL ETAT DE LA GRILLE AVEC LA QUERY COMPLÈTE ET MARQUEURS NUNJUCKS (PSEUDO, PASSWORD, CODE DE PARTIE, CASES DE LA GRILLE) STÉPHANE MATHIS 
+   -CHANGER L’ÉTAT DE LA CASE CLIQUÉ DANS LE JSON MATHIS
+   -ACTUALISER LA PAGE AVEC LE NOUVEL ETAT DE LA GRILLE AVEC LA QUERY COMPLÈTE ET MARQUEURS NUNJUCKS (PSEUDO, PASSWORD, CODE DE PARTIE, CASES DE LA GRILLE) STÉPHANE MATHIS
 
-Différents états des cases de la grille : 
-- “eau_inconnu” : case eau que le joueur n’a pas découvert 
-- “eau_connu” : case eau que le joueur a découvert en tirant 
-- “bateau_inconnu” case bateau que le joueur n’a pas découvert 
-- “bateau_touché” case bateau que le joueur a découvert en tirant dessus 
-- “bateau_coulé” case bateau découverte, touché et coulé car toutes les cases du bateau ont été touchées (OPTIONEL MAIS PRESENT DANS LE JEU DE BASE) 
+Différents états des cases de la grille :
+- “eau_inconnu” : case eau que le joueur n’a pas découvert
+- “eau_connu” : case eau que le joueur a découvert en tirant
+- “bateau_inconnu” case bateau que le joueur n’a pas découvert
+- “bateau_touché” case bateau que le joueur a découvert en tirant dessus
+- “bateau_coulé” case bateau découverte, touché et coulé car toutes les cases du bateau ont été touchées (OPTIONEL MAIS PRESENT DANS LE JEU DE BASE)
 
 Différents classes css pour les cases de la grille :
 - ".inconnu" : case que le joueur n’a pas découvert
@@ -22,6 +22,9 @@ Différents classes css pour les cases de la grille :
 
 const fs = require("fs");
 const nunjucks = require("nunjucks");
+
+// Délai (en ms) avant que l'ordinateur ne joue son tour, pour laisser le temps au joueur de voir son propre tir
+const DELAI_TIR_ORDINATEUR = 2000;
 
 const tir = function (cible, grille, tir_joueur) {
 	if (grille[cible] === "eau_inconnu") { // Si la case est de l'eau inconnue
@@ -38,6 +41,29 @@ const tir = function (cible, grille, tir_joueur) {
 		tir_joueur = false;
 	}
 	return tir_joueur;
+};
+
+// Lit le fichier listant les cases occupées par chaque bateau (utilisé pour détecter les bateaux coulés).
+// Renvoie un tableau vide si le fichier n'existe pas (ex : anciennes parties).
+const lire_bateaux = function (chemin) {
+	try {
+		return JSON.parse(fs.readFileSync(chemin, "utf-8"));
+	} catch (e) {
+		return [];
+	}
+};
+
+// Parcourt chaque bateau et, si toutes ses cases sont touchées, les fait passer de "bateau_touche" (orange) à "bateau_coule" (rouge)
+const marquer_bateaux_coules = function (grille, bateaux) {
+	bateaux.forEach(positions => {
+		let coule = positions.length > 0 && positions.every(pos => grille[pos] === "bateau_touche" || grille[pos] === "bateau_coule");
+		if (coule) {
+			positions.forEach(pos => {
+				grille[pos] = "bateau_coule";
+			});
+		}
+	});
+	return grille;
 };
 
 const verif_gagne = function (grille) {
@@ -63,8 +89,8 @@ const trait = function (req, res, query) {
 	let cible = Number(query.cible); // Coordonnée de la case du tir
 	let missile = query.missile; // Type de missile
 	let tir_joueur = false;
-	
-	
+
+
 	if (missile === "m1") {
 		tir_joueur = tir(cible, grille, tir_joueur);
 	}
@@ -93,102 +119,111 @@ const trait = function (req, res, query) {
 		tir(cible + 9, grille, tir_joueur); // On tire sur la case en bas à gauche
 		tir(cible + 10, grille, tir_joueur); // On tire sur la case en bas
 		tir(cible + 11, grille, tir_joueur); // On tire sur la case en bas à droite
-		tir(cible, grille, tir_joueur); // On tire sur la case cible
+		tir(cible, grille, tir_joueur); // On tire sur la case cible
 	}
 	else {
 		tir_joueur = tir(cible, grille, tir_joueur);
 	}
 
+	// On vérifie si un (ou plusieurs) bateau(x) de l'ordinateur vient d'être entièrement coulé
+	let bateauxOrdinateur = lire_bateaux(`./grilles/ordinateur_bateaux.json`);
+	grille = marquer_bateaux_coules(grille, bateauxOrdinateur);
+
 	fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grille), "UTF-8"); // Enregistrement de la grille modifiée
 
+	// ---------- Fonction d'affichage finale (appelée directement ou après le délai du tir de l'ordinateur) ----------
+
+	const envoyer_reponse = function () {
+		// ---------- Affichage de la page ----------
+		let grille = JSON.parse(fs.readFileSync(`./grilles/ordinateur.json`, "utf-8")); // on lit le fichier json de l'ordinateur
+		let verif_joueur = verif_gagne(grille);
+
+		grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "utf-8")); // on lit le fichier json
+		let verif_ordinateur = verif_gagne(grille);
+
+		if (!verif_joueur && !verif_ordinateur) { // On vérifie si personne n'a gagner
+			// Pour le joueur
+			grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "utf-8")); // on lit le fichier json
+
+			for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille, l'état correspond directement à la classe css
+				marqueurs[`J${i}`] = grille[i];
+			}
+
+			// Pour l'ordinateur
+			grille = JSON.parse(fs.readFileSync(`./grilles/ordinateur.json`, "utf-8")); // on lit le fichier json de l'ordinateur
+
+			for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
+				if (grille[i] === "bateau_touche") { // si la case est un bateau touche
+					marqueurs[`A${i}`] = "bateau_touche"; // on affecte la classe .bateau_touche au marqueur nunjucks
+				}
+				else if (grille[i] === "bateau_coule") { // si la case est un bateau coulé
+					marqueurs[`A${i}`] = "bateau_coule"; // on affecte la classe .bateau_coule au marqueur nunjucks
+				}
+				else if (grille[i] === "eau_connu") { // si la case est de l'eau connue
+					marqueurs[`A${i}`] = "eau_connu"; // on affecte la classe .eau au marqueur nunjucks
+				}
+				else {
+					marqueurs[`A${i}`] = "inconnu"; // on affecte la classe .inconnu au marqueur nunjucks
+				}
+			}
+
+			page = fs.readFileSync('./html/phase_de_combat.html', 'utf-8');
+		}
+		else if (verif_joueur) {
+			page = fs.readFileSync('./html/gagne.html', 'utf-8');
+		}
+		else if (verif_ordinateur) {
+			page = fs.readFileSync('./html/perdu.html', 'utf-8');
+		}
+
+		let parties = JSON.parse(fs.readFileSync("parties.json", 'utf-8'));
+		/* soit on vérifie chaque partie pour trouver le score
+		for (let i = 0; i < parties.length; i++) {
+			if (parties[i].code == query.code_partie) {
+				marqueurs.score = parties[i].score;
+			}
+		}*/
+		marqueurs.score = parties[parties.length - 1].score; // soit on prend la dernière partie pour récuperer le score
+		marqueurs.pseudo = query.pseudo;
+		marqueurs.password = query.password;
+		marqueurs.code_partie = query.code_partie;
+
+		page = nunjucks.renderString(page, marqueurs);
+
+		res.writeHead(200, { 'Content-Type': 'text/html' });
+		res.write(page);
+		res.end();
+	};
 
 	// ---------- Tir de l'ordinateur ----------
 
-	if (tir_joueur) { // Si le joueur a tiré alors l'ordinateur tire
-		grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "UTF-8")); // Récupération de la grille du joueur
-		
-		cible = Math.floor(Math.random() * grille.length); // Coordonnée de la case du tir de l'ordinateur
+	if (tir_joueur) { // Si le joueur a tiré alors l'ordinateur tire, après un court délai
+		setTimeout(() => {
+			let grilleJoueur = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "UTF-8")); // Récupération de la grille du joueur
 
-		if (grille[cible] === "eau_inconnu") { // Si la case est de l'eau inconnue
-			grille[cible] = "eau_connu"; // La case devient de l'eau connue car le joueur a tiré dessus
-		}
-		else if (grille[cible] === "bateau_inconnu") { // Si la case est un bateau inconnu
-			grille[cible] = "bateau_touche"; // La case devient un bateau touché car le joueur a tiré dessus
-		}
-		else if (grille[cible] === "eau_connu" || grille[cible] === "bateau_touche" || grille[cible] === "bateau_coule") { // Si la case est de l'eau connue ou un bateau touché ou bateau coulé
-			marqueurs.erreur = "Vous avez déjà tiré sur cette case !"; // Affiche un message d'erreur
-		}
+			let cibleOrdinateur = Math.floor(Math.random() * grilleJoueur.length); // Coordonnée de la case du tir de l'ordinateur
 
-		fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grille), "UTF-8"); // Enregistrement de la grille modifiée
+			if (grilleJoueur[cibleOrdinateur] === "eau_inconnu") { // Si la case est de l'eau inconnue
+				grilleJoueur[cibleOrdinateur] = "eau_connu"; // La case devient de l'eau connue car l'ordinateur a tiré dessus
+			}
+			else if (grilleJoueur[cibleOrdinateur] === "bateau_inconnu") { // Si la case est un bateau inconnu
+				grilleJoueur[cibleOrdinateur] = "bateau_touche"; // La case devient un bateau touché car l'ordinateur a tiré dessus
+			}
+			else if (grilleJoueur[cibleOrdinateur] === "eau_connu" || grilleJoueur[cibleOrdinateur] === "bateau_touche" || grilleJoueur[cibleOrdinateur] === "bateau_coule") { // Si la case est de l'eau connue ou un bateau touché ou bateau coulé
+				marqueurs.erreur = "Vous avez déjà tiré sur cette case !"; // Affiche un message d'erreur
+			}
+
+			// On vérifie si un (ou plusieurs) bateau(x) du joueur vient d'être entièrement coulé
+			let bateauxJoueur = lire_bateaux(`./grilles/${query.code_partie}_bateaux.json`);
+			grilleJoueur = marquer_bateaux_coules(grilleJoueur, bateauxJoueur);
+
+			fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grilleJoueur), "UTF-8"); // Enregistrement de la grille modifiée
+
+			envoyer_reponse();
+		}, DELAI_TIR_ORDINATEUR);
+	} else {
+		envoyer_reponse();
 	}
-
-	// ---------- Affichage de la page ----------
-	grille = JSON.parse(fs.readFileSync(`./grilles/ordinateur.json`, "utf-8")); // on lit le fichier json de l'ordinateur
-	let verif_joueur = verif_gagne(grille);
-
-	grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "utf-8")); // on lit le fichier json
-	let verif_ordinateur = verif_gagne(grille);
-
-	if (!verif_joueur && !verif_ordinateur) { // On vérifie si personne n'a gagner
-		// Pour le joueur
-		grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "utf-8")); // on lit le fichier json
-
-		for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-			if (grille[i] === "bateau_inconnu") { // si la case est un bateau inconnu
-				marqueurs[`J${i}`] = "bateau_inconnu"; // on affecte la classe .bateau au marqueur nunjucks OX
-			}
-			else if (grille[i] === "eau_inconnu") { // si la case est de l'eau
-				marqueurs[`J${i}`] = "eau_inconnu"; // on affecte la classe .eau au marqueur nunjucks OX
-			}
-			else if (grille[i] === "bateau_touche") { // si la case est un bateau touche
-				marqueurs[`J${i}`] = "bateau_touche"; // on affecte la classe .bateau_touche au marqueur nunjucks OX
-			}
-			else if (grille[i] === "eau_connu") { // si la case est de l'eau connue
-				marqueurs[`J${i}`] = "eau_connu"; // on affecte la classe .eau_connu au marqueur nunjucks OX
-			}
-		}
-
-		// Pour l'ordinateur
-		grille = JSON.parse(fs.readFileSync(`./grilles/ordinateur.json`, "utf-8")); // on lit le fichier json de l'ordinateur
-
-		for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-			if (grille[i] === "bateau_touche") { // si la case est un bateau touche
-				marqueurs[`A${i}`] = "bateau_touche"; // on affecte la classe .bateau_touche au marqueur nunjucks
-			}
-			else if (grille[i] === "eau_connu") { // si la case est de l'eau connue
-				marqueurs[`A${i}`] = "eau_connu"; // on affecte la classe .eau au marqueur nunjucks
-			}
-			else {
-				marqueurs[`A${i}`] = "inconnu"; // on affecte la classe .inconnu au marqueur nunjucks
-			}
-		}
-
-		page = fs.readFileSync('./html/phase_de_combat.html', 'utf-8');
-	}
-	else if (verif_joueur) {
-		page = fs.readFileSync('./html/gagne.html', 'utf-8');
-	}
-	else if (verif_ordinateur) {
-		page = fs.readFileSync('./html/perdu.html', 'utf-8');
-	}
-
-	let parties = JSON.parse(fs.readFileSync("parties.json", 'utf-8'));
-	/* soit on vérifie chaque partie pour trouver le score
-	for (let i = 0; i < parties.length; i++) {
-		if (parties[i].code == query.code_partie) {
-			marqueurs.score = parties[i].score;
-		}
-	}*/
-	marqueurs.score = parties[parties.length - 1].score; // soit on prend la dernière partie pour récuperer le score
-	marqueurs.pseudo = query.pseudo;
-	marqueurs.password = query.password;
-	marqueurs.code_partie = query.code_partie;
-
-	page = nunjucks.renderString(page, marqueurs);
-
-	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write(page);
-	res.end();
 };
 
 module.exports = trait;

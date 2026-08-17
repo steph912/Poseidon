@@ -78,6 +78,8 @@
         </tr>                
     </table>
     <form class="retour" action="/req_accueil" method="get">
+        <input type="hidden" name="pseudo" value="{{ pseudo }}">
+        <input type="hidden" name="password" value="{{ password }}">
         <input type="submit" value="Retour à l'accueil">
     </form>
 </body>

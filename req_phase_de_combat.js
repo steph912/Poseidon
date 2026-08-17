@@ -1,6 +1,6 @@
 /* Requete phase de combat (quand on clique sur “j’ai terminé”)
 
-    -Lire le placement des bateaux dans le html avec le js front (document. Read..)  
+    -Lire le placement des bateaux dans le html avec le js front (document. Read..)
 
     -sauvegarder le placement des bateaux dans la grille json
 
@@ -8,12 +8,12 @@
 
     -rediriger vers la page phase de combat avec une query complete  et les marqueurs nunjucks (pseudo, password, code_partie, grille)
 
- Différents états des cases de la grille : 
-   - “eau_inconnu” : case eau que le joueur n’a pas découvert 
-   - “eau_connu” : case eau que le joueur a découvert en tirant 
-   - “bateau_inconnu” case bateau que le joueur n’a pas découvert 
-   - “bateau_touché” case bateau que le joueur a découvert en tirant dessus 
-   - “bateau_coulé” case bateau découverte, touché et coulé car toutes les cases du bateau ont été touchées (OPTIONEL MAIS PRESENT DANS LE JEU DE BASE) 
+ Différents états des cases de la grille :
+   - “eau_inconnu” : case eau que le joueur n’a pas découvert
+   - “eau_connu” : case eau que le joueur a découvert en tirant
+   - “bateau_inconnu” case bateau que le joueur n’a pas découvert
+   - “bateau_touché” case bateau que le joueur a découvert en tirant dessus
+   - “bateau_coulé” case bateau découverte, touché et coulé car toutes les cases du bateau ont été touchées (OPTIONEL MAIS PRESENT DANS LE JEU DE BASE)
 
  Différents classes css pour les cases de la grille :
    - ".inconnu" : case que le joueur n’a pas découvert
@@ -28,7 +28,8 @@ const fs = require("fs");
 const nunjucks = require("nunjucks");
 
 // fonction qui place aléatoirement un bateau de taille donnée dans une grille et qui renvoie la grille modifiée
-const placer_bateau = function (taille, grille) {
+// "bateaux", si fourni, reçoit la liste des cases occupées par chaque bateau placé (utile pour detecter les bateaux coulés)
+const placer_bateau = function (taille, grille, bateaux) {
     let direction = Math.floor(Math.random() * 2); // 0 pour horizontal, 1 pour vertical
 	let position = Math.floor(Math.random() * grille.length); // position aléatoire de départ du bateau
 	let peut_placer = false; // true si le bateau peut être placé, false sinon
@@ -47,8 +48,13 @@ const placer_bateau = function (taille, grille) {
                     }
                 }
                 if (peut_placer) { // si le bateau peut être placé
+                    let positions = [];
                     for (let i = 0; i < taille; i++) {
                         grille[position + i] = "bateau_inconnu"; // on place le bateau
+                        positions.push(position + i);
+                    }
+                    if (bateaux) {
+                        bateaux.push(positions); // on mémorise les cases occupées par ce bateau
                     }
                     bateau_placer = true; // le bateau est placé on sort de la boucle
                 }
@@ -66,8 +72,13 @@ const placer_bateau = function (taille, grille) {
                     }
                 }
                 if (peut_placer) { // si le bateau peut être placé
+                    let positions = [];
                     for (let i = 0; i < taille; i++) {
                         grille[position + 10 * i] = "bateau_inconnu"; // on place le bateau
+                        positions.push(position + 10 * i);
+                    }
+                    if (bateaux) {
+                        bateaux.push(positions); // on mémorise les cases occupées par ce bateau
                     }
                     bateau_placer = true; // le bateau est placé on sort de la boucle
                 }
@@ -83,44 +94,61 @@ const placer_bateau = function (taille, grille) {
 const trait = function (req, res, query) { // fonction principale du module
 
     let grille = []; // tableau contenant les cases de la grille
-    grille.length = 100; // tableau de 100 cases
+    grille.length = 100;
+    for (let i = 0; i < grille.length; i++) { // on initialise la case à eau inconnue
+        grille[i] = "eau_inconnu";
+    }
 
     // ----------------- SAUVEGARDER LE PLACEMENT DES BATEAUX DU JOUEUR -----------------
 
-    
+    let bateauxJoueur = []; // liste des cases occupées par chaque bateau du joueur
 
-    // fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
+    if (query.placement) { // si le placement envoyé par le joueur (drag and drop) est présent
+        try {
+            let placement = JSON.parse(query.placement); // tableau de tableaux de positions (une entrée par bateau)
+            placement.forEach(positions => {
+                positions.forEach(pos => {
+                    grille[pos] = "bateau_inconnu"; // on place le bateau sur la grille du joueur
+                });
+                bateauxJoueur.push(positions);
+            });
+        } catch (e) {
+            console.log("Erreur lors de la lecture du placement du joueur : " + e.message);
+            bateauxJoueur = [];
+        }
+    }
 
-    
+    if (bateauxJoueur.length === 0) { // si le joueur n'a pas placé ses bateaux (secours), on les place aléatoirement
+        grille = placer_bateau(2, grille, bateauxJoueur);
+        grille = placer_bateau(3, grille, bateauxJoueur);
+        grille = placer_bateau(3, grille, bateauxJoueur);
+        grille = placer_bateau(4, grille, bateauxJoueur);
+        grille = placer_bateau(5, grille, bateauxJoueur);
+    }
+
+    // on écrit le placement du joueur dans les fichiers json
+    fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grille), 'utf-8');
+    fs.writeFileSync(`./grilles/${query.code_partie}_bateaux.json`, JSON.stringify(bateauxJoueur), 'utf-8');
 
     // ----------------- GÉNÉRER LE PLACEMENT DES BATEAUX DE L'ORDINATEUR -----------------
 
-    // on réinitialise le tableau grille
-    for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-        grille[i] = "eau_inconnu"; // on initialise la case à eau inconnue
+    let grilleOrdinateur = [];
+    grilleOrdinateur.length = 100;
+    for (let i = 0; i < grilleOrdinateur.length; i++) { // on réinitialise le tableau grille
+        grilleOrdinateur[i] = "eau_inconnu"; // on initialise la case à eau inconnue
     }
 
-	grille = placer_bateau(2, grille); // place un bateau de taille 2
-	grille = placer_bateau(3, grille); // place un bateau de taille 3
-	grille = placer_bateau(3, grille); // place un bateau de taille 3
-	grille = placer_bateau(4, grille); // place un bateau de taille 4
-	grille = placer_bateau(5, grille); // place un bateau de taille 5
+    let bateauxOrdinateur = []; // liste des cases occupées par chaque bateau de l'ordinateur
+
+	grilleOrdinateur = placer_bateau(2, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 2
+	grilleOrdinateur = placer_bateau(3, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 3
+	grilleOrdinateur = placer_bateau(3, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 3
+	grilleOrdinateur = placer_bateau(4, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 4
+	grilleOrdinateur = placer_bateau(5, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 5
 
     // Sauvegarder le tableau dans le fichier json
-    fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
-
-    // Temporaire----------------------
-    // on réinitialise le tableau grille
-    for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-        grille[i] = "eau_inconnu"; // on initialise la case à eau inconnue
-    }
-	grille = placer_bateau(2, grille); // place un bateau de taille 2
-	grille = placer_bateau(3, grille); // place un bateau de taille 3
-	grille = placer_bateau(3, grille); // place un bateau de taille 3
-	grille = placer_bateau(4, grille); // place un bateau de taille 4
-	grille = placer_bateau(5, grille); // place un bateau de taille 5
-    fs.writeFileSync(`./grilles/${query.code_partie}.json`, JSON.stringify(grille), 'utf-8'); // on écrit le tableau grille dans le fichier json
-    // Temporaire----------------------
+    fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grilleOrdinateur), 'utf-8'); // on écrit le tableau grille dans le fichier json
+    fs.writeFileSync(`./grilles/ordinateur_bateaux.json`, JSON.stringify(bateauxOrdinateur), 'utf-8'); // on écrit les cases occupées par chaque bateau
 
     // ----------------- REDIRIGER VERS LA PAGE PHASE DE COMBAT -----------------
 
@@ -130,20 +158,9 @@ const trait = function (req, res, query) { // fonction principale du module
     //ON LIT LES FICHIERS EXISTANTS
     grille = JSON.parse(fs.readFileSync(`./grilles/${query.code_partie}.json`, "utf-8")); // on lit le fichier json
 
-    // Pour la grille du joueur
+    // Pour la grille du joueur : l'état de chaque case correspond directement à la classe css à appliquer
     for (let i = 0; i < grille.length; i++) { // pour chaque case de la grille
-        if (grille[i] === "bateau_inconnu") { // si la case est un bateau inconnu
-            marqueurs[`J${i}`] = "bateau_inconnu"; // on affecte la classe .bateau_inconnu au marqueur nunjucks OX
-        }
-        else if (grille[i] === "eau_inconnu") { // si la case est de l'eau connue
-            marqueurs[`J${i}`] = "eau_inconnu"; // on affecte la classe .eau_connu au marqueur nunjucks OX
-        }
-        else if (grille[i] === "bateau_touche") { // si la case est un bateau touche
-            marqueurs[`J${i}`] = "bateau_touche"; // on affecte la classe .bateau_touche au marqueur nunjucks OX
-        }
-        else if (grille[i] === "eau_connu") { // si la case est de l'eau connue
-            marqueurs[`J${i}`] = "eau_connu"; // on affecte la classe .eau au marqueur nunjucks OX
-        }
+        marqueurs[`J${i}`] = grille[i];
     }
 
     // Pour la grille de l'ordinateur : on initialise les marqueurs nunjucks a la classe css inconnu pour les cases de la grille de l'ordinateur
@@ -159,7 +176,7 @@ const trait = function (req, res, query) { // fonction principale du module
         }
     }*/
     marqueurs.score = parties[parties.length - 1].score; // soit on prend la dernière partie pour récuperer le score
-    
+
     // AFFICHAGE DE LA PAGE phase_de_combat.html
     page = fs.readFileSync("./html/phase_de_combat.html", 'utf-8');
 

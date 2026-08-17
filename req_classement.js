@@ -13,6 +13,7 @@ const trait = function (req, res, query) {
 	page = fs.readFileSync('./html/classement.html', 'utf-8');
 
 	marqueurs.pseudo = query.pseudo;
+	marqueurs.password = query.password;
 	marqueurs.score = query.score;
 	marqueurs.erreur = "";
 	page = nunjucks.renderString(page, marqueurs);
