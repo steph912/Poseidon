@@ -26,6 +26,7 @@
 
 const fs = require("fs");
 const nunjucks = require("nunjucks");
+const { chargerEtat, sauvegarderEtat, missilesRestants, DELAI_TIR_ORDINATEUR } = require("./combat_utils.js");
 
 // fonction qui place aléatoirement un bateau de taille donnée dans une grille et qui renvoie la grille modifiée
 // "bateaux", si fourni, reçoit la liste des cases occupées par chaque bateau placé (utile pour detecter les bateaux coulés)
@@ -150,6 +151,13 @@ const trait = function (req, res, query) { // fonction principale du module
     fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grilleOrdinateur), 'utf-8'); // on écrit le tableau grille dans le fichier json
     fs.writeFileSync(`./grilles/ordinateur_bateaux.json`, JSON.stringify(bateauxOrdinateur), 'utf-8'); // on écrit les cases occupées par chaque bateau
 
+    // ----------------- DEMARRAGE DU CHRONO DU JOUEUR (la phase de combat commence, c'est à lui de jouer) -----------------
+
+    let etat = chargerEtat(query.code_partie);
+    etat.debut_tour_joueur = Date.now();
+    etat.debut_tour_ordinateur = null;
+    sauvegarderEtat(query.code_partie, etat);
+
     // ----------------- REDIRIGER VERS LA PAGE PHASE DE COMBAT -----------------
 
     let marqueurs = {};
@@ -168,15 +176,6 @@ const trait = function (req, res, query) { // fonction principale du module
         marqueurs[`A${i}`] = "inconnu"; // on affecte la classe .inconnu au marqueur nunjucks OX
     }
 
-    let parties = JSON.parse(fs.readFileSync("parties.json", 'utf-8'));
-    /* soit on vérifie chaque partie pour trouver le score
-    for (let i = 0; i < parties.length; i++) {
-        if (parties[i].code == query.code_partie) {
-            marqueurs.score = parties[i].score;
-        }
-    }*/
-    marqueurs.score = parties[parties.length - 1].score; // soit on prend la dernière partie pour récuperer le score
-
     // AFFICHAGE DE LA PAGE phase_de_combat.html
     page = fs.readFileSync("./html/phase_de_combat.html", 'utf-8');
 
@@ -184,6 +183,18 @@ const trait = function (req, res, query) { // fonction principale du module
     marqueurs.password = query.password;
     marqueurs.code_partie = query.code_partie;
     marqueurs.erreur = "";
+    marqueurs.score = etat.score;
+    marqueurs.tour_ordinateur = false;
+    marqueurs.delai_ordinateur = DELAI_TIR_ORDINATEUR;
+
+    marqueurs.timer_actif = etat.options.timer;
+    marqueurs.temps_restant_joueur = etat.temps_restant_joueur;
+
+    marqueurs.missiles_actifs = etat.options.missiles;
+    let restants = missilesRestants(etat, "joueur");
+    marqueurs.trident_restant = restants.trident;
+    marqueurs.mf_restant = restants.mf;
+    marqueurs.m5_restant = restants.m5;
 
     page = nunjucks.renderString(page, marqueurs);
 

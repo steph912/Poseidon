@@ -279,32 +279,68 @@ tr {
     background-color: white;
 }
 
+/*----------fond flou de fin de partie (grilles de la partie qui vient de se terminer)----------*/
+.fond_partie {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    filter: blur(6px);
+    opacity: 0.6;
+    z-index: 0;
+}
+
+.grille_resultat {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    width: 35vw;
+    max-width: 350px;
+}
+
+.cell_resultat {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
 /*--------Gagner--------*/
 .gagner {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 6px black;
 }
 
-.gagner img {
-    width: 80%;
-    padding: 0% 0% 5% 0%;
-    filter: blur(2px);
+.gagner h1 {
+    font-size: 4em;
+    color: #FFD700;
 }
 
 /*------Perdu------*/
 .perdu {
+    position: relative;
+    z-index: 1;
     height: 100vh;
     background-color: rgba(249, 2, 2, 0.25);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 6px black;
 }
 
-.perdu img {
-    width: 80%;
-    padding: 0% 0% 5% 0%;
-    filter: blur(2px);
+.perdu h1 {
+    font-size: 4em;
+    color: white;
 }
 
 /*----------Attente du joueur---------*/
@@ -636,9 +672,64 @@ tr {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    gap: 10px;
     position: absolute;
-    bottom: 20px; 
-    right: 20px; 
+    bottom: 20px;
+    right: 20px;
+}
+
+.missiles_container label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+.missiles_container .missile_epuise {
+    opacity: 0.35;
+}
+
+.combat fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.combat fieldset[disabled] .cell button {
+    cursor: not-allowed;
+}
+
+/*----------bouton musique---------*/
+#bouton-musique {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/*----------chrono---------*/
+.timer {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    font-size: 2em;
+    color: #FFD700;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .score {

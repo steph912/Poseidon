@@ -6,7 +6,7 @@
         <title>Accueil</title>
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    <body data-musique="menu">
         <div class="accueil">
             
             <img class="logo" src="./img/logo.png">
@@ -21,6 +21,9 @@
             <form action="/req_jouer_contre_ordinateur" method="get">
                 <input type="hidden" name="pseudo" value="{{ pseudo }}">
                 <input type="hidden" name="password" value="{{ password }}">
+                <input type="hidden" name="timer" value="{{ timer }}">
+                <input type="hidden" name="missiles" value="{{ missiles }}">
+                <input type="hidden" name="ia_level" value="{{ ia_level }}">
                 <input type="submit" name="mode" value="Jouer contre l'ordinateur">
             </form>
 
@@ -45,5 +48,6 @@
         </form>
         
 
-    </body>
+    	<script src="/musique.js" defer></script>
+</body>
 </html>

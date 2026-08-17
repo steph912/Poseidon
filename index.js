@@ -23,6 +23,7 @@ const req_statique = require("./req_statique.js");
 const req_phase_de_combat = require("./req_phase_de_combat.js");
 const req_erreur = require("./req_erreur.js");
 const req_tirer = require("./req_tirer.js");
+const req_tir_ordinateur = require("./req_tir_ordinateur.js");
 const req_classement = require("./req_classement.js");
 
 // FONCTION DE CALLBACK APPELLEE POUR CHAQUE REQUETE
@@ -78,6 +79,9 @@ const traite_requete = function (req, res) {
 				break;
 			case '/req_tirer':
 				req_tirer(req, res, query);
+				break;
+			case '/req_tir_ordinateur':
+				req_tir_ordinateur(req, res, query);
 				break;
 			case '/req_classement':
 				req_classement(req, res, query);

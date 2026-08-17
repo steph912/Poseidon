@@ -7,80 +7,37 @@
     <title>Classement</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-musique="menu">
     <div class="taille_classement">Classement</div>
-    <table>      
+    <table>
         <tr class="mini_titre">
             <th>Classement</th>
             <th>Pseudo</th>
             <th>Score</th>
             <th>Date</th>
-        </tr>       
-        <tr class="premier">
-            <td>1</td>
-            <td>{{ pseudo }}</td>
-            <td>{{ score }}</td>
-            <td>29/01/2025</td>
-        </tr>      
-        <tr class="deuxieme">
-            <td>2</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>    
-        <tr class=" troisieme">
-            <td>3</td>
+        </tr>
+        {% for partie in classement %}
+        <tr class="{{ 'premier' if loop.index == 1 }}{{ 'deuxieme' if loop.index == 2 }}{{ 'troisieme' if loop.index == 3 }}">
+            <td>{{ loop.index }}</td>
+            <td>{{ partie.joueur }}</td>
+            <td>{{ partie.score }}</td>
+            <td>{{ partie.date or '' }}</td>
+        </tr>
+        {% endfor %}
+        {% for i in range(classement.length, 10) %}
+        <tr>
+            <td>{{ i + 1 }}</td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
-        <tr>
-            <td>4</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr> 
-        <tr>
-            <td>5</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr> 
-        <tr>
-            <td>9</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>                
+        {% endfor %}
     </table>
     <form class="retour" action="/req_accueil" method="get">
         <input type="hidden" name="pseudo" value="{{ pseudo }}">
         <input type="hidden" name="password" value="{{ password }}">
         <input type="submit" value="Retour à l'accueil">
     </form>
+	<script src="/musique.js" defer></script>
 </body>
 </html>

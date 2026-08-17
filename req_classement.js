@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const nunjucks = require("nunjucks");
+const { obtenirClassement } = require("./combat_utils.js");
 
 const trait = function (req, res, query) {
 
@@ -16,6 +17,10 @@ const trait = function (req, res, query) {
 	marqueurs.password = query.password;
 	marqueurs.score = query.score;
 	marqueurs.erreur = "";
+
+	// Classement des 10 meilleurs scores, tous joueurs confondus (persisté dans parties.json, donc partagé entre tous)
+	marqueurs.classement = obtenirClassement(10);
+
 	page = nunjucks.renderString(page, marqueurs);
 
 	res.writeHead(200, { 'Content-Type': 'text/html' });

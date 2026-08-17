@@ -4,6 +4,7 @@
 
 const fs = require("fs");
 const nunjucks = require("nunjucks");
+const { interpreterCheckbox } = require("./combat_utils.js");
 
 const trait = function (req, res, query) {
 
@@ -58,6 +59,10 @@ const trait = function (req, res, query) {
 		marqueurs.pseudo = query.pseudo;
 		marqueurs.password = query.password;
 		marqueurs.erreur = "";
+		// Options par défaut (aucune option n'a pu être choisie avant la connexion)
+		marqueurs.timer = interpreterCheckbox(query.timer, false) ? "on" : "";
+		marqueurs.missiles = interpreterCheckbox(query.missiles, true) ? "on" : "";
+		marqueurs.ia_level = query.ia_level || "facile";
 		page = nunjucks.renderString(page, marqueurs);
 	}
 

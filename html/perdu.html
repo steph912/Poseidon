@@ -1,22 +1,241 @@
 <!DOCTYPE html>
-<HTML lang="fr">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <title>Perdu</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="perdu">
-            <h1>PERDU !</h1>
-            <p>Timer: 00:00</p>
-            <p>Score: 1000</p>
-            <img src="./img/fond_grille.png">
-            <form class="retour" action="/req_accueil" method="get">
-                <input type="hidden" name="pseudo" value="{{ pseudo }}">
-                <input type="hidden" name="password" value="{{ password }}">
-                <input type="submit" name="bouton" value="Suivant">
-            </form>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Perdu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-musique="menu">
+    <div class="fond_partie">
+        <div class="grille_resultat">
+                <div class="cell_resultat {{ J0 }}"></div>
+                <div class="cell_resultat {{ J1 }}"></div>
+                <div class="cell_resultat {{ J2 }}"></div>
+                <div class="cell_resultat {{ J3 }}"></div>
+                <div class="cell_resultat {{ J4 }}"></div>
+                <div class="cell_resultat {{ J5 }}"></div>
+                <div class="cell_resultat {{ J6 }}"></div>
+                <div class="cell_resultat {{ J7 }}"></div>
+                <div class="cell_resultat {{ J8 }}"></div>
+                <div class="cell_resultat {{ J9 }}"></div>
+                <div class="cell_resultat {{ J10 }}"></div>
+                <div class="cell_resultat {{ J11 }}"></div>
+                <div class="cell_resultat {{ J12 }}"></div>
+                <div class="cell_resultat {{ J13 }}"></div>
+                <div class="cell_resultat {{ J14 }}"></div>
+                <div class="cell_resultat {{ J15 }}"></div>
+                <div class="cell_resultat {{ J16 }}"></div>
+                <div class="cell_resultat {{ J17 }}"></div>
+                <div class="cell_resultat {{ J18 }}"></div>
+                <div class="cell_resultat {{ J19 }}"></div>
+                <div class="cell_resultat {{ J20 }}"></div>
+                <div class="cell_resultat {{ J21 }}"></div>
+                <div class="cell_resultat {{ J22 }}"></div>
+                <div class="cell_resultat {{ J23 }}"></div>
+                <div class="cell_resultat {{ J24 }}"></div>
+                <div class="cell_resultat {{ J25 }}"></div>
+                <div class="cell_resultat {{ J26 }}"></div>
+                <div class="cell_resultat {{ J27 }}"></div>
+                <div class="cell_resultat {{ J28 }}"></div>
+                <div class="cell_resultat {{ J29 }}"></div>
+                <div class="cell_resultat {{ J30 }}"></div>
+                <div class="cell_resultat {{ J31 }}"></div>
+                <div class="cell_resultat {{ J32 }}"></div>
+                <div class="cell_resultat {{ J33 }}"></div>
+                <div class="cell_resultat {{ J34 }}"></div>
+                <div class="cell_resultat {{ J35 }}"></div>
+                <div class="cell_resultat {{ J36 }}"></div>
+                <div class="cell_resultat {{ J37 }}"></div>
+                <div class="cell_resultat {{ J38 }}"></div>
+                <div class="cell_resultat {{ J39 }}"></div>
+                <div class="cell_resultat {{ J40 }}"></div>
+                <div class="cell_resultat {{ J41 }}"></div>
+                <div class="cell_resultat {{ J42 }}"></div>
+                <div class="cell_resultat {{ J43 }}"></div>
+                <div class="cell_resultat {{ J44 }}"></div>
+                <div class="cell_resultat {{ J45 }}"></div>
+                <div class="cell_resultat {{ J46 }}"></div>
+                <div class="cell_resultat {{ J47 }}"></div>
+                <div class="cell_resultat {{ J48 }}"></div>
+                <div class="cell_resultat {{ J49 }}"></div>
+                <div class="cell_resultat {{ J50 }}"></div>
+                <div class="cell_resultat {{ J51 }}"></div>
+                <div class="cell_resultat {{ J52 }}"></div>
+                <div class="cell_resultat {{ J53 }}"></div>
+                <div class="cell_resultat {{ J54 }}"></div>
+                <div class="cell_resultat {{ J55 }}"></div>
+                <div class="cell_resultat {{ J56 }}"></div>
+                <div class="cell_resultat {{ J57 }}"></div>
+                <div class="cell_resultat {{ J58 }}"></div>
+                <div class="cell_resultat {{ J59 }}"></div>
+                <div class="cell_resultat {{ J60 }}"></div>
+                <div class="cell_resultat {{ J61 }}"></div>
+                <div class="cell_resultat {{ J62 }}"></div>
+                <div class="cell_resultat {{ J63 }}"></div>
+                <div class="cell_resultat {{ J64 }}"></div>
+                <div class="cell_resultat {{ J65 }}"></div>
+                <div class="cell_resultat {{ J66 }}"></div>
+                <div class="cell_resultat {{ J67 }}"></div>
+                <div class="cell_resultat {{ J68 }}"></div>
+                <div class="cell_resultat {{ J69 }}"></div>
+                <div class="cell_resultat {{ J70 }}"></div>
+                <div class="cell_resultat {{ J71 }}"></div>
+                <div class="cell_resultat {{ J72 }}"></div>
+                <div class="cell_resultat {{ J73 }}"></div>
+                <div class="cell_resultat {{ J74 }}"></div>
+                <div class="cell_resultat {{ J75 }}"></div>
+                <div class="cell_resultat {{ J76 }}"></div>
+                <div class="cell_resultat {{ J77 }}"></div>
+                <div class="cell_resultat {{ J78 }}"></div>
+                <div class="cell_resultat {{ J79 }}"></div>
+                <div class="cell_resultat {{ J80 }}"></div>
+                <div class="cell_resultat {{ J81 }}"></div>
+                <div class="cell_resultat {{ J82 }}"></div>
+                <div class="cell_resultat {{ J83 }}"></div>
+                <div class="cell_resultat {{ J84 }}"></div>
+                <div class="cell_resultat {{ J85 }}"></div>
+                <div class="cell_resultat {{ J86 }}"></div>
+                <div class="cell_resultat {{ J87 }}"></div>
+                <div class="cell_resultat {{ J88 }}"></div>
+                <div class="cell_resultat {{ J89 }}"></div>
+                <div class="cell_resultat {{ J90 }}"></div>
+                <div class="cell_resultat {{ J91 }}"></div>
+                <div class="cell_resultat {{ J92 }}"></div>
+                <div class="cell_resultat {{ J93 }}"></div>
+                <div class="cell_resultat {{ J94 }}"></div>
+                <div class="cell_resultat {{ J95 }}"></div>
+                <div class="cell_resultat {{ J96 }}"></div>
+                <div class="cell_resultat {{ J97 }}"></div>
+                <div class="cell_resultat {{ J98 }}"></div>
+                <div class="cell_resultat {{ J99 }}"></div>
         </div>
-    </body>
-
-</HTML>
+        <div class="grille_resultat">
+                <div class="cell_resultat {{ A0 }}"></div>
+                <div class="cell_resultat {{ A1 }}"></div>
+                <div class="cell_resultat {{ A2 }}"></div>
+                <div class="cell_resultat {{ A3 }}"></div>
+                <div class="cell_resultat {{ A4 }}"></div>
+                <div class="cell_resultat {{ A5 }}"></div>
+                <div class="cell_resultat {{ A6 }}"></div>
+                <div class="cell_resultat {{ A7 }}"></div>
+                <div class="cell_resultat {{ A8 }}"></div>
+                <div class="cell_resultat {{ A9 }}"></div>
+                <div class="cell_resultat {{ A10 }}"></div>
+                <div class="cell_resultat {{ A11 }}"></div>
+                <div class="cell_resultat {{ A12 }}"></div>
+                <div class="cell_resultat {{ A13 }}"></div>
+                <div class="cell_resultat {{ A14 }}"></div>
+                <div class="cell_resultat {{ A15 }}"></div>
+                <div class="cell_resultat {{ A16 }}"></div>
+                <div class="cell_resultat {{ A17 }}"></div>
+                <div class="cell_resultat {{ A18 }}"></div>
+                <div class="cell_resultat {{ A19 }}"></div>
+                <div class="cell_resultat {{ A20 }}"></div>
+                <div class="cell_resultat {{ A21 }}"></div>
+                <div class="cell_resultat {{ A22 }}"></div>
+                <div class="cell_resultat {{ A23 }}"></div>
+                <div class="cell_resultat {{ A24 }}"></div>
+                <div class="cell_resultat {{ A25 }}"></div>
+                <div class="cell_resultat {{ A26 }}"></div>
+                <div class="cell_resultat {{ A27 }}"></div>
+                <div class="cell_resultat {{ A28 }}"></div>
+                <div class="cell_resultat {{ A29 }}"></div>
+                <div class="cell_resultat {{ A30 }}"></div>
+                <div class="cell_resultat {{ A31 }}"></div>
+                <div class="cell_resultat {{ A32 }}"></div>
+                <div class="cell_resultat {{ A33 }}"></div>
+                <div class="cell_resultat {{ A34 }}"></div>
+                <div class="cell_resultat {{ A35 }}"></div>
+                <div class="cell_resultat {{ A36 }}"></div>
+                <div class="cell_resultat {{ A37 }}"></div>
+                <div class="cell_resultat {{ A38 }}"></div>
+                <div class="cell_resultat {{ A39 }}"></div>
+                <div class="cell_resultat {{ A40 }}"></div>
+                <div class="cell_resultat {{ A41 }}"></div>
+                <div class="cell_resultat {{ A42 }}"></div>
+                <div class="cell_resultat {{ A43 }}"></div>
+                <div class="cell_resultat {{ A44 }}"></div>
+                <div class="cell_resultat {{ A45 }}"></div>
+                <div class="cell_resultat {{ A46 }}"></div>
+                <div class="cell_resultat {{ A47 }}"></div>
+                <div class="cell_resultat {{ A48 }}"></div>
+                <div class="cell_resultat {{ A49 }}"></div>
+                <div class="cell_resultat {{ A50 }}"></div>
+                <div class="cell_resultat {{ A51 }}"></div>
+                <div class="cell_resultat {{ A52 }}"></div>
+                <div class="cell_resultat {{ A53 }}"></div>
+                <div class="cell_resultat {{ A54 }}"></div>
+                <div class="cell_resultat {{ A55 }}"></div>
+                <div class="cell_resultat {{ A56 }}"></div>
+                <div class="cell_resultat {{ A57 }}"></div>
+                <div class="cell_resultat {{ A58 }}"></div>
+                <div class="cell_resultat {{ A59 }}"></div>
+                <div class="cell_resultat {{ A60 }}"></div>
+                <div class="cell_resultat {{ A61 }}"></div>
+                <div class="cell_resultat {{ A62 }}"></div>
+                <div class="cell_resultat {{ A63 }}"></div>
+                <div class="cell_resultat {{ A64 }}"></div>
+                <div class="cell_resultat {{ A65 }}"></div>
+                <div class="cell_resultat {{ A66 }}"></div>
+                <div class="cell_resultat {{ A67 }}"></div>
+                <div class="cell_resultat {{ A68 }}"></div>
+                <div class="cell_resultat {{ A69 }}"></div>
+                <div class="cell_resultat {{ A70 }}"></div>
+                <div class="cell_resultat {{ A71 }}"></div>
+                <div class="cell_resultat {{ A72 }}"></div>
+                <div class="cell_resultat {{ A73 }}"></div>
+                <div class="cell_resultat {{ A74 }}"></div>
+                <div class="cell_resultat {{ A75 }}"></div>
+                <div class="cell_resultat {{ A76 }}"></div>
+                <div class="cell_resultat {{ A77 }}"></div>
+                <div class="cell_resultat {{ A78 }}"></div>
+                <div class="cell_resultat {{ A79 }}"></div>
+                <div class="cell_resultat {{ A80 }}"></div>
+                <div class="cell_resultat {{ A81 }}"></div>
+                <div class="cell_resultat {{ A82 }}"></div>
+                <div class="cell_resultat {{ A83 }}"></div>
+                <div class="cell_resultat {{ A84 }}"></div>
+                <div class="cell_resultat {{ A85 }}"></div>
+                <div class="cell_resultat {{ A86 }}"></div>
+                <div class="cell_resultat {{ A87 }}"></div>
+                <div class="cell_resultat {{ A88 }}"></div>
+                <div class="cell_resultat {{ A89 }}"></div>
+                <div class="cell_resultat {{ A90 }}"></div>
+                <div class="cell_resultat {{ A91 }}"></div>
+                <div class="cell_resultat {{ A92 }}"></div>
+                <div class="cell_resultat {{ A93 }}"></div>
+                <div class="cell_resultat {{ A94 }}"></div>
+                <div class="cell_resultat {{ A95 }}"></div>
+                <div class="cell_resultat {{ A96 }}"></div>
+                <div class="cell_resultat {{ A97 }}"></div>
+                <div class="cell_resultat {{ A98 }}"></div>
+                <div class="cell_resultat {{ A99 }}"></div>
+        </div>
+    </div>
+    <div class="perdu">
+        <h1>PERDU !</h1>
+        <p>Score : {{ score }}</p>
+        {% if erreur %}<p class="erreur">{{ erreur }}</p>{% endif %}
+        <form class="retour" action="/req_classement" method="get">
+            <input type="hidden" name="pseudo" value="{{ pseudo }}">
+            <input type="hidden" name="password" value="{{ password }}">
+            <input type="hidden" name="score" value="{{ score }}">
+            <input type="submit" name="bouton" value="Suivant">
+        </form>
+    </div>
+	{% if son %}
+	<script>
+		(function () {
+			var fichiers = { eau: "/sons/plouf.mp3", touche: "/sons/explosion_petite.mp3", coule: "/sons/explosion_grosse.mp3" };
+			var fichier = fichiers["{{ son }}"];
+			if (fichier) {
+				var effet = new Audio(fichier);
+				effet.volume = 0.8;
+				effet.play().catch(function () { /* lecture bloquée, tant pis */ });
+			}
+		})();
+	</script>
+	{% endif %}
+	<script src="/musique.js" defer></script>
+</body>
+</html>

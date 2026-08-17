@@ -6,13 +6,23 @@
 	<title>Phase de Combat</title>
 	<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-musique="combat">
 	<form class="form_combat" action="/req_tirer" method="GET">
 		<div class="score">Score : {{ score }}</div>
+		{% if timer_actif %}
+		<div class="timer" id="timer" data-temps="{{ temps_restant_joueur }}">Temps restant : --:--</div>
+		{% endif %}
+		{% if erreur %}
+		<div class="erreur">{{ erreur }}</div>
+		{% endif %}
+		{% if tour_ordinateur %}
+		<div class="erreur" id="attente_ordinateur">L'ordinateur réfléchit...</div>
+		{% endif %}
 		<input type="hidden" name="pseudo" value="{{ pseudo }}">
 		<input type="hidden" name="password" value="{{ password }}">
 		<input type="hidden" name="code_partie" value="{{ code_partie }}">
-		<div class="combat"> <!-- Cette div est une div de placement pour placer les éléments de la page --> 
+		<fieldset {{ 'disabled' if tour_ordinateur }}>
+		<div class="combat"> <!-- Cette div est une div de placement pour placer les éléments de la page -->
 			<h1> Phase de Combat</h1>
 			<div class="subtitle">
 				<h2>Grille Joueur</h2>
@@ -292,21 +302,31 @@
 				<strong>Les règles du jeu</strong><br>
 				Maintenant, le jeu commence. Vous devez tirer sur des cases de la grille adverse pour tenter de toucher des bateaux ennemis.
 			</div>
-			<div class="missiles_container" {{ display_missiles }}">
+			<div class="missiles_container">
 				<label>
-					<input type="checkbox" name="missile" value="m5">
+					<input type="radio" name="missile" value="m1" checked>
+					Missile simple
+				</label>
+				{% if missiles_actifs %}
+				<label class="{{ 'missile_epuise' if m5_restant == 0 }}">
+					<input type="radio" name="missile" value="m5" {{ 'disabled' if m5_restant == 0 }}>
 					<img src="/img/missile_balistique_m5.png" alt="Missile balistique M5" class="missile">
+					({{ m5_restant }} restant{{ 's' if m5_restant != 1 }})
 				</label>
-				<label>
-					<input type="checkbox" name="missile" value="mf">
+				<label class="{{ 'missile_epuise' if mf_restant == 0 }}">
+					<input type="radio" name="missile" value="mf" {{ 'disabled' if mf_restant == 0 }}>
 					<img src="/img/missile_a_fragmentation.png" alt="Missile à fragmentation" class="missile">
+					({{ mf_restant }} restant{{ 's' if mf_restant != 1 }})
 				</label>
-				<label>
-					<input type="checkbox" name="missile" value="trident">
+				<label class="{{ 'missile_epuise' if trident_restant == 0 }}">
+					<input type="radio" name="missile" value="trident" {{ 'disabled' if trident_restant == 0 }}>
 					<img src="/img/trident.png" alt="Trident" class="missile">
+					({{ trident_restant }} restant{{ 's' if trident_restant != 1 }})
 				</label>
+				{% endif %}
 			</div>
 		</div>
+		</fieldset>
 	</form>
 	<form class="form_combat" action="/req_accueil" method="get">
 		<input type="hidden" name="pseudo" value="{{ pseudo }}">
@@ -315,5 +335,52 @@
 		<button type="submit" class="bouton_abandonner">Abandonner</button>
 	</form>
 
+	{% if timer_actif %}
+	<script>
+		(function () {
+			var el = document.getElementById('timer');
+			var temps = parseInt(el.dataset.temps, 10) || 0;
+			function affiche(t) {
+				var m = Math.floor(t / 60);
+				var s = t % 60;
+				el.textContent = 'Temps restant : ' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+			}
+			affiche(temps);
+			var intervalle = setInterval(function () {
+				temps--;
+				if (temps <= 0) {
+					clearInterval(intervalle);
+					affiche(0);
+				} else {
+					affiche(temps);
+				}
+			}, 1000);
+		})();
+	</script>
+	{% endif %}
+
+	{% if tour_ordinateur %}
+	<script>
+		setTimeout(function () {
+			window.location.href = "/req_tir_ordinateur?pseudo={{ pseudo | urlencode }}&password={{ password | urlencode }}&code_partie={{ code_partie | urlencode }}";
+		}, Number("{{ delai_ordinateur }}"));
+	</script>
+	{% endif %}
+
+	{% if son %}
+	<script>
+		(function () {
+			var fichiers = { eau: "/sons/plouf.mp3", touche: "/sons/explosion_petite.mp3", coule: "/sons/explosion_grosse.mp3" };
+			var fichier = fichiers["{{ son }}"];
+			if (fichier) {
+				var effet = new Audio(fichier);
+				effet.volume = 0.8;
+				effet.play().catch(function () { /* lecture bloquée, tant pis */ });
+			}
+		})();
+	</script>
+	{% endif %}
+
+	<script src="/musique.js" defer></script>
 </body>
 </html>

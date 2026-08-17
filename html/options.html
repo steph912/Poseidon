@@ -6,7 +6,7 @@
     <title>Options</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-musique="menu">
     
         <h1>Options</h1>
         
@@ -15,16 +15,18 @@
             <div class="option">
                 Timer
                 <div class="switch">
-                    <input type="checkbox" id="timer" name="timer">
+                    <input type="hidden" name="timer" value="off">
+                    <input type="checkbox" id="timer" name="timer" value="on">
                     <div class="slider"></div>
                 </div>
             </div>
-            
-        
+
+
             <div class="option">
                 Missiles spéciaux
                 <div class="switch">
-                    <input type="checkbox" id="missiles" name="missiles">
+                    <input type="hidden" name="missiles" value="off">
+                    <input type="checkbox" id="missiles" name="missiles" value="on" checked>
                     <div class="slider"></div>
                 </div>
             </div>
@@ -46,5 +48,6 @@
                 <input type="submit" value="Appliquer et revenir à l'accueil">
             </div>
         </form>
+	<script src="/musique.js" defer></script>
 </body>
 </html>
