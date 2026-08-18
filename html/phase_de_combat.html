@@ -6,7 +6,7 @@
 	<title>Phase de Combat</title>
 	<link rel="stylesheet" href="style.css">
 </head>
-<body data-musique="combat">
+<body>
 	<form class="form_combat" action="/req_tirer" method="GET">
 		<div class="score">Score : {{ score }}</div>
 		{% if timer_actif %}
@@ -14,9 +14,6 @@
 		{% endif %}
 		{% if erreur %}
 		<div class="erreur">{{ erreur }}</div>
-		{% endif %}
-		{% if tour_ordinateur %}
-		<div class="erreur" id="attente_ordinateur">L'ordinateur réfléchit...</div>
 		{% endif %}
 		<input type="hidden" name="pseudo" value="{{ pseudo }}">
 		<input type="hidden" name="password" value="{{ password }}">
@@ -381,6 +378,5 @@
 	</script>
 	{% endif %}
 
-	<script src="/musique.js" defer></script>
 </body>
 </html>

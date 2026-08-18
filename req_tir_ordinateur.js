@@ -106,12 +106,15 @@ const trait = function (req, res, query) {
 		etat.temps_restant_ordinateur = tempsRestant;
 	}
 
-	// ---------- Choix de l'arme (missile spécial 1 tir sur 3 en difficile) ----------
+	// ---------- Choix de l'arme (missile spécial illimité, à fréquence variable selon le niveau) ----------
+	// facile : 1 tir sur 5 — normal : 1 tir sur 3 — difficile : 1 tir sur 2
 
 	let missile = "m1";
-	if (etat.options.niveau_ia === "difficile" && etat.options.missiles) {
+	if (etat.options.missiles) {
+		let frequences = { facile: 5, normal: 3, difficile: 2 };
+		let frequence = frequences[etat.options.niveau_ia] || 5;
 		let prochainTir = etat.ia.nb_tirs + 1;
-		if (prochainTir % 3 === 0) {
+		if (prochainTir % frequence === 0) {
 			missile = choisirMissileSpecial(missilesRestants(etat, "ordinateur"));
 		}
 	}

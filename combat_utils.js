@@ -70,7 +70,11 @@ const sauvegarderEtat = function (codePartie, etat) {
 };
 
 // Renvoie, pour chaque missile spécial, le nombre d'utilisations restantes pour un joueur donné
+// L'ordinateur dispose de missiles spéciaux illimités : seul le joueur est soumis aux quotas de LIMITES_MISSILES
 const missilesRestants = function (etat, joueur) {
+	if (joueur === "ordinateur") {
+		return { trident: Infinity, mf: Infinity, m5: Infinity };
+	}
 	let utilises = etat.missiles[joueur];
 	return {
 		trident: Math.max(0, LIMITES_MISSILES.trident - utilises.trident),
