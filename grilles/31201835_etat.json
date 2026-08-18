@@ -1,0 +1,1 @@
+{"options":{"timer":true,"missiles":true,"niveau_ia":"difficile"},"score":2380,"temps_restant_joueur":158,"temps_restant_ordinateur":130,"debut_tour_joueur":null,"debut_tour_ordinateur":null,"missiles":{"joueur":{"trident":1,"mf":2,"m5":3},"ordinateur":{"trident":5,"mf":4,"m5":3}},"ia":{"mode":"random","pile_cibles":[],"nb_tirs":25}}

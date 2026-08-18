@@ -26,71 +26,13 @@
 
 const fs = require("fs");
 const nunjucks = require("nunjucks");
-const { chargerEtat, sauvegarderEtat, missilesRestants, DELAI_TIR_ORDINATEUR } = require("./combat_utils.js");
-
-// fonction qui place aléatoirement un bateau de taille donnée dans une grille et qui renvoie la grille modifiée
-// "bateaux", si fourni, reçoit la liste des cases occupées par chaque bateau placé (utile pour detecter les bateaux coulés)
-const placer_bateau = function (taille, grille, bateaux) {
-    let direction = Math.floor(Math.random() * 2); // 0 pour horizontal, 1 pour vertical
-	let position = Math.floor(Math.random() * grille.length); // position aléatoire de départ du bateau
-	let peut_placer = false; // true si le bateau peut être placé, false sinon
-    let bateau_placer = false; // définis si le bateau est placé ou non
-    let maxAttempts = 100; // Limite de tentatives pour éviter les boucles infinies
-    let attempts = 0; // nombre de tentatives
-
-	while (bateau_placer === false && attempts < maxAttempts) { // tant que le bateau n'est pas placé
-        attempts++;
-        if (direction === 0) { // si le bateau est horizontal
-            if (position % 10 + taille <= 10) { // si le bateau ne dépasse pas de la grille
-                peut_placer = true;
-                for (let i = 0; i < taille; i++) {
-                    if (grille[position + i] !== "eau_inconnu") { // si la case est déjà occupée
-                        peut_placer = false; // le bateau ne peut pas être placé
-                    }
-                }
-                if (peut_placer) { // si le bateau peut être placé
-                    let positions = [];
-                    for (let i = 0; i < taille; i++) {
-                        grille[position + i] = "bateau_inconnu"; // on place le bateau
-                        positions.push(position + i);
-                    }
-                    if (bateaux) {
-                        bateaux.push(positions); // on mémorise les cases occupées par ce bateau
-                    }
-                    bateau_placer = true; // le bateau est placé on sort de la boucle
-                }
-            }
-            else {
-                direction = 1; // on change la direction du bateau
-            }
-        }
-        if (direction === 1) { // si le bateau est vertical
-            if (Math.floor(position / 10) + taille <= 10) { // si le bateau ne dépasse pas de la grille
-                peut_placer = true; // true si le bateau peut être placé, false sinon
-                for (let i = 0; i < taille; i++) {
-                    if (grille[position + 10 * i] !== "eau_inconnu") { // si la case est déjà occupée
-                        peut_placer = false; // le bateau ne peut pas être placé
-                    }
-                }
-                if (peut_placer) { // si le bateau peut être placé
-                    let positions = [];
-                    for (let i = 0; i < taille; i++) {
-                        grille[position + 10 * i] = "bateau_inconnu"; // on place le bateau
-                        positions.push(position + 10 * i);
-                    }
-                    if (bateaux) {
-                        bateaux.push(positions); // on mémorise les cases occupées par ce bateau
-                    }
-                    bateau_placer = true; // le bateau est placé on sort de la boucle
-                }
-            }
-            else {
-                direction = 0; // on change la direction du bateau
-            }
-        }
-    }
-	return grille;
-}
+const {
+	chargerEtat,
+	sauvegarderEtat,
+	missilesRestants,
+	DELAI_TIR_ORDINATEUR,
+	genererGrilleBateaux,
+} = require("./combat_utils.js");
 
 const trait = function (req, res, query) { // fonction principale du module
 
@@ -120,11 +62,9 @@ const trait = function (req, res, query) { // fonction principale du module
     }
 
     if (bateauxJoueur.length === 0) { // si le joueur n'a pas placé ses bateaux (secours), on les place aléatoirement
-        grille = placer_bateau(2, grille, bateauxJoueur);
-        grille = placer_bateau(3, grille, bateauxJoueur);
-        grille = placer_bateau(3, grille, bateauxJoueur);
-        grille = placer_bateau(4, grille, bateauxJoueur);
-        grille = placer_bateau(5, grille, bateauxJoueur);
+        let genere = genererGrilleBateaux();
+        grille = genere.grille;
+        bateauxJoueur = genere.bateaux;
     }
 
     // on écrit le placement du joueur dans les fichiers json
@@ -133,19 +73,9 @@ const trait = function (req, res, query) { // fonction principale du module
 
     // ----------------- GÉNÉRER LE PLACEMENT DES BATEAUX DE L'ORDINATEUR -----------------
 
-    let grilleOrdinateur = [];
-    grilleOrdinateur.length = 100;
-    for (let i = 0; i < grilleOrdinateur.length; i++) { // on réinitialise le tableau grille
-        grilleOrdinateur[i] = "eau_inconnu"; // on initialise la case à eau inconnue
-    }
-
-    let bateauxOrdinateur = []; // liste des cases occupées par chaque bateau de l'ordinateur
-
-	grilleOrdinateur = placer_bateau(2, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 2
-	grilleOrdinateur = placer_bateau(3, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 3
-	grilleOrdinateur = placer_bateau(3, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 3
-	grilleOrdinateur = placer_bateau(4, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 4
-	grilleOrdinateur = placer_bateau(5, grilleOrdinateur, bateauxOrdinateur); // place un bateau de taille 5
+    let genereOrdinateur = genererGrilleBateaux();
+    let grilleOrdinateur = genereOrdinateur.grille;
+    let bateauxOrdinateur = genereOrdinateur.bateaux;
 
     // Sauvegarder le tableau dans le fichier json
     fs.writeFileSync(`./grilles/ordinateur.json`, JSON.stringify(grilleOrdinateur), 'utf-8'); // on écrit le tableau grille dans le fichier json

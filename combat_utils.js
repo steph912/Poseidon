@@ -85,6 +85,65 @@ const missilesRestants = function (etat, joueur) {
 
 // ----------------- BATEAUX -----------------
 
+// Tailles des bateaux d'une partie standard : un de 2 cases, deux de 3, un de 4, un de 5
+const TAILLES_BATEAUX = [2, 3, 3, 4, 5];
+
+// Place un bateau de taille donnée à un emplacement valide ET libre, choisi au hasard parmi TOUS les emplacements
+// possibles (contrairement à un tirage de position au hasard suivi d'une vérification, qui peut échouer à répétition
+// sans jamais trouver de place alors qu'il en reste). Renvoie true si un emplacement a été trouvé, false sinon
+// (grille trop pleine — ne devrait arriver qu'en toute fin de placement, jamais pour une grille de bataille navale standard).
+const placerBateauAleatoire = function (taille, grille, bateaux) {
+	let candidats = [];
+	for (let pos = 0; pos < grille.length; pos++) {
+		if (pos % 10 + taille <= 10) { // ça tient horizontalement dans la grille
+			let libre = true;
+			for (let i = 0; i < taille; i++) {
+				if (grille[pos + i] !== "eau_inconnu") { libre = false; break; }
+			}
+			if (libre) candidats.push({ pos, horizontal: true });
+		}
+		if (Math.floor(pos / 10) + taille <= 10) { // ça tient verticalement dans la grille
+			let libre = true;
+			for (let i = 0; i < taille; i++) {
+				if (grille[pos + 10 * i] !== "eau_inconnu") { libre = false; break; }
+			}
+			if (libre) candidats.push({ pos, horizontal: false });
+		}
+	}
+
+	if (candidats.length === 0) {
+		return false;
+	}
+
+	let choix = candidats[Math.floor(Math.random() * candidats.length)];
+	let positions = [];
+	for (let i = 0; i < taille; i++) {
+		positions.push(choix.horizontal ? choix.pos + i : choix.pos + 10 * i);
+	}
+	positions.forEach(pos => {
+		grille[pos] = "bateau_inconnu";
+	});
+	if (bateaux) {
+		bateaux.push(positions);
+	}
+	return true;
+};
+
+// Génère une grille de 100 cases avec les 5 bateaux standards placés aléatoirement (sans chevauchement).
+// Renvoie { grille, bateaux }. Recommence entièrement si un placement échoue (ne devrait jamais arriver en pratique).
+const genererGrilleBateaux = function () {
+	for (let tentative = 0; tentative < 50; tentative++) {
+		let grille = new Array(100).fill("eau_inconnu");
+		let bateaux = [];
+		let ok = TAILLES_BATEAUX.every(taille => placerBateauAleatoire(taille, grille, bateaux));
+		if (ok) {
+			return { grille, bateaux };
+		}
+	}
+	// Filet de sécurité, ne devrait jamais être atteint avec seulement 17 cases de bateaux sur 100
+	throw new Error("Impossible de placer les bateaux après 50 tentatives");
+};
+
 const lireBateaux = function (chemin) {
 	try {
 		return JSON.parse(fs.readFileSync(chemin, "utf-8"));
@@ -286,6 +345,9 @@ const interpreterCheckbox = function (valeur, defautSiAbsent) {
 
 module.exports = {
 	LIMITES_MISSILES,
+	TAILLES_BATEAUX,
+	placerBateauAleatoire,
+	genererGrilleBateaux,
 	interpreterCheckbox,
 	voisins,
 	TEMPS_INITIAL,
